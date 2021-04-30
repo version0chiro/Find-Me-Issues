@@ -1,34 +1,19 @@
-import React from "react";
+import React,{ useState} from "react";
 import logo from './logo.svg';
 import './App.css';
 
-// import {Dropdown} from './components/Dropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  const [data,setData] = React.useState(null);
+import Header from './components/Header';
+import CardSet from './components/CardSet';
 
-  React.useEffect(() =>{
-    fetch("/api")
-    .then((res)=>res.json())
-    .then((data)=>setData(data.message));
-  },[]);
+function App() {  
+  const [language,setLanguage] = useState("java");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {!data?"loading":data}
-        </a>
-        {/* <Dropdown /> */}
-      </header>
+      <Header  setLanguage={setLanguage} />
+      
+      <CardSet language={language} key={language}/>
     </div>
   );
 }
