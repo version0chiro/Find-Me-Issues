@@ -1,4 +1,5 @@
-# <p align="center">Find-Me-Issues</p>
+# <p align="center"><img src="https://img.icons8.com/emoji/48/000000/magnifying-glass-tilted-right-emoji.png"/><img src="https://img.icons8.com/emoji/48/000000/magnifying-glass-tilted-left-emoji.png"/></p>
+# <h1 align="center">Find-Me-Issues </h1>
 A React.js based web-app to find repositories containing 'good first issues' open source contribution. Any kind of contribution  and suggestions are highly appreciated!
 
 ## Stack:
