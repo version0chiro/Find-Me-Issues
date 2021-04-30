@@ -8,11 +8,10 @@ import Header from './components/Header';
 import CardSet from './components/CardSet';
 
 function App() {  
-  const [language,setLanguage] = useState("java");
+  const [language,setLanguage] = useState("Javascript");
   return (
     <div className="App">
       <Header  setLanguage={setLanguage} />
-      
       <CardSet language={language} key={language}/>
     </div>
   );
