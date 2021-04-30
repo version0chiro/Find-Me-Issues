@@ -10,6 +10,11 @@ You know what is one of most painful thing for programmers new to open-source? F
 with a simple and easy to use interface, people will be able to filter the repositories with the type of langugage they want to work with, number of starts the repository has,
 number of open-issues the repository currently has open and much more!
 
+<br>
+
+![Webpage](./assets/main_website.png)
+
+
 ### If you wanna use the hosted version of the webpage follow the link [here](https://find-me-issues.herokuapp.com/)
 
 
