@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start":"node server/index.js",
-    "build":"cd client && npm install && npm build",
+    "build":"cd client && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
