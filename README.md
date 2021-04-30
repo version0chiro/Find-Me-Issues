@@ -12,7 +12,7 @@ number of open-issues the repository currently has open and much more!
 
 <br>
 
-![Webpage](./assets/main_website.png)
+![Webpage](assets/main_website.PNG?raw=true)
 
 
 ### If you wanna use the hosted version of the webpage follow the link [here](https://find-me-issues.herokuapp.com/)
