@@ -14,7 +14,8 @@ const CardSet = (props) => {
   const classes = useStyles();
   useEffect(() => {
     // GET request using fetch inside useEffect React hook
-    fetch('https://api.github.com/search/repositories?q=language:'+props.language+'+good-first-issues:%3E2&page=1&per_page=10')
+    
+    fetch(`https://api.github.com/search/issues?q=label:good-first-issue+language:${props.language}&page=1&per_page=10`)
       .then((response) => response.json())
       .then((data) => setRepositories(data.items));
 
@@ -29,7 +30,7 @@ const CardSet = (props) => {
         </div>
       ) : (
         repositores.map((repo) => {
-          return <SingleCard repo={repo}/>;
+          return <SingleCard key={props.key} repo={repo}/>;
         })
       )}
     </div>
