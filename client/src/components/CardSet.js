@@ -15,7 +15,7 @@ const CardSet = (props) => {
     // GET request using fetch inside useEffect React hook
 
     fetch(
-      `https://api.github.com/search/issues?q=label:good-first-issue+language:${props.language}&page=${props.pageNumber}&per_page=10`
+      `https://api.github.com/search/issues?q=state:open+label:good-first-issue+language:${props.language}&page=${props.pageNumber}&per_page=10`
     )
       .then((response) => response.json())
       .then((data) => {
