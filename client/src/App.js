@@ -2,7 +2,7 @@ import React from "react";
 import logo from './logo.svg';
 import './App.css';
 
-import {Dropdown} from './components/Dropdown';
+// import {Dropdown} from './components/Dropdown';
 
 function App() {
   const [data,setData] = React.useState(null);
@@ -27,7 +27,7 @@ function App() {
         >
           {!data?"loading":data}
         </a>
-        <Dropdown />
+        {/* <Dropdown /> */}
       </header>
     </div>
   );
