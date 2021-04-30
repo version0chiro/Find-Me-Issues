@@ -1,7 +1,7 @@
 import { Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import { useState } from "react";
-import langugagesData from "../data/langugage.json";
+import langugagesData from "../data/languages.json";
 
 const Header = (props) => {
   const [language, setLanguage] = useState("javascript");
