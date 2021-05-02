@@ -26,7 +26,7 @@ const CardSet = (props) => {
       });
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, []);
+  }, [props]);
 
   return (
     <div key={props.key} className={classes.cardSet}>
