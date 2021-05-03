@@ -15,6 +15,7 @@ const Header = (props) => {
           <div id="outlined-basic" className="mr-sm-2">{language}</div>
 
           <NavDropdown title="Select Language" id="basic-nav-dropdown">
+            <div style={{height:"400px", overflowY:"auto"}}>
             {langugagesData.languages.map((lang, index) => {
               return (
                 <div>
@@ -30,6 +31,7 @@ const Header = (props) => {
                 </div>
               );
             })}
+            </div>
           </NavDropdown>
         </Form>
       </Navbar>
