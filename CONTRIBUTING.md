@@ -16,7 +16,9 @@
          npm install 
          
 **5.** - For Contributing to the react front-end. Move into the client directory and run npm start to start the server on local host.
+         
          cd client
+         npm i
          npm start
          
 **6.** - Find any pending issue from the issues section of the repository to work on and request to be assigned to that perticular issue. 
