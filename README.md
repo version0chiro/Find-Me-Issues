@@ -7,7 +7,7 @@ A React.js based web-app to find repositories containing 'good first issues' ope
 ### <p align="center">Don't Just Fork The Project, if you like it please consider staring it!<p align="center"><img src="https://img.icons8.com/bubbles/50/000000/star.png"/> 
 
 ## Stack:
-<p align="center"><img src="https://img.icons8.com/bubbles/50/000000/react.png"/><img src="https://img.icons8.com/dusk/50/000000/javascript.png"/><img src="https://img.icons8.com/cute-clipart/50/000000/github.png"/></p>
+<p align="center"><img src="https://img.icons8.com/bubbles/50/000000/react.png"/><img src="https://img.icons8.com/dusk/50/000000/javascript.png"/><img src="https://img.icons8.com/cute-clipart/50/000000/github.png"/> <img src="https://img.icons8.com/color/50/000000/material-ui.png"/><img src="https://img.icons8.com/color/50/000000/nodejs.png"/></p>
 
 ## About The Project:
 You know what is one of most painful thing for programmers new to open-source? Finding beginner friendly projects to contribute to! This will change with Find-Me-Issues, 
