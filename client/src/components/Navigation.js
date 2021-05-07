@@ -2,15 +2,27 @@ import React from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import Pagination from 'react-bootstrap/Pagination';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  navBar: {
+    justifyContent: 'center',
+    '& a': {
+      color: 'black',
+    },
+  },
+});
 
 // TODO: Center Pagination
 // TODO: Pass props into Pagination
 // TODO: Move pagination to bottom of page
 
 const Navigation = (props) => {
+  const classes = useStyles();
+
   return (
     <div>
-      <Pagination>
+      <Pagination className={classes.navBar}>
         <Pagination.First />
         <Pagination.Prev />
         <Pagination.Item>{1}</Pagination.Item>
@@ -27,6 +39,7 @@ const Navigation = (props) => {
         <Pagination.Next />
         <Pagination.Last />
       </Pagination>
+
       <ArrowBackIcon
         onClick={() => {
           if (props.pageNumber > 1) {
