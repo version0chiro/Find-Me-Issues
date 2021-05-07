@@ -13,25 +13,33 @@ const useStyles = makeStyles({
   },
 });
 
-// TODO: customize pagination component
 // TODO: Pass props into Pagination
 // TODO: Move pagination to bottom of page
 
 const Navigation = (props) => {
   const classes = useStyles();
 
+  const prevPage = () => {
+    if (props.pageNumber > 1) {
+      props.setPageNumber(props.pageNumber - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (props.pageNumber < props.maxPageNumber) {
+      props.setPageNumber(props.pageNumber + 1);
+    }
+  };
+
   return (
     <div>
       <Pagination className={classes.navBar}>
         <Pagination.First />
-        <Pagination.Prev />
-        <Pagination.Item>{1}</Pagination.Item>
-        <Pagination.Item>{2}</Pagination.Item>
-        <Pagination.Item>{3}</Pagination.Item>
-        <Pagination.Item>{4}</Pagination.Item>
-        <Pagination.Item>{5}</Pagination.Item>
+        <Pagination.Prev onClick={prevPage} />
 
-        <Pagination.Next />
+        <Pagination.Item>{props.pageNumber}</Pagination.Item>
+
+        <Pagination.Next onClick={nextPage} />
         <Pagination.Last />
       </Pagination>
 
