@@ -31,16 +31,24 @@ const Navigation = (props) => {
     }
   };
 
+  const firstPage = () => {
+    props.setPageNumber(1);
+  };
+
+  const lastPage = () => {
+    props.setPageNumber(props.maxPageNumber);
+  };
+
   return (
     <div>
       <Pagination className={classes.navBar}>
-        <Pagination.First />
+        <Pagination.First onClick={firstPage} />
         <Pagination.Prev onClick={prevPage} />
 
         <Pagination.Item>{props.pageNumber}</Pagination.Item>
 
         <Pagination.Next onClick={nextPage} />
-        <Pagination.Last />
+        <Pagination.Last onClick={lastPage} />
       </Pagination>
 
       <ArrowBackIcon
