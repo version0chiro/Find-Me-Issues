@@ -11,42 +11,89 @@ const useStyles = makeStyles({
   },
 });
 
-// TODO: Pass props into Pagination
-// TODO: Move pagination to bottom of page
-
 const Navigation = (props) => {
   const classes = useStyles();
 
-  const prevPage = () => {
-    if (props.pageNumber > 1) {
-      props.setPageNumber(props.pageNumber - 1);
+  let paginationItem = [];
+
+  // edge case for beginning pages active states
+  if (props.pageNumber <= 3) {
+    for (let pageNumber = 1; pageNumber <= 5; pageNumber++) {
+      paginationItem.push(
+        <Pagination.Item
+          key={pageNumber}
+          active={pageNumber === props.pageNumber}
+        >
+          {pageNumber}
+        </Pagination.Item>,
+      );
     }
-  };
-
-  const nextPage = () => {
-    if (props.pageNumber < props.maxPageNumber) {
-      props.setPageNumber(props.pageNumber + 1);
+  }
+  // edge case for end pages active states
+  else if (props.pageNumber > props.maxPageNumber - 2) {
+    for (
+      let pageNumber = props.maxPageNumber - 4;
+      pageNumber <= props.maxPageNumber;
+      pageNumber++
+    ) {
+      paginationItem.push(
+        <Pagination.Item
+          key={pageNumber}
+          active={pageNumber === props.pageNumber}
+        >
+          {pageNumber}
+        </Pagination.Item>,
+      );
     }
-  };
-
-  const firstPage = () => {
-    props.setPageNumber(1);
-  };
-
-  const lastPage = () => {
-    props.setPageNumber(props.maxPageNumber);
-  };
+  }
+  // covers rest of page active states
+  else if (props.pageNumber <= props.maxPageNumber - 2) {
+    for (
+      let pageNumber = props.pageNumber - 2;
+      pageNumber <= props.pageNumber + 2;
+      pageNumber++
+    ) {
+      paginationItem.push(
+        <Pagination.Item
+          key={pageNumber}
+          active={pageNumber === props.pageNumber}
+        >
+          {pageNumber}
+        </Pagination.Item>,
+      );
+    }
+  }
 
   return (
     <div>
       <Pagination className={classes.navBar}>
-        <Pagination.First onClick={firstPage} />
-        <Pagination.Prev onClick={prevPage} />
+        <Pagination.First
+          onClick={() => {
+            props.setPageNumber(1);
+          }}
+        />
+        <Pagination.Prev
+          onClick={() => {
+            if (props.pageNumber > 1) {
+              props.setPageNumber(props.pageNumber - 1);
+            }
+          }}
+        />
 
-        <Pagination.Item>{props.pageNumber}</Pagination.Item>
+        {paginationItem}
 
-        <Pagination.Next onClick={nextPage} />
-        <Pagination.Last onClick={lastPage} />
+        <Pagination.Next
+          onClick={() => {
+            if (props.pageNumber < props.maxPageNumber) {
+              props.setPageNumber(props.pageNumber + 1);
+            }
+          }}
+        />
+        <Pagination.Last
+          onClick={() => {
+            props.setPageNumber(props.maxPageNumber);
+          }}
+        />
       </Pagination>
     </div>
   );
