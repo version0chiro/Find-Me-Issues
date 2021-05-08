@@ -1,6 +1,4 @@
 import React from 'react';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import Pagination from 'react-bootstrap/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -50,22 +48,6 @@ const Navigation = (props) => {
         <Pagination.Next onClick={nextPage} />
         <Pagination.Last onClick={lastPage} />
       </Pagination>
-
-      <ArrowBackIcon
-        onClick={() => {
-          if (props.pageNumber > 1) {
-            props.setPageNumber(props.pageNumber - 1);
-          }
-        }}
-      />
-      {props.pageNumber}
-      <ArrowForwardIcon
-        onClick={() => {
-          if (props.pageNumber < props.maxPageNumber) {
-            props.setPageNumber(props.pageNumber + 1);
-          }
-        }}
-      />
     </div>
   );
 };
