@@ -14,15 +14,18 @@ const useStyles = makeStyles({
 const Navigation = (props) => {
   const classes = useStyles();
 
-  let paginationItem = [];
+  let paginationItems = [];
 
   // edge case for beginning pages active states
   if (props.pageNumber <= 3) {
     for (let pageNumber = 1; pageNumber <= 5; pageNumber++) {
-      paginationItem.push(
+      paginationItems.push(
         <Pagination.Item
           key={pageNumber}
           active={pageNumber === props.pageNumber}
+          onClick={() => {
+            props.setPageNumber(pageNumber);
+          }}
         >
           {pageNumber}
         </Pagination.Item>,
@@ -36,10 +39,13 @@ const Navigation = (props) => {
       pageNumber <= props.maxPageNumber;
       pageNumber++
     ) {
-      paginationItem.push(
+      paginationItems.push(
         <Pagination.Item
           key={pageNumber}
           active={pageNumber === props.pageNumber}
+          onClick={() => {
+            props.setPageNumber(pageNumber);
+          }}
         >
           {pageNumber}
         </Pagination.Item>,
@@ -53,10 +59,13 @@ const Navigation = (props) => {
       pageNumber <= props.pageNumber + 2;
       pageNumber++
     ) {
-      paginationItem.push(
+      paginationItems.push(
         <Pagination.Item
           key={pageNumber}
           active={pageNumber === props.pageNumber}
+          onClick={() => {
+            props.setPageNumber(pageNumber);
+          }}
         >
           {pageNumber}
         </Pagination.Item>,
@@ -80,7 +89,7 @@ const Navigation = (props) => {
           }}
         />
 
-        {paginationItem}
+        {paginationItems}
 
         <Pagination.Next
           onClick={() => {
