@@ -23,6 +23,9 @@ const Navigation = (props) => {
         <Pagination.Item
           key={pageNumber}
           active={pageNumber === props.pageNumber}
+          onClick={() => {
+            props.setPageNumber(pageNumber);
+          }}
         >
           {pageNumber}
         </Pagination.Item>,
@@ -40,6 +43,9 @@ const Navigation = (props) => {
         <Pagination.Item
           key={pageNumber}
           active={pageNumber === props.pageNumber}
+          onClick={() => {
+            props.setPageNumber(pageNumber);
+          }}
         >
           {pageNumber}
         </Pagination.Item>,
@@ -57,6 +63,9 @@ const Navigation = (props) => {
         <Pagination.Item
           key={pageNumber}
           active={pageNumber === props.pageNumber}
+          onClick={() => {
+            props.setPageNumber(pageNumber);
+          }}
         >
           {pageNumber}
         </Pagination.Item>,
