@@ -18,16 +18,16 @@ const SingleCard = (props) => {
 
   const [openIssues, setOpen] = useState(false);
   return (
-    <div classname="" style={{ width: "100%", margin: "10px", padding: "10px" }}>
+    <div classname="" style={{ width: "100%", margin: "10px", padding: "10px", webkitTextStroke:"0.4px white" }}>
       {repo === null || repo === undefined ? (
         <div></div>
       ) : (
         <Card className="container container-fluid bg-dark text-white" border="info" style={{ borderRadius:"1rem", borderWidth:"0.2rem"}}>
         <Card.Img src={backg} alt="Card image" style={{height:"330px"}}/>
         <Card.ImgOverlay>
-          <div style={{ display: "inline-block" }}>
+          <div style={{ display: "inline-block", borderColor:"white", borderWidth:"0.2rem" }}>
               <Avatar
-                style={{ display: "inline-block" }}
+                style={{ display: "inline-block", border: '1.5px solid lightgray' }}
                 src={repo.owner.avatar_url}
               />
               <Card.Title>{repo.name}</Card.Title>
@@ -35,7 +35,7 @@ const SingleCard = (props) => {
             <Card.Text>
               {" "}
 
-              {repo.description? <Emoji text={repo.description} />: <></>}
+              {repo.description? <span style={{ webkitTextStroke:"0.4px white" }}><Emoji text={repo.description} /> </span>: <></>}
 
             </Card.Text>
             <Card.Text>Issue description:</Card.Text>
