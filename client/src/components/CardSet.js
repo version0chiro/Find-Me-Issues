@@ -11,7 +11,10 @@ const useStyles = makeStyles((theme) => ({
 const CardSet = (props) => {
   const [repositores, setRepositories] = useState([]);
   const classes = useStyles();
+  const [isLoading, setIsLoading] = useState(false)
+
   useEffect(() => {
+    setIsLoading(true)
     // GET request using fetch inside useEffect React hook
 
     fetch(
@@ -23,23 +26,34 @@ const CardSet = (props) => {
         props.setMaxPageNumber(maxPageNumber);
         console.log(maxPageNumber);
         setRepositories(data.items);
+        setIsLoading(false)
       });
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, [props]);
 
+
   return (
-    <div key={props.key} className={classes.cardSet}>
-      {repositores === undefined || repositores.length < 0 ? (
-        <div>
-          <SingleCard />
-        </div>
-      ) : (
-        repositores.map((repo) => {
-          return <SingleCard key={props.key} repo={repo} />;
-        })
-      )}
-    </div>
+    <>
+      {isLoading ? 
+      <div className="loader-container">
+        <div className="loader"></div>
+        <h5>Fetching some good first issues for you...</h5>
+      </div> 
+      :
+      <div key={props.key} className={classes.cardSet}>
+        {repositores === undefined || repositores.length < 0 ? (
+          <div>
+            <SingleCard />
+          </div>
+        ) : (
+          repositores.map((repo) => {
+            return <SingleCard key={props.key} repo={repo} />;
+          })
+        )}
+      </div>
+      }
+    </>
   );
 };
 
