@@ -10,18 +10,22 @@ const SingleCard = (props) => {
   //console.log(props.repo.repository_url)
   const [repo, setRepo] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [wasRejected, setWasRejected] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
     // GET request using axios inside useEffect React hook
     axios.get(props.repo.repository_url)
       .then(response => {
+        setWasRejected(false)
         setIsLoading(false)
         setRepo(response.data)
       }, rejection => {
+        if(rejection.response.status === 403) setWasRejected(true)
         //console.log(rejection.response.data)
       })
       .catch(errors => {
+        setIsLoading(false)
         //console.log(errors)
       })
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
@@ -30,6 +34,7 @@ const SingleCard = (props) => {
   const [openIssues, setOpen] = useState(false);
   return (
     <div className="" style={{ width: "100%", margin: "10px", padding: "10px", WebkitTextStroke:"0.4px white" }}>
+      {wasRejected && <small style={{color:"red"}}>You are seeing this message because github imposes rate limit on requests. Please refresh the page or wait a couple of minutes.</small>}
       {isLoading ? (
         <div className="loader"></div>
       ) : (
