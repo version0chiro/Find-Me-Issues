@@ -11,7 +11,7 @@ A React.js based web-app to find repositories containing 'good first issues' ope
 
 ## About The Project:
 You know what is one of most painful thing for programmers new to open-source? Finding beginner friendly projects to contribute to! This will change with Find-Me-Issues, 
-with a simple and easy to use interface, people will be able to filter the repositories with the type of langugage they want to work with, number of starts the repository has,
+with a simple and easy to use interface, people will be able to filter the repositories with the type of langugage they want to work with, number of stars the repository has,
 number of open-issues the repository currently has open and much more!
 
 <br>
