@@ -18,7 +18,7 @@ const Header = (props) => {
             <div style={{height:"400px", overflowY:"auto"}}>
             {langugagesData.languages.map((lang, index) => {
               return (
-                <div>
+                <div key={index}>
                   <NavDropdown.Item
                     onClick={() => {
                       setLanguage(lang);

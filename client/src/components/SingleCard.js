@@ -3,25 +3,42 @@ import { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Emoji from "react-emoji-render";
 import backg from '../git9.jpg';
+import axios from 'axios'
+import {isEmpty} from 'lodash'
 
 const SingleCard = (props) => {
-  console.log(props.repo.repository_url);
-  const [repo, setRepo] = useState(null);
+  //console.log(props.repo.repository_url)
+  const [repo, setRepo] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [wasRejected, setWasRejected] = useState(false)
+
   useEffect(() => {
-    // GET request using fetch inside useEffect React hook
-    fetch(props.repo.repository_url)
-      .then((response) => response.json())
-      .then((data) => setRepo(data))
-      .catch((error) => console.log(error));
+    setIsLoading(true)
+    // GET request using axios inside useEffect React hook
+    axios.get(props.repo.repository_url)
+      .then(response => {
+        setWasRejected(false)
+        setIsLoading(false)
+        setRepo(response.data)
+      }, rejection => {
+        if(rejection.response.status === 403) setWasRejected(true)
+        //console.log(rejection.response.data)
+      })
+      .catch(errors => {
+        setIsLoading(false)
+        //console.log(errors)
+      })
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, [props.repo.repository_url]);
 
   const [openIssues, setOpen] = useState(false);
   return (
-    <div classname="" style={{ width: "100%", margin: "10px", padding: "10px", webkitTextStroke:"0.4px white" }}>
-      {repo === null || repo === undefined ? (
-        <div></div>
+    <div className="" style={{ width: "100%", margin: "10px", padding: "10px", WebkitTextStroke:"0.4px white" }}>
+      {wasRejected && <small style={{color:"red"}}>You are seeing this message because github imposes rate limit on requests. Please refresh the page or wait a couple of minutes.</small>}
+      {isLoading ? (
+        <div className="loader"></div>
       ) : (
+      <> { !isEmpty(repo) &&
         <Card className="container container-fluid bg-dark text-white" border="info" style={{ borderRadius:"1rem", borderWidth:"0.2rem"}}>
         <Card.Img src={backg} alt="Card image" style={{height:"330px"}}/>
         <Card.ImgOverlay>
@@ -35,7 +52,7 @@ const SingleCard = (props) => {
             <Card.Text>
               {" "}
 
-              {repo.description? <span style={{ webkitTextStroke:"0.4px white" }}><Emoji text={repo.description} /> </span>: <></>}
+              {repo.description? <span style={{ WebkitTextStroke:"0.4px white" }}><Emoji text={repo.description} /> </span>: <></>}
 
             </Card.Text>
             <Card.Text>Issue description:</Card.Text>
@@ -48,6 +65,7 @@ const SingleCard = (props) => {
             </a>
         </Card.ImgOverlay>
       </Card>
+      } </>
       )}
     </div>
   );
