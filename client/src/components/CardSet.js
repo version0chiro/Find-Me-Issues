@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import SingleCard from "./SingleCard";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import {isEmpty} from 'lodash'
-
+//Context
+import {ThemeContext} from '../Context/themeContext'
 
 const useStyles = makeStyles((theme) => ({
   cardSet: {
@@ -12,11 +13,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CardSet = (props) => {
-  const [repositores, setRepositories] = useState([]);
-  const classes = useStyles();
+  const [repositores, setRepositories] = useState([])
+  const classes = useStyles()
   const [isLoading, setIsLoading] = useState(false)
   const [wasRejected, setWasRejected] = useState(false)
+  const {theme} = useContext(ThemeContext)
   const url = `https://api.github.com/search/issues?q=state:open+label:good-first-issue+language:${props.language}&page=${props.pageNumber}&per_page=10`
+
 
   useEffect(() => {
     setIsLoading(true)
@@ -42,7 +45,7 @@ const CardSet = (props) => {
 
 
   return (
-    <>
+    <div style={{ backgroundColor: theme.bg, color: theme.color}}>
       {isLoading ? 
       <div className="loader-container">
         <div className="loader"></div>
@@ -60,7 +63,7 @@ const CardSet = (props) => {
         )}
       </div>
       }
-    </>
+    </div>
   );
 };
 

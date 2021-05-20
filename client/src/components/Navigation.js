@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
+//Context
+import {ThemeContext} from '../Context/themeContext'
 
 const useStyles = makeStyles({
   navBar: {
+    paddingTop: '25px',
     justifyContent: 'center',
     '& a': {
       color: 'black',
-    },
+    }
   },
 });
 
 const Navigation = (props) => {
-  const classes = useStyles();
+  const classes = useStyles()
+  const {theme} = useContext(ThemeContext)
 
   let paginationItems = [];
 
@@ -74,7 +78,7 @@ const Navigation = (props) => {
   }
 
   return (
-    <div>
+    <div style={{ backgroundColor: theme.bg, color: theme.color}}>
       <Pagination className={classes.navBar}>
         <Pagination.First
           onClick={() => {
