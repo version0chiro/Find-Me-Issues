@@ -1,15 +1,22 @@
-import { Navbar, Nav, NavDropdown, Form } from "react-bootstrap";
-import { useState } from "react";
+import { Navbar, Nav, NavDropdown, Form, Button } from "react-bootstrap";
+import { useContext, useState } from "react";
 import langugagesData from "../data/languages.json";
+//Context
+import {ThemeContext} from '../Context/themeContext'
 
 const Header = (props) => {
   const [language, setLanguage] = useState("javascript");
+  const {theme, changeTheme} = useContext(ThemeContext)
 
   return (
-    <div>
-      <Navbar bg="light" expand="lg">
+    <div style={{color: theme.color}}>
+      <Navbar bg={theme.mode} variant={theme.mode} expand="lg">
         <Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
-
+        {theme.mode === 'light' ?
+            <Button onClick={changeTheme}><i className="fa fa-moon-o" aria-hidden="true"></i></Button>
+          : 
+            <Button onClick={changeTheme}><i className="fa fa-sun-o" aria-hidden="true"></i></Button>
+        }
         <Nav className="mr-auto"></Nav>
         <Form inline>
           <div id="outlined-basic" className="mr-sm-2">{language}</div>

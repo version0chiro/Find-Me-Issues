@@ -33,7 +33,7 @@ const SingleCard = (props) => {
 
   const [openIssues, setOpen] = useState(false);
   return (
-    <div className="" style={{ width: "100%", margin: "10px", padding: "10px", WebkitTextStroke:"0.4px white" }}>
+    <div style={{ width: "100%", margin: "10px", padding: "10px", WebkitTextStroke:"0.4px white" }}>
       {wasRejected && <small style={{color:"red"}}>You are seeing this message because github imposes rate limit on requests. Please refresh the page or wait a couple of minutes.</small>}
       {isLoading ? (
         <div className="loader"></div>
