@@ -21,6 +21,7 @@ function App() {
         <Header  setLanguage={setLanguage} />
         <Navigation  setPageNumber={setPageNumber} pageNumber={pageNumber} maxPageNumber={maxPageNumber} />
         <CardSet pageNumber={pageNumber} language={language} key={language+pageNumber} setMaxPageNumber={setMaxPageNumber}/>
+        <Navigation  setPageNumber={setPageNumber} pageNumber={pageNumber} maxPageNumber={maxPageNumber} />
     </div>
   );
 }
