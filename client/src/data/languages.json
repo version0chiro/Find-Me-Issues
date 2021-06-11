@@ -1,24 +1,3 @@
 {
-    "languages":[
-        "Javascript",
-        "Python",
-        "C",
-        "TypeScript",
-        "HTML",
-        "C#",
-        "Vue.js",
-        "Ruby",
-        "PHP",
-        "Java", 
-        "R", 
-        "Objective C", 
-        "Swift", 
-        "C++", 
-        "Rust", 
-        "Go", 
-        "Shell",
-        "Dart",
-        "Kotlin",
-        "Lua"
-    ]
+    "languages":["Javascript","Python","C","TypeScript","HTML","C#","Vue.js","Ruby","PHP","Java", "R", "Objective C", "Swift", "C++"]
 }
