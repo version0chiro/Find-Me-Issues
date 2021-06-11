@@ -14,13 +14,14 @@ function App() {
   const [language,setLanguage] = useState("Javascript");
   const [pageNumber,setPageNumber] = useState(1);
   const [maxPageNumber,setMaxPageNumber] = useState(100);
+  const [inputSearch, setInputSearch] = useState("");
   const {theme} = useContext(ThemeContext)
 
   return (
     <div className="App" style={{ backgroundColor: theme.bg, color: theme.color}}>
-        <Header  setLanguage={setLanguage} />
+        <Header  setLanguage={setLanguage} setInputSearch={setInputSearch} inputSearch={inputSearch}/>
         <Navigation  setPageNumber={setPageNumber} pageNumber={pageNumber} maxPageNumber={maxPageNumber} />
-        <CardSet pageNumber={pageNumber} language={language} key={language+pageNumber} setMaxPageNumber={setMaxPageNumber}/>
+        <CardSet pageNumber={pageNumber} language={language} key={language+pageNumber} setMaxPageNumber={setMaxPageNumber} inputSearch={inputSearch}/>
         <Navigation  setPageNumber={setPageNumber} pageNumber={pageNumber} maxPageNumber={maxPageNumber} />
     </div>
   );

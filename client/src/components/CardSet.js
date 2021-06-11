@@ -18,8 +18,7 @@ const CardSet = (props) => {
   const [isLoading, setIsLoading] = useState(false)
   const [wasRejected, setWasRejected] = useState(false)
   const {theme} = useContext(ThemeContext)
-  const url = `https://api.github.com/search/issues?q=state:open+label:good-first-issue+language:${props.language}&page=${props.pageNumber}&per_page=10`
-
+  const url = `https://api.github.com/search/issues?q=state:open+label:good-first-issue+language:${props.language}${props.inputSearch !== "" ? `:${props.inputSearch}+in%3Atitle` : ''}&page=${props.pageNumber}&per_page=10`
 
   useEffect(() => {
     setIsLoading(true)
