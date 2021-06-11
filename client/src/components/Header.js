@@ -10,8 +10,6 @@ const Header = (props) => {
   const {theme, changeTheme} = useContext(ThemeContext)
   const [inputSearch, setInputSearch] = useState("");
 
-
-
   const debouncedInput = useDebouncedCallback((value) => {
       props.setInputSearch(value);
     },
