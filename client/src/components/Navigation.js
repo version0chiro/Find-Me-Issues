@@ -6,7 +6,9 @@ import {ThemeContext} from '../Context/themeContext'
 
 const useStyles = makeStyles({
   navBar: {
+    margin: '0px',
     paddingTop: '25px',
+    paddingBottom: '10px',
     justifyContent: 'center',
     '& a': {
       color: 'black',
