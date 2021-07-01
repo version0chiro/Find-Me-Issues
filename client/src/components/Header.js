@@ -25,12 +25,12 @@ const Header = (props) => {
 
 	const handleSortByStars = () => {
 		props.setSortByForks("");
-		if (props.sortByStars == "desc") props.setSortByStars("asc");
+		if (props.sortByStars === "desc") props.setSortByStars("asc");
 		else props.setSortByStars("desc");
 	};
 	const handleSortByForks = () => {
 		props.setSortByStars("");
-		if (props.sortByForks == "desc") props.setSortByForks("asc");
+		if (props.sortByForks === "desc") props.setSortByForks("asc");
 		else props.setSortByForks("desc");
 	};
 
@@ -39,42 +39,36 @@ const Header = (props) => {
 			<Navbar bg={theme.mode} variant={theme.mode} expand="lg">
 				<Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
 				{theme.mode === "light" ? (
-					<Button onClick={changeTheme}>
+					<Button onClick={changeTheme} size="sm">
 						<i className="fa fa-moon-o" aria-hidden="true"></i>
 					</Button>
 				) : (
-					<Button onClick={changeTheme}>
+					<Button onClick={changeTheme} size="sm">
 						<i className="fa fa-sun-o" aria-hidden="true"></i>
 					</Button>
 				)}
 				<Nav className="mr-auto"></Nav>
 
-				<button
+				<Button size="sm"
 					style={{
-						margin: "3px",
-						borderRadius: "5px",
-						backgroundColor: "blue",
-						color: "white",
+						margin: "0px 3px",
 					}}
 					onClick={handleSortByStars}
 				>
-					sort by stars
-				</button>
-				<button
+					Sort by stars
+				</Button>
+				<Button size="sm"
 					style={{
-						margin: "3px",
-						borderRadius: "5px",
-						backgroundColor: "blue",
-						color: "white",
+						margin: "0px 3px",
 					}}
 					onClick={handleSortByForks}
 				>
-					sort by forks
-				</button>
+					Sort by forks
+				</Button>
 
 				<Form inline>
 					<label className="mr-sm-3">
-						<span>Find specific content in the project description</span>
+						<span className="ml-2 mr-1">Find specific content in the project description: </span>
 						<input
 							type="text"
 							value={inputSearch}
@@ -103,6 +97,7 @@ const Header = (props) => {
 							})}
 						</div>
 					</NavDropdown>
+					
 				</Form>
 			</Navbar>
 		</div>

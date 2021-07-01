@@ -94,7 +94,7 @@ const SingleCard = (props) => {
 								<Card.Text>Issue description:</Card.Text>
 								<Card.Text>{props.repo.title}</Card.Text>
 								<Card.Text> Language: {repo.language}</Card.Text>
-								<a href={`${props.repo.html_url}/labels/good%20first%20issue`}>
+								<a href={`${props.repo.html_url}/labels/good%20first%20issue`} target="__blank">
 									<Button
 										variant="outline-info"
 										onClick={() => setOpen(!openIssues)}

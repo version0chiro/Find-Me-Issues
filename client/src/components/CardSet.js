@@ -18,17 +18,18 @@ const CardSet = (props) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [wasRejected, setWasRejected] = useState(false);
 	const { theme } = useContext(ThemeContext);
+	
 	let url = `https://api.github.com/search/repositories?q=good-first-issues:>0+language:${
 		props.language
-	}${props.inputSearch !== "" ? `:${props.inputSearch}+in%3Atitle` : ""}&page=${
+	}${!isEmpty(props.inputSearch) ? `:${props.inputSearch}+in%3Atitle` : ""}&page=${
 		props.pageNumber
 	}&per_page=10`;
 
 	let urlSuffix = "";
-	if (props.sortByStars == "desc") urlSuffix = "&sort=stars&order=desc";
-	else if (props.sortByStars == "asc") urlSuffix = "&sort=stars&order=asc";
-	else if (props.sortByForks == "desc") urlSuffix = "&sort=forks&order=desc";
-	else if (props.sortByForks == "asc") urlSuffix = "&sort=forks&order=asc";
+	if (props.sortByStars === "desc") urlSuffix = "&sort=stars&order=desc";
+	else if (props.sortByStars === "asc") urlSuffix = "&sort=stars&order=asc";
+	else if (props.sortByForks === "desc") urlSuffix = "&sort=forks&order=desc";
+	else if (props.sortByForks === "asc") urlSuffix = "&sort=forks&order=asc";
 
 	useEffect(() => {
 		// console.log("stars", props.sortByStars, "forks", props.sortByForks);
