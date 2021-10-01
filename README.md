@@ -1,45 +1,73 @@
-# <p align="center"><img src="https://img.icons8.com/emoji/48/000000/magnifying-glass-tilted-right-emoji.png"/><img src="https://img.icons8.com/emoji/48/000000/magnifying-glass-tilted-left-emoji.png"/></p>
+<h1 align="center">welcome to Find-Me-Issues 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/open-devs/fastify-typescript-generator/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained-yes-blue.svg" />
+  </a>
+  <a href="https://github.com/version0chiro/Find-Me-Issues/blob/main/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/version0chiro/Find-Me-Issues" />
+  </a>
+</p>  
+<br>
 
-# <h1 align="center">Find-Me-Issues </h1>
-
-A React.js based web-app to find repositories containing 'good first issues' open source contribution. Any kind of contribution and suggestions are highly appreciated!
-
-### <p align="center">Don't Just Fork The Project, if you like it please consider staring it!<p align="center"><img src="https://img.icons8.com/bubbles/50/000000/star.png"/>
-
-## Stack:
-
-<p align="center"><img src="https://img.icons8.com/bubbles/50/000000/react.png"/><img src="https://img.icons8.com/dusk/50/000000/javascript.png"/><img src="https://img.icons8.com/cute-clipart/50/000000/github.png"/> <img src="https://img.icons8.com/color/50/000000/material-ui.png"/><img src="https://img.icons8.com/color/50/000000/nodejs.png"/></p>
-
-## About The Project:
-
-You know what is one of most painful thing for programmers new to open-source? Finding beginner friendly projects to contribute to! This will change with Find-Me-Issues,
-with a simple and easy to use interface, people will be able to filter the repositories with the type of langauge they want to work with, number of stars the repository has,
-number of issues the repository currently has open and much more!
+## 🏠 [homepage](https://find-me-issues.herokuapp.com/)
 
 <br>
 
-![Webpage](assets/main_website.PNG?raw=true)
+> A React.js based web-app to find repositories containing 'good first issues' for open source contribution.
 
-### If you wanna use the hosted version of the webpage follow the link [here](https://find-me-issues.herokuapp.com/)
+<br>
 
-### For contribution
+## 🔥 Tech Stacks
+<p>
+<img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+<img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+<img alt="Material UI" src="https://img.shields.io/badge/materialui-%230081CB.svg?style=for-the-badge&logo=material-ui&logoColor=white"/>
+<img alt="NodeJS" src="https://img.shields.io/badge/node.js-%2343853D.svg?style=for-the-badge&logo=node-dot-js&logoColor=white"/>
+<img alt="GitHub" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"/>
+</p>
 
-- Clone the repository in your local enviorment
+<br>
 
-  ```console
-      foo@bar:~$ git clone https://github.com/version0chiro/Find-Me-Issues.git
-  ```
+## 💡 Inspiration
 
-- run npm install on the directory
-  - start the react front end
-    ```console
-        foo@bar:~$ cd client
-        foo@bar:~$ npm start
-    ```
-    Open localhost:3000 in the browser of your choice
-  - to run the full server
-    ```console
-        foo@bar:~$ npm build
-        foo@bar:~$ npm start
-    ```
-    Open Localhost:3001 in the browser of your choice
+The most painful thing for programmers who are new to open-source is *finding* beginner friendly projects to contribute.
+This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use interface, people will be able to filter the repositories with the type of language they want to work with, number of stars the repository has, number of issues the repository currently has open and much more!
+
+<br>
+
+## 🛠 usage
+
+### setting up back-end & front-end
+```console
+$ git clone https://github.com/version0chiro/Find-Me-Issues.git
+
+$ npm i
+
+$ npm run start // this script is for backend
+
+$ npm run build // this script is for frontend
+```
+<br>
+
+### 📸 screenshot
+![demo](./assets/demo1.png)
+
+## 🤝 Contribution Guidelines
+
+Contributions, issues and feature requests are welcome! Guidelines can be found [here](https://github.com/version0chiro/Find-Me-Issues/blob/main/CONTRIBUTING.md).
+
+Feel free to check issues page [here](https://github.com/version0chiro/Find-Me-Issues/issues).
+
+<br>
+
+## 🙌 Contributors
+<a href="https://github.com/version0chiro/Find-Me-Issues/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=version0chiro/Find-Me-Issues" />
+</a>
+
+<br>
+
+## ✨ Show your support
+
+Give a ⭐️ if this project helped you!
