@@ -8,15 +8,10 @@
     <img alt="License: MIT" src="https://img.shields.io/github/license/version0chiro/Find-Me-Issues" />
   </a>
 </p>  
-<br>
 
 ## 🏠 [homepage](https://find-me-issues.herokuapp.com/)
 
-<br>
-
 > A React.js based web-app to find repositories containing 'good first issues' for open source contribution.
-
-<br>
 
 ## 🔥 Tech Stacks
 <p>
@@ -27,14 +22,10 @@
 <img alt="GitHub" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"/>
 </p>
 
-<br>
-
 ## 💡 Inspiration
 
 The most painful thing for programmers who are new to open-source is *finding* beginner friendly projects to contribute.
 This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use interface, people will be able to filter the repositories with the type of language they want to work with, number of stars the repository has, number of issues the repository currently has open and much more!
-
-<br>
 
 ## 🛠 usage
 
@@ -48,7 +39,6 @@ $ npm run start // this script is for backend
 
 $ npm run build // this script is for frontend
 ```
-<br>
 
 ### 📸 screenshot
 ![demo](./assets/demo1.png)
@@ -59,14 +49,10 @@ Contributions, issues and feature requests are welcome! Guidelines can be found 
 
 Feel free to check issues page [here](https://github.com/version0chiro/Find-Me-Issues/issues).
 
-<br>
-
 ## 🙌 Contributors
 <a href="https://github.com/version0chiro/Find-Me-Issues/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=version0chiro/Find-Me-Issues" />
 </a>
-
-<br>
 
 ## ✨ Show your support
 
