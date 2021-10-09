@@ -1,4 +1,4 @@
-import { Navbar, Nav, NavDropdown, Form, Button } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
 import { useContext, useState } from "react";
 import langugagesData from "../data/languages.json";
 import { useDebouncedCallback } from "use-debounce";
@@ -35,46 +35,44 @@ const Header = (props) => {
 	};
 
 	return (
-		<div style={{ color: theme.color }}>
 			<Navbar bg={theme.mode} variant={theme.mode} expand="lg">
-				<Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
-				{theme.mode === "light" ? (
-					<Button onClick={changeTheme} size="sm">
-						<i className="fa fa-moon-o" aria-hidden="true"></i>
-					</Button>
-				) : (
-					<Button onClick={changeTheme} size="sm">
-						<i className="fa fa-sun-o" aria-hidden="true"></i>
-					</Button>
-				)}
-				<Nav className="mr-auto"></Nav>
+				<Container fluid>
+					<Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
+					{theme.mode === "light" ? (
+						<Button onClick={changeTheme} size="sm">
+							<i className="fa fa-moon-o" aria-hidden="true"></i>
+						</Button>
+					) : (
+						<Button onClick={changeTheme} size="sm">
+							<i className="fa fa-sun-o" aria-hidden="true"></i>
+						</Button>
+					)}
+					<Nav className="mr-auto"></Nav>
 
-				<Button size="sm"
-					style={{
-						margin: "0px 3px",
-					}}
-					onClick={handleSortByStars}
-				>
-					Sort by stars
-				</Button>
-				<Button size="sm"
-					style={{
-						margin: "0px 3px",
-					}}
-					onClick={handleSortByForks}
-				>
-					Sort by forks
-				</Button>
+					<Button size="sm"
+						style={{
+							margin: "0px 3px",
+						}}
+						onClick={handleSortByStars}
+					>
+						Sort by stars
+					</Button>
+					<Button size="sm"
+						style={{
+							margin: "0px 3px",
+						}}
+						onClick={handleSortByForks}
+					>
+						Sort by forks
+					</Button>
 
-				<Form inline>
-					<label className="mr-sm-3">
-						<span className="ml-2 mr-1">Find specific content in the project description: </span>
-						<input
-							type="text"
-							value={inputSearch}
-							onChange={(e) => handleInputSearch(e.target.value)}
-						/>
-					</label>
+
+					<span className="ml-2 mr-1">Find specific content in the project description: </span>
+					<input
+						type="text"
+						value={inputSearch}
+						onChange={(e) => handleInputSearch(e.target.value)}
+					/>
 					<div id="outlined-basic" className="mr-sm-2">
 						{language}
 					</div>
@@ -97,10 +95,9 @@ const Header = (props) => {
 							})}
 						</div>
 					</NavDropdown>
-					
-				</Form>
+				</Container>
+
 			</Navbar>
-		</div>
 	);
 };
 
