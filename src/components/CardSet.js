@@ -12,62 +12,94 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-/**
- * 
- * @param {string|null} language 
- * @param {string|null} searchQuery 
- * @param {{min: int, max: int}|null} forks
- * @param {{min: int, max: int}|null} stars
- * @param {int} pageNumber 
- * @param {string|null} starSort Accepted values are 'asc or 'desc' or null
- * @param {string|null} forkSort Accepted values are 'asc or 'desc' or null
- * @returns 
- */
-const fetchGithubRepositories = async (language, searchQuery, forks, stars, pageNumber, starSort, forkSort) => {
-  const url = "https://api.github.com/search/repositories";
-  let forksQuery, starsQuery;
-
-  if (forks) {
-    if (forks.min && !forks.max) {
-      forksQuery = ` forks:>=${forks.min}`;
-    } else if (forks.max && !forks.min) {
-      forksQuery = ` forks:<=${forks.max}`;
-    } else {
-      forksQuery = ` forks:${forks.min}..${forks.max}`;
-    }
-  }
-  if (stars) {
-    if (stars.min && !stars.max) {
-      starsQuery = ` stars:>=${stars.min}`;
-    } else if (stars.max && !stars.min) {
-      starsQuery = ` stars:<=${stars.max}`;
-    } else {
-      starsQuery = ` stars:${stars.min}..${stars.max}`;
-    }
-  }
-
-  return axios.get(url, {
-    params: {
-      page: pageNumber,
-      per_page: 10,
-      order: starSort ? starSort : (forkSort ? forkSort : 'desc'),
-      sort: starSort ? 'stars' : (forkSort ? 'forks' : null),
-      q: encodeURIComponent(`${searchQuery ?? ''}${language ? ' language:'+language:''}${forksQuery ?? ''}${starsQuery ?? ''}`),
-    }
-  });
-}
-
 const CardSet = props => {
   const [repositores, setRepositories] = useState([])
   const classes = useStyles()
   const [isLoading, setIsLoading] = useState(false)
   const [wasRejected, setWasRejected] = useState(false)
   const { theme } = useContext(ThemeContext)
+  const [forksQuery, setForksQuery] = useState('')
+  const [starsQuery, setStarsQuery] = useState('')
+
+  let url = `https://api.github.com/search/repositories?q=good-first-issues:>0+language:${
+    props.language
+  }${
+    !isEmpty(props.inputSearch) ? `:${props.inputSearch}+in%3Atitle` : ''
+  }&page=${props.pageNumber}&per_page=10`
+
+  let urlSuffix = ''
 
   useEffect(() => {
+    const onAppliedFilters = () => {
+      if (
+        props.reducedState.minForks !== '' &&
+        props.reducedState.maxForks === ''
+      ) {
+        setForksQuery(`forks:>=${props.reducedState.minForks}`)
+      } else if (
+        props.reducedState.maxForks !== '' &&
+        props.reducedState.minForks === ''
+      ) {
+        setForksQuery(`forks:<=${props.reducedState.maxForks}`)
+      } else if (
+        props.reducedState.maxForks !== '' &&
+        props.reducedState.minForks !== ''
+      ) {
+        setForksQuery(
+          `forks:${props.reducedState.minForks}..${props.reducedState.maxForks}`
+        )
+      } else {
+        setForksQuery('')
+      }
+
+      if (forksQuery !== '') {
+        const urlSplits = url.split('?q=')
+        url = urlSplits[0] + '?q=' + forksQuery + '+' + urlSplits[1]
+      }
+
+      if (
+        props.reducedState.minStars !== '' &&
+        props.reducedState.maxStars === ''
+      ) {
+        setStarsQuery(`stars:>=${props.reducedState.minForks}`)
+      } else if (
+        props.reducedState.maxStars !== '' &&
+        props.reducedState.minStars === ''
+      ) {
+        setStarsQuery(`stars:<=${props.reducedState.maxStars}`)
+      } else if (
+        props.reducedState.maxStars !== '' &&
+        props.reducedState.minStars !== ''
+      ) {
+        setStarsQuery(
+          `stars:${props.reducedState.minStars}..${props.reducedState.maxStars}`
+        )
+      } else {
+        setStarsQuery('')
+      }
+
+      if (starsQuery !== '') {
+        const urlSplits = url.split('?q=')
+        url = urlSplits[0] + '?q=' + starsQuery + '+' + urlSplits[1]
+      }
+    }
+
+    onAppliedFilters()
+  }, [props, url, forksQuery, starsQuery])
+
+  if (props.sortByStars === 'desc') urlSuffix = '&sort=stars&order=desc'
+  else if (props.sortByStars === 'asc') urlSuffix = '&sort=stars&order=asc'
+  else if (props.sortByForks === 'desc') urlSuffix = '&sort=forks&order=desc'
+  else if (props.sortByForks === 'asc') urlSuffix = '&sort=forks&order=asc'
+
+  useEffect(() => {
+    // console.log("stars", props.sortByStars, "forks", props.sortByForks);
+    url += urlSuffix
+    console.log(url)
     setIsLoading(true)
     // GET request using axios inside useEffect React hook
-    fetchGithubRepositories(props.language,searchQuery, forks, stars, props.pageNumber, starSort, forkSort)
+    axios
+      .get(url)
       .then(
         async response => {
           // console.log(response.data.items);
@@ -88,7 +120,7 @@ const CardSet = props => {
         //console.log(errors)
       })
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, [props])
+  }, [props, url])
 
   return (
     <div style={{ backgroundColor: theme.bg, color: theme.color }}>
