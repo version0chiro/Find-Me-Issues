@@ -20,8 +20,14 @@
     "GO",
     "Shell",
     "Kotlin",
-    "delphi",
-    "assembly"
-
+    "Delphi",
+    "Assembly",
+    "React.js",
+    "Rust",
+    "CSS",
+    "Dart",
+    "Julia",
+    "Lua",
+    "F#"
   ]
 }
