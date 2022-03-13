@@ -21,7 +21,13 @@
     "Shell",
     "Kotlin",
     "delphi",
-    "assembly"
+    "assembly",
+    "Matlab",
+    "Clojure",
+    "Rust",
+    "Groovy",
+    "Lisp",
+    "COBOL"
 
   ]
 }
