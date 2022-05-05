@@ -5,9 +5,12 @@
     "C",
     "TypeScript",
     "HTML",
+    "Haskell",
+    "Dart",
     "C#",
     "Vue.js",
     "Ruby",
+    "Lua",
     "PHP",
     "Java",
     "R",
@@ -28,6 +31,5 @@
     "Groovy",
     "Lisp",
     "COBOL"
-
   ]
 }
