@@ -15,6 +15,7 @@ function App () {
   const [language, setLanguage] = useState('Javascript')
   const [pageNumber, setPageNumber] = useState(1)
   const [maxPageNumber, setMaxPageNumber] = useState(100)
+  const [totalRecordsCount, setTotalRecordsCount] = useState('')
   const [inputSearch, setInputSearch] = useState('')
   const [sortByForks, setSortByForks] = useState('desc')
   const [sortByStars, setSortByStars] = useState('desc')
@@ -47,6 +48,8 @@ function App () {
         setReducedState={setReducedState}
       />
 
+      <div className='mt-4'>{`Total Repositories : ${totalRecordsCount}`}</div>
+      
       <Navigation
         setPageNumber={setPageNumber}
         pageNumber={pageNumber}
@@ -63,6 +66,7 @@ function App () {
         reducedState={reducedState}
         setReducedState={setReducedState}
         inputSearch={inputSearch}
+        setTotalRecordsCount={setTotalRecordsCount}
       />
       <Navigation
         setPageNumber={setPageNumber}
