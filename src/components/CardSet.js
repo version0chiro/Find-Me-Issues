@@ -3,6 +3,7 @@ import SingleCard from './SingleCard'
 import { makeStyles } from '@material-ui/core/styles'
 import axios from 'axios'
 import { isEmpty } from 'lodash'
+import numeral from 'numeral'
 //Context
 import { ThemeContext } from '../Context/themeContext'
 
@@ -105,6 +106,7 @@ const CardSet = props => {
           // console.log(response.data.items);
           let maxPageNumber = Math.floor(response.data.total_count / 10)
           props.setMaxPageNumber(maxPageNumber)
+          props.setTotalRecordsCount(numeral(response.data.total_count).format('0.0a'))
           setRepositories(response.data.items)
           setWasRejected(false)
           setIsLoading(false)
