@@ -23,15 +23,21 @@ const Header = (props) => {
 		debouncedInput(inputValue);
 	};
 
-	const handleSortByStars = () => {
+	const handleSortByStarsdec = () => {
 		props.setSortByForks("");
-		if (props.sortByStars === "desc") props.setSortByStars("asc");
-		else props.setSortByStars("desc");
+		props.setSortByStars("desc");
 	};
-	const handleSortByForks = () => {
+	const handleSortByStarsacc = () => {
+		props.setSortByForks("");
+		props.setSortByStars("asc");
+	};
+	const handleSortByForksacc = () => {
 		props.setSortByStars("");
-		if (props.sortByForks === "desc") props.setSortByForks("asc");
-		else props.setSortByForks("desc");
+		props.setSortByForks("asc");
+	};
+	const handleSortByForksdec = () => {
+		props.setSortByStars("");
+		props.setSortByForks("desc");
 	};
 
 	return (
@@ -49,23 +55,70 @@ const Header = (props) => {
 					)}
 					<Nav className="mr-auto"></Nav>
 
-					<Button size="sm"
+					{/* <Button size="sm"
 						style={{
 							margin: "0px 3px",
 						}}
 						onClick={handleSortByStars}
 					>
 						Sort by stars
-					</Button>
-					<Button size="sm"
+					</Button> */}
+					<div class="dropdown">
+					<label>
+						Sort by stars
+					</label>
+					<div class="dropdown-content">
+						<Button size="sm"
+						style={{
+							margin: "0px 3px",
+						}}
+						onClick={handleSortByStarsacc}
+						>
+						ascending order
+						</Button>
+
+						<Button size="sm"
+						style={{
+							margin: "0px 3px",
+						}}
+						onClick={handleSortByStarsdec}
+						>
+						descending order
+						</Button>
+						</div>
+					</div>
+					{/* <Button size="sm"
 						style={{
 							margin: "0px 3px",
 						}}
 						onClick={handleSortByForks}
 					>
 						Sort by forks
-					</Button>
+					</Button> */}
+					<div class="dropdown">
+					<label>
+						Sort by forks
+					</label>
+					<div class="dropdown-content">
+						<Button size="sm"
+						style={{
+							margin: "0px 3px",
+						}}
+						onClick={handleSortByForksacc}
+						>
+						ascending order
+						</Button>
 
+						<Button size="sm"
+						style={{
+							margin: "0px 3px",
+						}}
+						onClick={handleSortByForksdec}
+						>
+						descending order
+						</Button>
+						</div>
+					</div>
 
 					<span className="ml-2 mr-1">Find specific content in the project description: </span>
 					<input
