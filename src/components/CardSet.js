@@ -31,6 +31,11 @@ const CardSet = props => {
 
   useEffect(() => {
     const onAppliedFilters = () => {
+      if (forksQuery !== '') {
+        const urlSplits = url.split('?q=')
+        url = urlSplits[0] + '?q=' + forksQuery + '+' + urlSplits[1]
+      }
+      
       if (
         props.reducedState.minForks !== '' &&
         props.reducedState.maxForks === ''
@@ -50,11 +55,6 @@ const CardSet = props => {
         )
       } else {
         setForksQuery('')
-      }
-
-      if (forksQuery !== '') {
-        const urlSplits = url.split('?q=')
-        url = urlSplits[0] + '?q=' + forksQuery + '+' + urlSplits[1]
       }
 
       if (
