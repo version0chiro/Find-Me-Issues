@@ -23,15 +23,16 @@ const Header = (props) => {
 		debouncedInput(inputValue);
 	};
 
-	const handleSortByStars = () => {
-		props.setSortByForks("");
-		if (props.sortByStars === "desc") props.setSortByStars("asc");
-		else props.setSortByStars("desc");
-	};
 	const handleSortByForks = () => {
 		props.setSortByStars("");
 		if (props.sortByForks === "desc") props.setSortByForks("asc");
 		else props.setSortByForks("desc");
+	};
+
+	const handleSortByStars = () => {
+		props.setSortByForks("");
+		if (props.sortByStars === "desc") props.setSortByStars("asc");
+		else props.setSortByStars("desc");
 	};
 
 	return (

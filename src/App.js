@@ -64,6 +64,7 @@ function App () {
         setReducedState={setReducedState}
         inputSearch={inputSearch}
       />
+      
       <Navigation
         setPageNumber={setPageNumber}
         pageNumber={pageNumber}

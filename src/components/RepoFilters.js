@@ -25,16 +25,6 @@ const RepoFilters = ({ reducedState, setReducedState }) => {
 
   const reducer = (state, action) => {
     switch (action.type) {
-      case 'MIN_FORKS_ONLY':
-        return {
-          ...state,
-          minForks: action.payload
-        }
-      case 'MAX_FORKS_ONLY':
-        return {
-          ...state,
-          maxForks: action.payload
-        }
       case 'MIN_STARS_ONLY':
         return {
           ...state,
@@ -44,6 +34,16 @@ const RepoFilters = ({ reducedState, setReducedState }) => {
         return {
           ...state,
           maxStars: action.payload
+        }
+      case 'MIN_FORKS_ONLY':
+        return {
+          ...state,
+          minForks: action.payload
+        }
+      case 'MAX_FORKS_ONLY':
+        return {
+          ...state,
+          maxForks: action.payload
         }
       default:
         return state
@@ -187,54 +187,3 @@ const RepoFilters = ({ reducedState, setReducedState }) => {
 }
 
 export default React.memo(RepoFilters)
-
-// <div
-//   style={{
-//     width: '100%',
-//     justifyContent: 'center',
-//     display: 'flex',
-//     gap: '50px'
-//   }}
-// >
-//   <div
-//     style={{
-//       display: 'flex',
-//       justifyContent: 'center',
-//       gap: '20px'
-//     }}
-//   >
-//     <input
-//       type='number'
-//       name='minimumForks'
-//       placeholder='Minimum Forks'
-//       id='minimumForks'
-//     />
-//     <input
-//       type='number'
-//       name='maximumForks'
-//       placeholder='Maximum Forks'
-//       id='maximumForks'
-//     />
-//   </div>
-
-//   <div
-//     style={{
-//       display: 'flex',
-//       justifyContent: 'center',
-//       gap: '20px'
-//     }}
-//   >
-//     <input
-//       type='number'
-//       placeholder='Minimum Stars'
-//       name='minimumStars'
-//       id='minimumStars'
-//     />
-//     <input
-//       type='number'
-//       name='maximumStars'
-//       placeholder='Maximum Stars'
-//       id='maximumStars'
-//     />
-//   </div>
-// </div>
