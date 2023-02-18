@@ -20,6 +20,11 @@ const CardSet = props => {
   const { theme } = useContext(ThemeContext)
   const [forksQuery, setForksQuery] = useState('')
   const [starsQuery, setStarsQuery] = useState('')
+  const [CardSetLength, setCardSetLength] = useState(0)
+
+  useEffect(() => {
+    setCardSetLength(document.getElementById("header").getBoundingClientRect().height + document.getElementById("filter-container").getBoundingClientRect().height + 'px')
+  }, [])
 
   let url = `https://api.github.com/search/repositories?q=good-first-issues:>0+language:${
     props.language
@@ -108,10 +113,14 @@ const CardSet = props => {
           setRepositories(response.data.items)
           setWasRejected(false)
           setIsLoading(false)
+          response.data.items.length ? props.setHidePagination(false) : props.setHidePagination(true)
         },
         rejection => {
-          if (rejection.response.status === 403) setWasRejected(true)
-          //console.log(rejection.response.data)
+          if (rejection.response.status === 403) {
+            setWasRejected(true)
+            props.setHidePagination(true)
+          }
+          // console.log(rejection.response.data)
         }
       )
       .catch(errors => {
@@ -123,7 +132,7 @@ const CardSet = props => {
   }, [props, url])
 
   return (
-    <div style={{ backgroundColor: theme.bg, color: theme.color }}>
+    <div style={{ backgroundColor: theme.bg, color: theme.color, minHeight: `calc(100vh - ${CardSetLength})` }}>
       {isLoading ? (
         <div className='loader-container'>
           <div className='loader'></div>
