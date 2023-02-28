@@ -87,6 +87,7 @@ const CardSet = props => {
     onAppliedFilters()
   }, [props, url, forksQuery, starsQuery])
 
+
   if (props.sortByStars === 'desc') urlSuffix = '&sort=stars&order=desc'
   else if (props.sortByStars === 'asc') urlSuffix = '&sort=stars&order=asc'
   else if (props.sortByForks === 'desc') urlSuffix = '&sort=forks&order=desc'
@@ -95,7 +96,7 @@ const CardSet = props => {
   useEffect(() => {
     // console.log("stars", props.sortByStars, "forks", props.sortByForks);
     url += urlSuffix
-    console.log(url)
+    // console.log(url)
     setIsLoading(true)
     // GET request using axios inside useEffect React hook
     axios
