@@ -27,7 +27,16 @@
     "Rust",
     "Groovy",
     "Lisp",
-    "COBOL"
-
+    "COBOL",
+    "Dart",
+    "Lua",
+    "Julia",
+    "Haskell",
+    "Emacs Lisp",
+    "OCaml",
+    "Perl",
+    "Solidity",
+    "Pascal",
+    "Crystal"
   ]
 }
