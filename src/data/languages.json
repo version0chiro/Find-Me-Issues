@@ -27,7 +27,10 @@
     "Rust",
     "Groovy",
     "Lisp",
-    "COBOL"
-
+    "COBOL",
+    "SQL",
+    "Ada",
+    "Dart",
+    "Haskell"
   ]
 }
