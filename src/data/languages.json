@@ -27,7 +27,9 @@
     "Rust",
     "Groovy",
     "Lisp",
-    "COBOL"
+    "COBOL",
+    "Lua",
+    "Nim"
 
   ]
 }
