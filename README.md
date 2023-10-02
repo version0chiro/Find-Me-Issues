@@ -11,7 +11,7 @@
 
 ## 🏠 [homepage](https://find-me-issues.herokuapp.com/)
 
-> A React.js based web-app to find repositories containing 'good first issues' for open source contribution.
+> A React.js based web-app to find repositories containing 'good first issues' for open source contribution. Good first issues are an important step for new open source developers, helping them get used to open source contribution and contribution guidelines.
 
 ## 🔥 Tech Stacks
 <p>
@@ -26,17 +26,23 @@
 The most painful thing for programmers who are new to open-source is *finding* beginner friendly projects to contribute.
 This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use interface, people will be able to filter the repositories with the type of language they want to work with, number of stars the repository has, number of issues the repository currently has open and much more!
 
+New to Open Source Development? Check out [this page](https://opensource.guide/how-to-contribute/) for detailed information!
+
 ## 🛠 usage
 
-### setting up back-end & front-end
+To run this web app, usage of npm is required. If you are unfamiliar with npm, it is the world's largest software registry used by open-source engineers everywhere. To install npm, or to check if you have npm installed, go to [this page](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) from the official npm documentation.
+
+### getting started
 ```console
-$ git clone https://github.com/version0chiro/Find-Me-Issues.git
+$ git clone https://github.com/version0chiro/Find-Me-Issues.git # clone the repository to your local device
 
-$ npm i
+$ cd Find-Me-Issues # navigate to the cloned repository
 
-$ npm run start // this script is for backend
+$ npm i # (npm install) installs all required dependencies for repository
 
-$ npm run build // this script is for frontend
+$ npm run start # this script is for the backend, initializing the development server
+
+$ npm run build # this script is for frontend, compiles code for use
 ```
 
 ### 📸 screenshot
