@@ -1,6 +1,6 @@
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
 import { useContext, useState } from "react";
-import langugagesData from "../data/languages.json";
+import languagesData from "../data/languages.json";
 import { useDebouncedCallback } from "use-debounce";
 //Context
 import { ThemeContext } from "../Context/themeContext";
@@ -78,7 +78,7 @@ const Header = (props) => {
 					</div>
 					<NavDropdown title="Select Language" id="basic-nav-dropdown">
 						<div style={{ height: "400px", overflowY: "auto" }}>
-							{langugagesData.languages.map((lang, index) => {
+							{languagesData.languages.map((lang, index) => {
 								return (
 									<div key={index}>
 										<NavDropdown.Item

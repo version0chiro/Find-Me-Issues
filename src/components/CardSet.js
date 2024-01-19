@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const CardSet = props => {
-  const [repositores, setRepositories] = useState([])
+  const [repositories, setRepositories] = useState([]);
   const classes = useStyles()
   const [isLoading, setIsLoading] = useState(false)
   const [wasRejected, setWasRejected] = useState(false)
@@ -125,11 +125,11 @@ const CardSet = props => {
   return (
     <div style={{ backgroundColor: theme.bg, color: theme.color }}>
       {isLoading ? (
-        <div className='loader-container'>
-          <div className='loader'></div>
+        <div className="loader-container">
+          <div className="loader"></div>
           <h5>Fetching some good first issues for you...</h5>
           {wasRejected && (
-            <h5 style={{ color: 'red' }}>
+            <h5 style={{ color: "red" }}>
               You are seeing this message because github imposes rate limit on
               requests. Please refresh the page or wait a couple of minutes.
             </h5>
@@ -137,20 +137,20 @@ const CardSet = props => {
         </div>
       ) : (
         <div className={classes.cardSet}>
-          {isEmpty(repositores) ? (
+          {isEmpty(repositories) ? (
             <div>
               <h5>
                 No issues to be shown at the moment, please try again later.
               </h5>
             </div>
           ) : (
-            !isEmpty(repositores) &&
-            repositores.map(repo => <SingleCard key={repo.id} repo={repo} />)
+            !isEmpty(repositories) &&
+            repositories.map((repo) => <SingleCard key={repo.id} repo={repo} />)
           )}
         </div>
       )}
     </div>
-  )
+  );
 }
 
 export default CardSet
