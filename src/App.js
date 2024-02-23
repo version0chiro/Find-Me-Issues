@@ -24,6 +24,7 @@ function App () {
     minStars: '',
     maxStars: ''
   })
+  const [hidePagination, setHidePagination] = useState(true)
 
   const { theme } = useContext(ThemeContext)
 
@@ -51,6 +52,7 @@ function App () {
         setPageNumber={setPageNumber}
         pageNumber={pageNumber}
         maxPageNumber={maxPageNumber}
+        hidePagination={hidePagination}
       />
 
       <CardSet
@@ -63,11 +65,13 @@ function App () {
         reducedState={reducedState}
         setReducedState={setReducedState}
         inputSearch={inputSearch}
+        setHidePagination={setHidePagination}
       />
       <Navigation
         setPageNumber={setPageNumber}
         pageNumber={pageNumber}
         maxPageNumber={maxPageNumber}
+        hidePagination={hidePagination}
       />
     </div>
   )
