@@ -42,7 +42,7 @@ const SingleCard = (props) => {
       navigator
         .share({
           text: `hello`,
-          url: `Found This ${RepoLink} repositories containing 'good first issues' From This Website https://find-me-issues-web-app.netlify.app/`,
+          url: `Found This ${RepoLink} repositories containing 'good first issues' From This Website`,
         })
         .then(() => {})
         .catch((err) => console.error(err));
