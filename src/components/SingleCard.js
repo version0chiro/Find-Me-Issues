@@ -35,14 +35,14 @@ const SingleCard = (props) => {
   }, [props.repo.url]);
 
   const [openIssues, setOpen] = useState(false);
-  const share = (todos) =>
+  const share = (RepoLink) =>
   {
-	console.log(todos)
+	console.log(RepoLink)
     if (navigator.share) {
       // Browser supports native share api
       navigator.share({
         text: `hello`,
-        url: `Found This ${todos} repositories containing 'good first issues' From This Website https://find-me-issues-web-app.netlify.app/`,
+        url: `Found This ${RepoLink} repositories containing 'good first issues' From This Website https://find-me-issues-web-app.netlify.app/`,
       }).then(() => {
       })
         .catch((err) => console.error(err));
