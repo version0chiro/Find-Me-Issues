@@ -20,6 +20,7 @@ const CardSet = props => {
   const { theme } = useContext(ThemeContext)
   const [forksQuery, setForksQuery] = useState('')
   const [starsQuery, setStarsQuery] = useState('')
+  const [cardCount, setCardCount] = useState(0)
 
   let url = `https://api.github.com/search/repositories?q=good-first-issues:>0+language:${
     props.language
@@ -108,6 +109,7 @@ const CardSet = props => {
           setRepositories(response.data.items)
           setWasRejected(false)
           setIsLoading(false)
+          setCardCount(response.data.items.length)
         },
         rejection => {
           if (rejection.response.status === 403) setWasRejected(true)
@@ -124,13 +126,14 @@ const CardSet = props => {
 
   return (
     <div style={{ backgroundColor: theme.bg, color: theme.color }}>
+      <p>Number of Cards: {cardCount}</p>
       {isLoading ? (
         <div className='loader-container'>
           <div className='loader'></div>
           <h5>Fetching some good first issues for you...</h5>
           {wasRejected && (
             <h5 style={{ color: 'red' }}>
-              You are seeing this message because github imposes rate limit on
+              You are seeing this message because GitHub imposes rate limit on
               requests. Please refresh the page or wait a couple of minutes.
             </h5>
           )}
@@ -145,12 +148,17 @@ const CardSet = props => {
             </div>
           ) : (
             !isEmpty(repositores) &&
-            repositores.map(repo => <SingleCard key={repo.id} repo={repo} />)
+            repositores.map(repo => (
+              <SingleCard key={repo.id} repo={repo} />
+            ))
           )}
         </div>
       )}
     </div>
-  )
+  );
+  
+  
+  
 }
 
 export default CardSet
