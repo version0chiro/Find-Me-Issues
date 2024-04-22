@@ -35,7 +35,7 @@ const Header = (props) => {
 	};
 
 	return (
-			<Navbar bg={theme.mode} variant={theme.mode} expand="lg">
+			<Navbar bg={theme.mode} variant={theme.mode} expand="lg" id="header">
 				<Container fluid>
 					<Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
 					{theme.mode === "light" ? (

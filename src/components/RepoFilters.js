@@ -57,6 +57,7 @@ const RepoFilters = ({ reducedState, setReducedState }) => {
       style={{
         marginTop: '20px'
       }}
+      id="filter-container"
     >
       <DropdownToggle
         aria-expanded={isButtonCollapseOpen}
