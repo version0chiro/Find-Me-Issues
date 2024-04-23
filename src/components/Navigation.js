@@ -14,9 +14,22 @@ const useStyles = makeStyles({
       color: 'black',
     }
   },
+  pageCountElement: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
+    fontSize: '0.8rem',
+    textTransform: 'uppercase',
+  },
+  pageCountInnerElement: {
+    whiteSpace: 'pre-wrap',
+    color: '#0d6efd',
+  }
 });
 
 const Navigation = (props) => {
+  console.log("Hello World")
+  console.log("%o", props);
   const classes = useStyles()
   const {theme} = useContext(ThemeContext)
 
@@ -110,6 +123,13 @@ const Navigation = (props) => {
           }}
         />
       </Pagination>
+      <b 
+        className={classes.pageCountElement} 
+        style={{ color: "#0dcaf0 !important", backgroundColor: theme.bg }}
+      > page
+        <span className={classes.pageCountInnerElement}> {props.pageNumber} </span>
+        of
+        <span className={classes.pageCountInnerElement}> {props.maxPageNumber} </span> </b>
     </div>
   );
 };
