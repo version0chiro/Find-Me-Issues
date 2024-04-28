@@ -80,7 +80,7 @@ const Navigation = (props) => {
   }
 
   return (
-    <div style={{ backgroundColor: theme.bg, color: theme.color}}>
+    <div style={{ backgroundColor: theme.bg, color: theme.color, display: props.hidePagination ? 'none' : 'block'}}>
       <Pagination className={classes.navBar}>
         <Pagination.First
           onClick={() => {
