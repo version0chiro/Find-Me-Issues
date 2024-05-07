@@ -1,0 +1,46 @@
+.navbar {
+  padding: 0.5rem;
+  justify-content: space-between;
+}
+
+.navbar__brand {
+  padding: 0;
+  margin: 0;
+}
+
+.navbar__container--mobile {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar__searchbars--desktop {
+  width: 50vw;
+  padding: 0;
+  margin: 0;
+}
+
+/* Target <Row> */
+.navbar__searchbars--desktop * {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* Target <Row> children */
+.navbar__searchbars--desktop * * {
+  width: 50%;
+}
+
+.navbar__lang {
+  padding: 2px;
+}
+
+/* Mobile Breakpoints */
+@media (max-width: 576px) {
+  .navbar {
+    flex-direction: column;
+  }
+}

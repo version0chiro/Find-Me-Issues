@@ -3,11 +3,11 @@ import {
   Nav,
   NavDropdown,
   Container,
+  Form,
   Row,
   Button,
 } from "react-bootstrap";
-// import FormSelect from "react-bootstrap/FormSelect";
-import Form from "react-bootstrap/Form";
+import "./Header.css";
 import { useContext, useState } from "react";
 import langugagesData from "../data/languages.json";
 import { useDebouncedCallback } from "use-debounce";
@@ -15,7 +15,6 @@ import { useDebouncedCallback } from "use-debounce";
 import { ThemeContext } from "../Context/themeContext";
 
 const Header = (props) => {
-  //   const [language, setLanguage] = useState("Javascript");
   const { theme, changeTheme } = useContext(ThemeContext);
   const [inputSearch, setInputSearch] = useState("");
 
@@ -44,92 +43,15 @@ const Header = (props) => {
   };
 
   return (
-    <Navbar
-      bg={theme.mode}
-      variant={theme.mode}
-      id="header"
-      style={{ padding: ".5rem" }}
-    >
-      <Container fluid>
-        <Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
-        {/* <Button
-          size="sm"
-          style={{
-            margin: "0px 3px",
-          }}
-          onClick={handleSortByStars}
-        >
-          Sort by stars
-        </Button>
-        <Button
-          size="sm"
-          style={{
-            margin: "0px 3px",
-          }}
-          onClick={handleSortByForks}
-        >
-          Sort by forks
-        </Button> */}
-        {/* <span className="ml-2 mr-1">
-          Find specific content in the project description:{" "}
-        </span> */}
-        <Container style={{ width: "50%", padding: "0", margin: "0" }}>
-          <Row style={{ padding: "0", margin: "0" }}>
-            <input
-              type="text"
-              value={inputSearch}
-              placeholder="Search Project Descriptions..."
-              onChange={(e) => handleInputSearch(e.target.value)}
-              style={{
-                width: "50%",
-              }}
-            />
-            <Form.Control
-              as="select"
-              title={props.language}
-              id="basic-nav-dropdown"
-              style={{
-                width: "50%",
-                padding: "2px",
-              }}
-            >
-              {langugagesData.languages.map((lang, index) => {
-                return (
-                  <option
-                    key={index}
-                    onClick={() => {
-                      //   setLanguage(lang);
-                      props.setLanguage(lang);
-                    }}
-                    selected={lang === props.language ? true : false}
-                  >
-                    {lang}
-                  </option>
-                );
-              })}
-            </Form.Control>
-          </Row>
-        </Container>
+    <Navbar bg={theme.mode} variant={theme.mode} className="navbar" id="header">
+      <Navbar.Brand href="#home" className="navbar__brand d-none d-sm-block">
+        Find Me Issues
+      </Navbar.Brand>
 
-        {/* <NavDropdown title={language} id="basic-nav-dropdown">
-          <div style={{ height: "400px", overflowY: "auto" }}>
-            {langugagesData.languages.map((lang, index) => {
-              return (
-                <div key={index}>
-                  <NavDropdown.Item
-                    onClick={() => {
-                      setLanguage(lang);
-                      props.setLanguage(lang);
-                    }}
-                  >
-                    {lang}
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                </div>
-              );
-            })}
-          </div>
-        </NavDropdown> */}
+      <Container className="navbar__container--mobile d-sm-none">
+        <Navbar.Brand href="#home" className="navbar__brand">
+          Find Me Issues
+        </Navbar.Brand>
         <Button onClick={changeTheme} size="sm">
           <i
             className={theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"}
@@ -137,6 +59,73 @@ const Header = (props) => {
           />
         </Button>
       </Container>
+
+      <Container className="navbar__searchbars--desktop d-none d-sm-block">
+        <Row>
+          <input
+            type="text"
+            value={inputSearch}
+            placeholder="Search..."
+            onChange={(e) => handleInputSearch(e.target.value)}
+            className="navbar__search"
+          />
+          <Form.Control
+            as="select"
+            title={props.language}
+            id="basic-nav-dropdown"
+            defaultValue={props.language}
+            className="navbar__lang"
+          >
+            {langugagesData.languages.map((lang, index) => {
+              return (
+                <option
+                  key={index}
+                  onClick={() => {
+                    props.setLanguage(lang);
+                  }}
+                >
+                  {lang}
+                </option>
+              );
+            })}
+          </Form.Control>
+        </Row>
+      </Container>
+
+      <input
+        type="text"
+        value={inputSearch}
+        placeholder="Search..."
+        onChange={(e) => handleInputSearch(e.target.value)}
+        className="navbar__search d-sm-none"
+      />
+      <Form.Control
+        as="select"
+        title={props.language}
+        id="basic-nav-dropdown"
+        defaultValue={props.language}
+        className="navbar__lang d-sm-none"
+      >
+        {langugagesData.languages.map((lang, index) => {
+          return (
+            <option
+              key={index}
+              onClick={() => {
+                props.setLanguage(lang);
+              }}
+            >
+              {lang}
+            </option>
+          );
+        })}
+      </Form.Control>
+
+      <Button onClick={changeTheme} size="sm" className="d-none d-sm-block">
+        <i
+          className={theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"}
+          aria-hidden="true"
+        />
+      </Button>
     </Navbar>
   );
 };
