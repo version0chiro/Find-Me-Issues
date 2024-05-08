@@ -17,17 +17,21 @@
 }
 
 .navbar__searchbars--desktop {
-  width: 50vw;
+  width: 60vw;
   flex-direction: row;
 }
 
-/* Desktop Search & Select Double Bar Contents */
-
-/* Search Bar */
-.navbar__search {
+/* Search Bars */
+.navbar__search--desktop {
   border-color: white;
   border-width: 0;
   border-radius: 0;
+}
+
+.navbar__search--mobile {
+  border-color: white;
+  border-width: 0;
+  border-radius: 0.25rem;
 }
 
 /* Divider */
@@ -67,10 +71,15 @@
 }
 
 /* Select */
-.navbar__select {
+.navbar__select--desktop {
   border-color: white;
   border-width: 0;
   border-radius: 0rem 0.25rem 0.25rem 0rem;
+}
+.navbar__select--mobile {
+  border-color: white;
+  border-width: 0;
+  border-radius: 0.25rem;
 }
 
 /* Mobile Breakpoints */

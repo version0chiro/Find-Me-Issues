@@ -61,12 +61,12 @@ const Header = (props) => {
         <Navbar.Brand href="#home" className="navbar__brand">
           Find Me Issues
         </Navbar.Brand>
-        <Button onClick={changeTheme} size="sm">
-          <i
-            className={theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"}
-            aria-hidden="true"
-          />
-        </Button>
+        <i
+          onClick={changeTheme}
+          className={theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"}
+          style={{ fontSize: "1.5rem" }}
+          aria-hidden="true"
+        />
       </Container>
 
       {/* Desktop Search & Select Double Bar */}
@@ -84,7 +84,7 @@ const Header = (props) => {
             value={inputSearch}
             placeholder="Search..."
             onChange={(e) => handleInputSearch(e.target.value)}
-            className="navbar__search"
+            className="navbar__search--desktop"
           />
         </InputGroup>
 
@@ -115,7 +115,7 @@ const Header = (props) => {
             defaultValue={props.language}
             title={props.language}
             id="basic-nav-dropdown"
-            className="navbar__select"
+            className="navbar__select--desktop"
           >
             {langugagesData.languages.map((lang, index) => {
               return (
@@ -138,12 +138,7 @@ const Header = (props) => {
         <InputGroup.Prepend>
           <InputGroup.Text className="inputgroup_icon--left">
             <Container className="noBuff">
-              <i
-                className={
-                  theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"
-                }
-                aria-hidden="true"
-              />
+              <i className="fa fa-search" aria-hidden="true" />
             </Container>
           </InputGroup.Text>
         </InputGroup.Prepend>
@@ -152,31 +147,40 @@ const Header = (props) => {
           value={inputSearch}
           placeholder="Search..."
           onChange={(e) => handleInputSearch(e.target.value)}
-          className="navbar__search"
+          className="navbar__search--mobile"
         />
       </InputGroup>
 
       {/* Mobile Select Bar */}
-      <Form.Control
-        as="select"
-        title={props.language}
-        id="basic-nav-dropdown"
-        defaultValue={props.language}
-        className="d-sm-none"
-      >
-        {langugagesData.languages.map((lang, index) => {
-          return (
-            <option
-              key={index}
-              onClick={() => {
-                props.setLanguage(lang);
-              }}
-            >
-              {lang}
-            </option>
-          );
-        })}
-      </Form.Control>
+      <InputGroup className="d-sm-none" style={{ paddingTop: "3px" }}>
+        <InputGroup.Prepend>
+          <InputGroup.Text className="inputgroup_icon--left">
+            <Container className="noBuff">
+              <i className="fa fa-code" aria-hidden="true" />
+            </Container>
+          </InputGroup.Text>
+        </InputGroup.Prepend>
+        <Form.Control
+          as="select"
+          defaultValue={props.language}
+          title={props.language}
+          id="basic-nav-dropdown"
+          className="navbar__select--mobile"
+        >
+          {langugagesData.languages.map((lang, index) => {
+            return (
+              <option
+                key={index}
+                onClick={() => {
+                  props.setLanguage(lang);
+                }}
+              >
+                {lang}
+              </option>
+            );
+          })}
+        </Form.Control>
+      </InputGroup>
 
       {/* Desktop Mode Button */}
       <i
