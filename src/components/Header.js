@@ -45,14 +45,19 @@ const Header = (props) => {
   };
 
   return (
-    <Navbar bg={theme.mode} variant={theme.mode} className="navbar" id="header">
+    <Navbar
+      //   bg={theme.mode}
+      variant={theme.mode}
+      className={theme.mode === "light" ? "navbar--dark" : "navbar--light"}
+      id="header"
+    >
       {/* Desktop Title */}
       <Navbar.Brand href="#home" className="navbar__brand d-none d-sm-block">
         Find Me Issues
       </Navbar.Brand>
 
       {/* Mobile Title & Mode Button */}
-      <Container className="navbar__container--mobile d-sm-none">
+      <Container className="navbar__container--mobile noBuff d-sm-none">
         <Navbar.Brand href="#home" className="navbar__brand">
           Find Me Issues
         </Navbar.Brand>
@@ -68,14 +73,9 @@ const Header = (props) => {
       <Container className="navbar__searchbars--desktop d-none d-sm-flex">
         <InputGroup>
           <InputGroup.Prepend>
-            <InputGroup.Text className="inputgroup__prepend__text">
-              <Container className="iconContainer">
-                <i
-                  className={
-                    theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"
-                  }
-                  aria-hidden="true"
-                />
+            <InputGroup.Text className="inputgroup_icon--left">
+              <Container className="noBuff">
+                <i className="fa fa-search" aria-hidden="true" />
               </Container>
             </InputGroup.Text>
           </InputGroup.Prepend>
@@ -89,26 +89,24 @@ const Header = (props) => {
         </InputGroup>
 
         <InputGroup.Prepend>
-          <InputGroup.Text className="inputgroup__divider">
-            <Container className="iconContainer">|</Container>
+          <InputGroup.Text className="inputgroup_icon--divider">
+            <Container className="navbar__divider">
+              <div
+                style={{
+                  width: "2px",
+                  height: "16px",
+                  backgroundColor: "lightgray",
+                }}
+              />
+            </Container>
           </InputGroup.Text>
         </InputGroup.Prepend>
 
-        {/* <InputGroup.Prepend className="inputgroup__divider">
-          <InputGroup.Text className="inputgroup__divider__text">
-            |
-          </InputGroup.Text>
-        </InputGroup.Prepend> */}
         <InputGroup>
           <InputGroup.Prepend>
-            <InputGroup.Text className="inputgroup__prepend__text">
-              <Container className="iconContainer">
-                <i
-                  className={
-                    theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"
-                  }
-                  aria-hidden="true"
-                />
+            <InputGroup.Text className="inputgroup_icon--mid">
+              <Container className="noBuff">
+                <i className="fa fa-code" aria-hidden="true" />
               </Container>
             </InputGroup.Text>
           </InputGroup.Prepend>
@@ -117,7 +115,7 @@ const Header = (props) => {
             defaultValue={props.language}
             title={props.language}
             id="basic-nav-dropdown"
-            className="navbar__search"
+            className="navbar__select"
           >
             {langugagesData.languages.map((lang, index) => {
               return (
@@ -132,26 +130,14 @@ const Header = (props) => {
               );
             })}
           </Form.Control>
-          <InputGroup.Prepend>
-            <InputGroup.Text className="inputgroup__prepend__text">
-              <Container className="iconContainer">
-                <i
-                  className={
-                    theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"
-                  }
-                  aria-hidden="true"
-                />
-              </Container>
-            </InputGroup.Text>
-          </InputGroup.Prepend>
         </InputGroup>
       </Container>
 
       {/* Mobile Search Bar */}
       <InputGroup className="d-sm-none">
         <InputGroup.Prepend>
-          <InputGroup.Text className="inputgroup__prepend__text">
-            <Container className="iconContainer">
+          <InputGroup.Text className="inputgroup_icon--left">
+            <Container className="noBuff">
               <i
                 className={
                   theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"
@@ -193,12 +179,15 @@ const Header = (props) => {
       </Form.Control>
 
       {/* Desktop Mode Button */}
-      <Button onClick={changeTheme} size="sm" className="d-none d-sm-block">
-        <i
-          className={theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"}
-          aria-hidden="true"
-        />
-      </Button>
+      <i
+        onClick={changeTheme}
+        className={
+          "d-none d-sm-block fa " +
+          (theme.mode === "light" ? "fa-moon-o" : "fa-sun-o")
+        }
+        style={{ fontSize: "1.5rem" }}
+        aria-hidden="true"
+      />
     </Navbar>
   );
 };

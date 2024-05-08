@@ -1,12 +1,17 @@
-.navbar {
-  padding: 0.5rem;
+.navbar--light {
+  padding: 0.5rem 1rem 0.5rem 1rem;
   justify-content: space-between;
+  background-color: rgb(47, 47, 47);
+}
+
+.navbar--dark {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  justify-content: space-between;
+  background-color: rgb(216, 216, 216);
 }
 
 .navbar__container--mobile {
   width: 100%;
-  padding: 0;
-  margin: 0;
   display: flex;
   justify-content: space-between;
 }
@@ -17,20 +22,8 @@
 }
 
 /* Desktop Search & Select Double Bar Contents */
-.navbar__searchbars--desktop * {
-  /* width: 50%; */
-}
 
 /* Search Bar */
-.inputgroup__prepend__text {
-  padding: 6px 0px 6px 6px;
-  background-color: white;
-  border-radius: 0.25rem 0rem 0rem 0.25rem;
-}
-.iconContainer {
-  padding: 0;
-  margin: 0;
-}
 .navbar__search {
   border-color: white;
   border-width: 0;
@@ -38,18 +31,57 @@
 }
 
 /* Divider */
-.inputgroup__divider {
-  padding: 6px 2px 6px 2px;
-  color: lightgray;
+.navbar__divider {
+  margin: 0;
+  padding: 4px;
+}
+
+/* Inputgroup Icons */
+.inputgroup_icon--left {
+  border: 0;
+  border-radius: 0.25rem 0rem 0rem 0.25rem;
   background-color: white;
+  padding: 6px 0px 6px 6px;
+}
+
+.inputgroup_icon--divider {
+  border: 0;
   border-radius: 0;
+  background-color: white;
+  color: lightgray;
+  padding: 6px 2px 6px 2px;
+}
+
+.inputgroup_icon--mid {
+  border: 0;
+  border-radius: 0;
+  background-color: white;
+  padding: 6px 0px 6px 6px;
+}
+
+.inputgroup_icon--right {
+  border: 0;
+  border-radius: 0rem 0.25rem 0.25rem 0rem;
+  background-color: white;
+  padding: 6px 6px 6px 6px;
 }
 
 /* Select */
+.navbar__select {
+  border-color: white;
+  border-width: 0;
+  border-radius: 0rem 0.25rem 0.25rem 0rem;
+}
 
 /* Mobile Breakpoints */
 @media (max-width: 576px) {
   .navbar {
     flex-direction: column;
   }
+}
+
+/* Helpers */
+.noBuff {
+  padding: 0;
+  margin: 0;
 }
