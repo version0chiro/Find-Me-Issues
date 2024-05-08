@@ -3,11 +3,6 @@
   justify-content: space-between;
 }
 
-.navbar__brand {
-  padding: 0;
-  margin: 0;
-}
-
 .navbar__container--mobile {
   width: 100%;
   padding: 0;
@@ -18,25 +13,39 @@
 
 .navbar__searchbars--desktop {
   width: 50vw;
-  padding: 0;
-  margin: 0;
+  flex-direction: row;
 }
 
-/* Target <Row> */
+/* Desktop Search & Select Double Bar Contents */
 .navbar__searchbars--desktop * {
-  width: 100%;
+  /* width: 50%; */
+}
+
+/* Search Bar */
+.inputgroup__prepend__text {
+  padding: 6px 0px 6px 6px;
+  background-color: white;
+  border-radius: 0.25rem 0rem 0rem 0.25rem;
+}
+.iconContainer {
   padding: 0;
   margin: 0;
 }
-
-/* Target <Row> children */
-.navbar__searchbars--desktop * * {
-  width: 50%;
+.navbar__search {
+  border-color: white;
+  border-width: 0;
+  border-radius: 0;
 }
 
-.navbar__lang {
-  padding: 2px;
+/* Divider */
+.inputgroup__divider {
+  padding: 6px 2px 6px 2px;
+  color: lightgray;
+  background-color: white;
+  border-radius: 0;
 }
+
+/* Select */
 
 /* Mobile Breakpoints */
 @media (max-width: 576px) {
