@@ -8,6 +8,7 @@
 }
 
 .nav__buttons {
+  display: flex;
   width: auto;
 }
 

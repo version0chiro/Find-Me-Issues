@@ -1,67 +1,81 @@
 import React, { useCallback, useReducer, useState } from "react";
 import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
 import { Collapse } from "react-collapse";
-import { Button, FormControl, InputGroup } from "react-bootstrap";
+import {
+  Button,
+  Form,
+  FormControl,
+  InputGroup,
+  OverlayTrigger,
+  Popover,
+  Tooltip,
+  Container,
+} from "react-bootstrap";
+import "./Filter.css";
 
 const Filter = ({ reducedState, setReducedState }) => {
-  const [isButtonCollapseOpen, setIsButtonCollapseOpen] = useState(false);
+  const [show, setShow] = React.useState(false); // Controls Popover
 
-  const onClick = useCallback(
-    () => setIsButtonCollapseOpen(!isButtonCollapseOpen),
-    [isButtonCollapseOpen]
-  );
-
-  const onApplyClicked = () => {
-    setReducedState(state);
-    console.log(reducedState);
+  const handleToggle = () => {
+    setShow((prev) => !prev);
   };
 
-  const initFilterState = {
-    minForks: "",
-    maxForks: "",
-    minStars: "",
-    maxStars: "",
-  };
+  function handleReset() {
+    setShow(false);
+  }
 
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "MIN_FORKS_ONLY":
-        return {
-          ...state,
-          minForks: action.payload,
-        };
-      case "MAX_FORKS_ONLY":
-        return {
-          ...state,
-          maxForks: action.payload,
-        };
-      case "MIN_STARS_ONLY":
-        return {
-          ...state,
-          minStars: action.payload,
-        };
-      case "MAX_STARS_ONLY":
-        return {
-          ...state,
-          maxStars: action.payload,
-        };
-      default:
-        return state;
-    }
-  };
-
-  const [state, dispatch] = useReducer(reducer, initFilterState);
+  function handleApply() {
+    setShow(false);
+  }
 
   return (
-    <>
-      <DropdownToggle
-        aria-expanded={isButtonCollapseOpen}
-        onClick={onClick}
-        type="button"
-      >
-        Filter By
-      </DropdownToggle>
-    </>
+    <OverlayTrigger
+      trigger="click"
+      placement={"bottom"}
+      show={show}
+      onToggle={handleToggle}
+      rootClose // Close Popover when clicked out
+      overlay={
+        <Popover className="popover">
+          <Container className="popover__container noBuff">
+            <Container>Forks</Container>
+            <Form.Control
+              type="text"
+              value={"Val"}
+              placeholder="Min"
+              // onChange={(e) => handleInputSearch(e.target.value)}
+            />
+            <Form.Control
+              type="text"
+              value={"Val"}
+              placeholder="Max"
+              // onChange={(e) => handleInputSearch(e.target.value)}
+            />
+          </Container>
+          <Container className="popover__container noBuff">
+            <Container>Stars</Container>
+            <Form.Control
+              type="text"
+              value={"Val"}
+              placeholder="Min"
+              // onChange={(e) => handleInputSearch(e.target.value)}
+            />
+            <Form.Control
+              type="text"
+              value={"Val"}
+              placeholder="Max"
+              // onChange={(e) => handleInputSearch(e.target.value)}
+            />
+          </Container>
+          <Container className="popover__container noBuff">
+            <Button onClick={() => handleReset()}>Reset</Button>
+            <Button onClick={() => handleApply()}>Apply</Button>
+          </Container>
+        </Popover>
+      }
+    >
+      <Button variant="secondary"> Filter By</Button>
+    </OverlayTrigger>
   );
 };
 

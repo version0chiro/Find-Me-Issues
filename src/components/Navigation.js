@@ -26,36 +26,22 @@ const Navigation = ({
   else pushItems(pageNumber - 2, pageNumber + 2); // Other Pages
 
   // Pushes items i to j (inclusive) to paginationItems
-  // function pushItems(i, j) {
-  //   for (let idx = i; idx <= j; idx++) {
-  //     paginationItems.push(
-  //       <Pagination.Item
-  //         key={idx}
-  //         active={idx === pageNumber}
-  //         onClick={() => {
-  //           setPageNumber(idx);
-  //         }}
-  //       >
-  //         {idx}
-  //       </Pagination.Item>
-  //     );
-  //   }
-  // }
   function pushItems(i, j) {
-    for (let idx = 1001; idx <= 1005; idx++) {
+    for (let idx = i; idx <= j; idx++) {
       paginationItems.push(
         <Pagination.Item
           key={idx}
           active={idx === pageNumber}
-          // onClick={() => {
-          //   setPageNumber(idx);
-          // }}
+          onClick={() => {
+            setPageNumber(idx);
+          }}
         >
           {idx}
         </Pagination.Item>
       );
     }
   }
+
   return (
     <Container
       variant={theme.mode}
