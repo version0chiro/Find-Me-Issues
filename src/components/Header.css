@@ -17,30 +17,23 @@
 }
 
 .navbar__searchbars--desktop {
-  width: 60vw;
+  width: 50vw;
   flex-direction: row;
 }
 
-/* Search Bars */
+/* --------------- SEARCH BAR --------------- */
 .navbar__search--desktop {
   border-color: white;
   border-width: 0;
   border-radius: 0;
 }
 
-.navbar__search--mobile {
-  border-color: white;
-  border-width: 0;
-  border-radius: 0.25rem;
-}
-
-/* Divider */
+/* --------------- INPUTGROUP ICONS --------------- */
 .navbar__divider {
   margin: 0;
   padding: 4px;
 }
 
-/* Inputgroup Icons */
 .inputgroup_icon--left {
   border: 0;
   border-radius: 0.25rem 0rem 0rem 0.25rem;
@@ -60,32 +53,25 @@
   border: 0;
   border-radius: 0;
   background-color: white;
-  padding: 6px 0px 6px 6px;
+  padding: 6px 0px 6px 0px;
 }
 
-.inputgroup_icon--right {
-  border: 0;
-  border-radius: 0rem 0.25rem 0.25rem 0rem;
-  background-color: white;
-  padding: 6px 6px 6px 6px;
-}
-
-/* Select */
-.navbar__select--desktop {
+/* --------------- DROPDOWN --------------- */
+/* Select Button */
+.navbar__dropdown--desktop {
   border-color: white;
   border-width: 0;
   border-radius: 0rem 0.25rem 0.25rem 0rem;
-}
-.navbar__select--mobile {
-  border-color: white;
-  border-width: 0;
-  border-radius: 0.25rem;
 }
 
 /* Mobile Breakpoints */
 @media (max-width: 576px) {
   .navbar {
     flex-direction: column;
+  }
+
+  .navbar__searchbars--desktop {
+    width: 100%;
   }
 }
 

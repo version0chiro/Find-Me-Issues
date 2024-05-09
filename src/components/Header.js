@@ -2,13 +2,13 @@ import {
   Navbar,
   Nav,
   NavDropdown,
+  Dropdown,
   Container,
   Form,
   InputGroup,
   Row,
   Button,
 } from "react-bootstrap";
-// import { BsSearch } from "react-icons/bs";
 import "./Header.css";
 import { useContext, useState } from "react";
 import langugagesData from "../data/languages.json";
@@ -52,15 +52,13 @@ const Header = (props) => {
       id="header"
     >
       {/* Desktop Title */}
-      <Navbar.Brand href="#home" className="navbar__brand d-none d-sm-block">
+      <Navbar.Brand href="#home" className="d-none d-sm-block">
         Find Me Issues
       </Navbar.Brand>
 
       {/* Mobile Title & Mode Button */}
       <Container className="navbar__container--mobile noBuff d-sm-none">
-        <Navbar.Brand href="#home" className="navbar__brand">
-          Find Me Issues
-        </Navbar.Brand>
+        <Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
         <i
           onClick={changeTheme}
           className={theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"}
@@ -69,24 +67,23 @@ const Header = (props) => {
         />
       </Container>
 
-      {/* Desktop Search & Select Double Bar */}
-      <Container className="navbar__searchbars--desktop d-none d-sm-flex">
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text className="inputgroup_icon--left">
-              <Container className="noBuff">
-                <i className="fa fa-search" aria-hidden="true" />
-              </Container>
-            </InputGroup.Text>
-          </InputGroup.Prepend>
-          <Form.Control
-            type="text"
-            value={inputSearch}
-            placeholder="Search..."
-            onChange={(e) => handleInputSearch(e.target.value)}
-            className="navbar__search--desktop"
-          />
-        </InputGroup>
+      {/* Search & Select Double Bar */}
+      <Container className=" noBuff navbar__searchbars--desktop ">
+        <InputGroup.Prepend>
+          <InputGroup.Text className="inputgroup_icon--left">
+            <Container className="noBuff">
+              <i className="fa fa-search" aria-hidden="true" />
+            </Container>
+          </InputGroup.Text>
+        </InputGroup.Prepend>
+
+        <Form.Control
+          type="text"
+          value={inputSearch}
+          placeholder="Search..."
+          onChange={(e) => handleInputSearch(e.target.value)}
+          className="navbar__search--desktop"
+        />
 
         <InputGroup.Prepend>
           <InputGroup.Text className="inputgroup_icon--divider">
@@ -102,85 +99,37 @@ const Header = (props) => {
           </InputGroup.Text>
         </InputGroup.Prepend>
 
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text className="inputgroup_icon--mid">
-              <Container className="noBuff">
-                <i className="fa fa-code" aria-hidden="true" />
-              </Container>
-            </InputGroup.Text>
-          </InputGroup.Prepend>
-          <Form.Control
-            as="select"
-            defaultValue={props.language}
-            title={props.language}
-            id="basic-nav-dropdown"
-            className="navbar__select--desktop"
-          >
-            {langugagesData.languages.map((lang, index) => {
-              return (
-                <option
-                  key={index}
-                  onClick={() => {
-                    props.setLanguage(lang);
-                  }}
-                >
-                  {lang}
-                </option>
-              );
-            })}
-          </Form.Control>
-        </InputGroup>
-      </Container>
-
-      {/* Mobile Search Bar */}
-      <InputGroup className="d-sm-none">
         <InputGroup.Prepend>
-          <InputGroup.Text className="inputgroup_icon--left">
-            <Container className="noBuff">
-              <i className="fa fa-search" aria-hidden="true" />
-            </Container>
-          </InputGroup.Text>
-        </InputGroup.Prepend>
-        <Form.Control
-          type="text"
-          value={inputSearch}
-          placeholder="Search..."
-          onChange={(e) => handleInputSearch(e.target.value)}
-          className="navbar__search--mobile"
-        />
-      </InputGroup>
-
-      {/* Mobile Select Bar */}
-      <InputGroup className="d-sm-none" style={{ paddingTop: "3px" }}>
-        <InputGroup.Prepend>
-          <InputGroup.Text className="inputgroup_icon--left">
+          <InputGroup.Text className="inputgroup_icon--mid">
             <Container className="noBuff">
               <i className="fa fa-code" aria-hidden="true" />
             </Container>
           </InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control
-          as="select"
+
+        <Dropdown
           defaultValue={props.language}
-          title={props.language}
-          id="basic-nav-dropdown"
-          className="navbar__select--mobile"
+          onSelect={(option) => {
+            props.setLanguage(option);
+          }}
         >
-          {langugagesData.languages.map((lang, index) => {
-            return (
-              <option
-                key={index}
-                onClick={() => {
-                  props.setLanguage(lang);
-                }}
-              >
-                {lang}
-              </option>
-            );
-          })}
-        </Form.Control>
-      </InputGroup>
+          <Dropdown.Toggle
+            variant="light"
+            className="navbar__dropdown--desktop"
+          >
+            {props.language}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {langugagesData.languages.map((lang, index) => {
+              return (
+                <Dropdown.Item key={index} eventKey={lang}>
+                  {lang}
+                </Dropdown.Item>
+              );
+            })}
+          </Dropdown.Menu>
+        </Dropdown>
+      </Container>
 
       {/* Desktop Mode Button */}
       <i
