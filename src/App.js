@@ -38,18 +38,18 @@ function App() {
         setLanguage={setLanguage}
         setInputSearch={setInputSearch}
         inputSearch={inputSearch}
+      />
+
+      {/* <RepoFilters
+        reducedState={reducedState}
+        setReducedState={setReducedState}
+      /> */}
+
+      <Navigation
         sortByStars={sortByStars}
         setSortByStars={setSortByStars}
         sortByForks={sortByForks}
         setSortByForks={setSortByForks}
-      />
-
-      <RepoFilters
-        reducedState={reducedState}
-        setReducedState={setReducedState}
-      />
-
-      <Navigation
         setPageNumber={setPageNumber}
         pageNumber={pageNumber}
         maxPageNumber={maxPageNumber}

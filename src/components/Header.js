@@ -1,14 +1,4 @@
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Dropdown,
-  Container,
-  Form,
-  InputGroup,
-  Row,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Dropdown, Container, Form, InputGroup } from "react-bootstrap";
 import "./Header.css";
 import { useContext, useState } from "react";
 import langugagesData from "../data/languages.json";
@@ -16,39 +6,30 @@ import { useDebouncedCallback } from "use-debounce";
 //Context
 import { ThemeContext } from "../Context/themeContext";
 
-const Header = (props) => {
+const Header = ({ language, setLanguage, inputSearch, setInputSearch }) => {
   const { theme, changeTheme } = useContext(ThemeContext);
-  const [inputSearch, setInputSearch] = useState("");
+  const [input, setInput] = useState(""); // Mirrors inputSearch and setInputSearch
 
   const debouncedInput = useDebouncedCallback(
     (value) => {
-      props.setInputSearch(value);
+      setInputSearch(value);
     },
     // delay in ms
     1000
   );
 
   const handleInputSearch = (inputValue) => {
-    setInputSearch(inputValue);
+    setInput(inputValue);
     debouncedInput(inputValue);
-  };
-
-  const handleSortByStars = () => {
-    props.setSortByForks("");
-    if (props.sortByStars === "desc") props.setSortByStars("asc");
-    else props.setSortByStars("desc");
-  };
-  const handleSortByForks = () => {
-    props.setSortByStars("");
-    if (props.sortByForks === "desc") props.setSortByForks("asc");
-    else props.setSortByForks("desc");
   };
 
   return (
     <Navbar
       //   bg={theme.mode}
       variant={theme.mode}
-      className={theme.mode === "light" ? "navbar--dark" : "navbar--light"}
+      className={
+        theme.mode === "light" ? "header header--dark" : "header header--light"
+      }
       id="header"
     >
       {/* Desktop Title */}
@@ -57,7 +38,7 @@ const Header = (props) => {
       </Navbar.Brand>
 
       {/* Mobile Title & Mode Button */}
-      <Container className="navbar__container--mobile noBuff d-sm-none">
+      <Container className="header__container--mobile noBuff d-sm-none">
         <Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
         <i
           onClick={changeTheme}
@@ -68,7 +49,7 @@ const Header = (props) => {
       </Container>
 
       {/* Search & Select Double Bar */}
-      <Container className=" noBuff navbar__searchbars--desktop ">
+      <Container className=" noBuff header__searchbars--desktop ">
         <InputGroup.Prepend>
           <InputGroup.Text className="inputgroup_icon--left">
             <Container className="noBuff">
@@ -79,15 +60,15 @@ const Header = (props) => {
 
         <Form.Control
           type="text"
-          value={inputSearch}
+          value={input}
           placeholder="Search..."
           onChange={(e) => handleInputSearch(e.target.value)}
-          className="navbar__search--desktop"
+          className="header__search--desktop"
         />
 
         <InputGroup.Prepend>
           <InputGroup.Text className="inputgroup_icon--divider">
-            <Container className="navbar__divider">
+            <Container className="header__divider">
               <div
                 style={{
                   width: "2px",
@@ -108,16 +89,16 @@ const Header = (props) => {
         </InputGroup.Prepend>
 
         <Dropdown
-          defaultValue={props.language}
+          defaultValue={language}
           onSelect={(option) => {
-            props.setLanguage(option);
+            setLanguage(option);
           }}
         >
           <Dropdown.Toggle
             variant="light"
-            className="navbar__dropdown--desktop"
+            className="header__dropdown--desktop"
           >
-            {props.language}
+            {language}
           </Dropdown.Toggle>
           <Dropdown.Menu>
             {langugagesData.languages.map((lang, index) => {

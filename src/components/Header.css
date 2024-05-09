@@ -1,35 +1,36 @@
-.navbar--light {
+.header {
   padding: 0.5rem 1rem 0.5rem 1rem;
   justify-content: space-between;
+}
+
+.header--light {
   background-color: rgb(47, 47, 47);
 }
 
-.navbar--dark {
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  justify-content: space-between;
+.header--dark {
   background-color: rgb(216, 216, 216);
 }
 
-.navbar__container--mobile {
+.header__container--mobile {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.navbar__searchbars--desktop {
+.header__searchbars--desktop {
   width: 50vw;
   flex-direction: row;
 }
 
 /* --------------- SEARCH BAR --------------- */
-.navbar__search--desktop {
+.header__search--desktop {
   border-color: white;
   border-width: 0;
   border-radius: 0;
 }
 
 /* --------------- INPUTGROUP ICONS --------------- */
-.navbar__divider {
+.header__divider {
   margin: 0;
   padding: 4px;
 }
@@ -58,7 +59,7 @@
 
 /* --------------- DROPDOWN --------------- */
 /* Select Button */
-.navbar__dropdown--desktop {
+.header__dropdown--desktop {
   border-color: white;
   border-width: 0;
   border-radius: 0rem 0.25rem 0.25rem 0rem;
@@ -66,11 +67,11 @@
 
 /* Mobile Breakpoints */
 @media (max-width: 576px) {
-  .navbar {
+  .header {
     flex-direction: column;
   }
 
-  .navbar__searchbars--desktop {
+  .header__searchbars--desktop {
     width: 100%;
   }
 }
