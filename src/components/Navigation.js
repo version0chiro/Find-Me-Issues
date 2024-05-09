@@ -45,7 +45,7 @@ const Navigation = ({
   return (
     <Container
       variant={theme.mode}
-      className="nav "
+      className="nav"
       // style={{
       //   backgroundColor: theme.bg,
       //   color: theme.color,

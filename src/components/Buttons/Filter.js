@@ -74,7 +74,7 @@ const Filter = ({ reducedState, setReducedState }) => {
         </Popover>
       }
     >
-      <Button variant="secondary"> Filter By</Button>
+      <Button variant="secondary"> Filter </Button>
     </OverlayTrigger>
   );
 };
