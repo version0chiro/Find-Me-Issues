@@ -6,7 +6,7 @@ import { useDebouncedCallback } from "use-debounce";
 //Context
 import { ThemeContext } from "../Context/themeContext";
 
-const Header = ({ language, setLanguage, inputSearch, setInputSearch }) => {
+const Header = ({ language, setLanguage, setInputSearch }) => {
   const { theme, changeTheme } = useContext(ThemeContext);
   const [input, setInput] = useState(""); // Mirrors inputSearch and setInputSearch
 
@@ -25,7 +25,6 @@ const Header = ({ language, setLanguage, inputSearch, setInputSearch }) => {
 
   return (
     <Navbar
-      //   bg={theme.mode}
       variant={theme.mode}
       className={
         theme.mode === "light" ? "header header--dark" : "header header--light"

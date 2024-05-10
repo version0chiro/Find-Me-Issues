@@ -1,16 +1,7 @@
-import React, { useCallback, useEffect, useReducer, useState } from "react";
-import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
-import { Collapse } from "react-collapse";
-import { Navbar, Dropdown, Container, Form, InputGroup } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Dropdown } from "react-bootstrap";
 
-const Sort = ({
-  sortByForks,
-  sortByStars,
-  setSortByForks,
-  setSortByStars,
-  reducedState,
-  setReducedState,
-}) => {
+const Sort = ({ setSortByForks, setSortByStars }) => {
   // forksdesc, forksasc, starsdesc, starsasc, default
   let [sort, setSort] = useState("default");
 

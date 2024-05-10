@@ -11,11 +11,12 @@ const Navigation = ({
   setPageNumber,
   pageNumber,
   maxPageNumber,
-  hidePagination,
-  sortByForks,
   setSortByForks,
-  sortByStars,
   setSortByStars,
+  reducedState,
+  setReducedState,
+  hidePagination,
+  hasFilters,
 }) => {
   const { theme } = useContext(ThemeContext);
   let paginationItems = [];
@@ -43,51 +44,47 @@ const Navigation = ({
   }
 
   return (
-    <Container
-      variant={theme.mode}
-      className="nav"
-      // style={{
-      //   backgroundColor: theme.bg,
-      //   color: theme.color,
-      //   display: hidePagination ? "none" : "block",
-      // }}
-    >
-      <Pagination className="noBuff">
-        <Pagination.First
-          onClick={() => {
-            setPageNumber(1);
-          }}
-        />
-        <Pagination.Prev
-          onClick={() => {
-            setPageNumber(Math.max(pageNumber - 5, 1));
-          }}
-        />
+    !hidePagination && (
+      <Container variant={theme.mode} className="nav">
+        <Pagination className="noBuff">
+          <Pagination.First
+            onClick={() => {
+              setPageNumber(1);
+            }}
+          />
+          <Pagination.Prev
+            onClick={() => {
+              setPageNumber(Math.max(pageNumber - 5, 1));
+            }}
+          />
 
-        {paginationItems}
+          {paginationItems}
 
-        <Pagination.Next
-          onClick={() => {
-            setPageNumber(Math.min(pageNumber + 5, maxPageNumber));
-          }}
-        />
-        <Pagination.Last
-          onClick={() => {
-            setPageNumber(maxPageNumber);
-          }}
-        />
-      </Pagination>
-
-      <Container className="nav__buttons noBuff">
-        <Filter />
-        <Sort
-          sortByStars={sortByStars}
-          setSortByStars={setSortByStars}
-          sortByForks={sortByForks}
-          setSortByForks={setSortByForks}
-        />
+          <Pagination.Next
+            onClick={() => {
+              setPageNumber(Math.min(pageNumber + 5, maxPageNumber));
+            }}
+          />
+          <Pagination.Last
+            onClick={() => {
+              setPageNumber(maxPageNumber);
+            }}
+          />
+        </Pagination>
+        {hasFilters && (
+          <Container className="nav__buttons noBuff">
+            <Filter
+              reducedState={reducedState}
+              setReducedState={setReducedState}
+            />
+            <Sort
+              setSortByStars={setSortByStars}
+              setSortByForks={setSortByForks}
+            />
+          </Container>
+        )}
       </Container>
-    </Container>
+    )
   );
 };
 

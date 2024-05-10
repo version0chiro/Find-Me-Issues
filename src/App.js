@@ -9,7 +9,6 @@ import { ThemeContext } from "./Context/themeContext";
 import Header from "./components/Header";
 import CardSet from "./components/CardSet";
 import Navigation from "./components/Navigation";
-import RepoFilters from "./components/RepoFilters";
 
 function App() {
   const [language, setLanguage] = useState("Javascript");
@@ -37,23 +36,18 @@ function App() {
         language={language}
         setLanguage={setLanguage}
         setInputSearch={setInputSearch}
-        inputSearch={inputSearch}
       />
 
-      {/* <RepoFilters
-        reducedState={reducedState}
-        setReducedState={setReducedState}
-      /> */}
-
       <Navigation
-        sortByStars={sortByStars}
-        setSortByStars={setSortByStars}
-        sortByForks={sortByForks}
-        setSortByForks={setSortByForks}
-        setPageNumber={setPageNumber}
         pageNumber={pageNumber}
         maxPageNumber={maxPageNumber}
+        setPageNumber={setPageNumber}
+        setSortByForks={setSortByForks}
+        setSortByStars={setSortByStars}
+        reducedState={reducedState}
+        setReducedState={setReducedState}
         hidePagination={hidePagination}
+        hasFilters
       />
 
       <CardSet
@@ -69,9 +63,13 @@ function App() {
         setHidePagination={setHidePagination}
       />
       <Navigation
-        setPageNumber={setPageNumber}
         pageNumber={pageNumber}
         maxPageNumber={maxPageNumber}
+        setPageNumber={setPageNumber}
+        setSortByForks={setSortByForks}
+        setSortByStars={setSortByStars}
+        reducedState={reducedState}
+        setReducedState={setReducedState}
         hidePagination={hidePagination}
       />
     </div>

@@ -1,31 +1,48 @@
-import React, { useCallback, useReducer, useState } from "react";
-import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
-import { Collapse } from "react-collapse";
+import React from "react";
 import {
   Button,
   Form,
-  FormControl,
-  InputGroup,
   OverlayTrigger,
   Popover,
-  Tooltip,
   Container,
 } from "react-bootstrap";
 import "./Filter.css";
 
 const Filter = ({ reducedState, setReducedState }) => {
   const [show, setShow] = React.useState(false); // Controls Popover
+  const [filters, setFilters] = React.useState(reducedState);
 
   const handleToggle = () => {
     setShow((prev) => !prev);
   };
 
+  function updateFilters(prop, val) {
+    setFilters((prev) => ({
+      ...prev,
+      [prop]: val, // Update the specific property
+    }));
+  }
+
   function handleReset() {
-    setShow(false);
+    setFilters({
+      minForks: "",
+      maxForks: "",
+      minStars: "",
+      maxStars: "",
+    });
+    setReducedState({ ...filters });
   }
 
   function handleApply() {
     setShow(false);
+    setReducedState({ ...filters });
+  }
+
+  function isEmpty() {
+    for (let key in filters) {
+      if (filters[key] !== "") return false;
+      return true;
+    }
   }
 
   return (
@@ -35,46 +52,62 @@ const Filter = ({ reducedState, setReducedState }) => {
       show={show}
       onToggle={handleToggle}
       rootClose // Close Popover when clicked out
+      popperConfig={{
+        modifiers: {
+          name: "offset",
+          options: {
+            offset: [0, 10],
+          },
+        },
+      }} // PopOver Offset
       overlay={
         <Popover className="popover">
           <Container className="popover__container noBuff">
-            <Container>Forks</Container>
-            <Form.Control
-              type="text"
-              value={"Val"}
-              placeholder="Min"
-              // onChange={(e) => handleInputSearch(e.target.value)}
-            />
-            <Form.Control
-              type="text"
-              value={"Val"}
-              placeholder="Max"
-              // onChange={(e) => handleInputSearch(e.target.value)}
-            />
+            <Container className="popover__text">Forks</Container>
+            <Container className="popover__inputs noBuff">
+              <Form.Control
+                type="number"
+                value={filters?.minForks || ""}
+                placeholder="Min"
+                onChange={(e) => updateFilters("minForks", e.target.value)}
+                className="popover__input"
+              />
+              <Form.Control
+                type="number"
+                value={filters?.maxForks || ""}
+                placeholder="Max"
+                onChange={(e) => updateFilters("maxForks", e.target.value)}
+                className="popover__input"
+              />
+            </Container>
           </Container>
           <Container className="popover__container noBuff">
-            <Container>Stars</Container>
-            <Form.Control
-              type="text"
-              value={"Val"}
-              placeholder="Min"
-              // onChange={(e) => handleInputSearch(e.target.value)}
-            />
-            <Form.Control
-              type="text"
-              value={"Val"}
-              placeholder="Max"
-              // onChange={(e) => handleInputSearch(e.target.value)}
-            />
+            <Container className="popover__text">Stars</Container>
+            <Container className="popover__inputs noBuff">
+              <Form.Control
+                type="number"
+                value={filters?.minStars || ""}
+                placeholder="Min"
+                onChange={(e) => updateFilters("minStars", e.target.value)}
+              />
+              <Form.Control
+                type="number"
+                value={filters?.maxStars || ""}
+                placeholder="Max"
+                onChange={(e) => updateFilters("maxStars", e.target.value)}
+              />
+            </Container>
           </Container>
-          <Container className="popover__container noBuff">
-            <Button onClick={() => handleReset()}>Reset</Button>
+          <Container className="popover__buttons noBuff">
+            <Button variant="secondary" onClick={() => handleReset()}>
+              Reset
+            </Button>
             <Button onClick={() => handleApply()}>Apply</Button>
           </Container>
         </Popover>
       }
     >
-      <Button variant="secondary"> Filter </Button>
+      <Button variant={isEmpty() ? "light" : "primary"}> Filter </Button>
     </OverlayTrigger>
   );
 };

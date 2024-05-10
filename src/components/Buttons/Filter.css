@@ -10,12 +10,52 @@
 }
 .popover__container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: row;
-  flex-wrap: nowrap;
+}
+.popover__text {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  margin: 0rem 0.5rem 0rem 0rem;
+}
+.popover__inputs {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.popover__input {
+  width: 50%;
+}
+.popover__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.popover__buttons > :not(:first-child) {
+  margin-left: 0.5rem;
 }
 
 /* Helpers */
 .noBuff {
   padding: 0;
   margin: 0;
+}
+
+/* Remove Number Input Arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
