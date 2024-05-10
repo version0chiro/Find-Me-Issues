@@ -1,0 +1,38 @@
+.nav {
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0rem 0.5rem 0rem;
+}
+
+.nav__buttons {
+  display: flex;
+  width: auto;
+}
+
+.nav__buttons > * {
+  margin-left: 0.5rem;
+}
+
+/* Mobile Breakpoints */
+/* Use 768 instead of 576 since Pagination can get wide */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+  }
+
+  .nav__buttons > * {
+    margin-top: 0.5rem;
+  }
+
+  .nav__buttons > :first-child {
+    margin-left: 0rem;
+  }
+}
+
+/* Helpers */
+.noBuff {
+  padding: 0;
+  margin: 0;
+}

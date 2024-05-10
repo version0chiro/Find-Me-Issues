@@ -1,0 +1,83 @@
+.header {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  justify-content: space-between;
+}
+
+.header--light {
+  background-color: rgb(47, 47, 47);
+}
+
+.header--dark {
+  background-color: rgb(216, 216, 216);
+}
+
+.header__container--mobile {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__searchbars--desktop {
+  width: 50vw;
+  flex-direction: row;
+}
+
+/* --------------- SEARCH BAR --------------- */
+.header__search--desktop {
+  border-color: white;
+  border-width: 0;
+  border-radius: 0;
+}
+
+/* --------------- INPUTGROUP ICONS --------------- */
+.header__divider {
+  margin: 0;
+  padding: 4px;
+}
+
+.inputgroup_icon--left {
+  border: 0;
+  border-radius: 0.25rem 0rem 0rem 0.25rem;
+  background-color: white;
+  padding: 6px 0px 6px 6px;
+}
+
+.inputgroup_icon--divider {
+  border: 0;
+  border-radius: 0;
+  background-color: white;
+  color: lightgray;
+  padding: 6px 2px 6px 2px;
+}
+
+.inputgroup_icon--mid {
+  border: 0;
+  border-radius: 0;
+  background-color: white;
+  padding: 6px 0px 6px 0px;
+}
+
+/* --------------- DROPDOWN --------------- */
+/* Select Button */
+.header__dropdown--desktop {
+  border-color: white;
+  border-width: 0;
+  border-radius: 0rem 0.25rem 0.25rem 0rem;
+}
+
+/* Mobile Breakpoints */
+@media (max-width: 576px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .header__searchbars--desktop {
+    width: 100%;
+  }
+}
+
+/* Helpers */
+.noBuff {
+  padding: 0;
+  margin: 0;
+}

@@ -1,104 +1,128 @@
-import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
+import { Navbar, Dropdown, Container, Form, InputGroup } from "react-bootstrap";
+import "./Header.css";
 import { useContext, useState } from "react";
 import langugagesData from "../data/languages.json";
 import { useDebouncedCallback } from "use-debounce";
 //Context
 import { ThemeContext } from "../Context/themeContext";
 
-const Header = (props) => {
-	const [language, setLanguage] = useState("javascript");
-	const { theme, changeTheme } = useContext(ThemeContext);
-	const [inputSearch, setInputSearch] = useState("");
+const Header = ({ language, setLanguage, setInputSearch }) => {
+  const { theme, changeTheme } = useContext(ThemeContext);
+  const [input, setInput] = useState(""); // Mirrors inputSearch and setInputSearch
 
-	const debouncedInput = useDebouncedCallback(
-		(value) => {
-			props.setInputSearch(value);
-		},
-		// delay in ms
-		1000
-	);
+  const debouncedInput = useDebouncedCallback(
+    (value) => {
+      setInputSearch(value);
+    },
+    // delay in ms
+    1000
+  );
 
-	const handleInputSearch = (inputValue) => {
-		setInputSearch(inputValue);
-		debouncedInput(inputValue);
-	};
+  const handleInputSearch = (inputValue) => {
+    setInput(inputValue);
+    debouncedInput(inputValue);
+  };
 
-	const handleSortByStars = () => {
-		props.setSortByForks("");
-		if (props.sortByStars === "desc") props.setSortByStars("asc");
-		else props.setSortByStars("desc");
-	};
-	const handleSortByForks = () => {
-		props.setSortByStars("");
-		if (props.sortByForks === "desc") props.setSortByForks("asc");
-		else props.setSortByForks("desc");
-	};
+  return (
+    <Navbar
+      variant={theme.mode}
+      className={
+        theme.mode === "light" ? "header header--dark" : "header header--light"
+      }
+      id="header"
+    >
+      {/* Desktop Title */}
+      <Navbar.Brand href="#home" className="d-none d-sm-block">
+        Find Me Issues
+      </Navbar.Brand>
 
-	return (
-			<Navbar bg={theme.mode} variant={theme.mode} expand="lg" id="header">
-				<Container fluid>
-					<Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
-					{theme.mode === "light" ? (
-						<Button onClick={changeTheme} size="sm">
-							<i className="fa fa-moon-o" aria-hidden="true"></i>
-						</Button>
-					) : (
-						<Button onClick={changeTheme} size="sm">
-							<i className="fa fa-sun-o" aria-hidden="true"></i>
-						</Button>
-					)}
-					<Nav className="mr-auto"></Nav>
+      {/* Mobile Title & Mode Button */}
+      <Container className="header__container--mobile noBuff d-sm-none">
+        <Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
+        <i
+          onClick={changeTheme}
+          className={theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"}
+          style={{ fontSize: "1.5rem" }}
+          aria-hidden="true"
+        />
+      </Container>
 
-					<Button size="sm"
-						style={{
-							margin: "0px 3px",
-						}}
-						onClick={handleSortByStars}
-					>
-						Sort by stars
-					</Button>
-					<Button size="sm"
-						style={{
-							margin: "0px 3px",
-						}}
-						onClick={handleSortByForks}
-					>
-						Sort by forks
-					</Button>
+      {/* Search & Select Double Bar */}
+      <Container className=" noBuff header__searchbars--desktop ">
+        <InputGroup.Prepend>
+          <InputGroup.Text className="inputgroup_icon--left">
+            <Container className="noBuff">
+              <i className="fa fa-search" aria-hidden="true" />
+            </Container>
+          </InputGroup.Text>
+        </InputGroup.Prepend>
 
+        <Form.Control
+          type="text"
+          value={input}
+          placeholder="Search..."
+          onChange={(e) => handleInputSearch(e.target.value)}
+          className="header__search--desktop"
+        />
 
-					<span className="ml-2 mr-1">Find specific content in the project description: </span>
-					<input
-						type="text"
-						value={inputSearch}
-						onChange={(e) => handleInputSearch(e.target.value)}
-					/>
-					<div id="outlined-basic" className="mr-sm-2">
-						{language}
-					</div>
-					<NavDropdown title="Select Language" id="basic-nav-dropdown">
-						<div style={{ height: "400px", overflowY: "auto" }}>
-							{langugagesData.languages.map((lang, index) => {
-								return (
-									<div key={index}>
-										<NavDropdown.Item
-											onClick={() => {
-												setLanguage(lang);
-												props.setLanguage(lang);
-											}}
-										>
-											{lang}
-										</NavDropdown.Item>
-										<NavDropdown.Divider />
-									</div>
-								);
-							})}
-						</div>
-					</NavDropdown>
-				</Container>
+        <InputGroup.Prepend>
+          <InputGroup.Text className="inputgroup_icon--divider">
+            <Container className="header__divider">
+              <div
+                style={{
+                  width: "2px",
+                  height: "16px",
+                  backgroundColor: "lightgray",
+                }}
+              />
+            </Container>
+          </InputGroup.Text>
+        </InputGroup.Prepend>
 
-			</Navbar>
-	);
+        <InputGroup.Prepend>
+          <InputGroup.Text className="inputgroup_icon--mid">
+            <Container className="noBuff">
+              <i className="fa fa-code" aria-hidden="true" />
+            </Container>
+          </InputGroup.Text>
+        </InputGroup.Prepend>
+
+        <Dropdown
+          defaultValue={language}
+          onSelect={(option) => {
+            setLanguage(option);
+          }}
+        >
+          <Dropdown.Toggle
+            variant="light"
+            className="header__dropdown--desktop"
+          >
+            {language}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {langugagesData.languages.map((lang, index) => {
+              return (
+                <Dropdown.Item key={index} eventKey={lang}>
+                  {lang}
+                </Dropdown.Item>
+              );
+            })}
+          </Dropdown.Menu>
+        </Dropdown>
+      </Container>
+
+      {/* Desktop Mode Button */}
+      <i
+        onClick={changeTheme}
+        className={
+          "d-none d-sm-block fa " +
+          (theme.mode === "light" ? "fa-moon-o" : "fa-sun-o")
+        }
+        style={{ fontSize: "1.5rem" }}
+        aria-hidden="true"
+      />
+    </Navbar>
+  );
 };
 
 export default Header;

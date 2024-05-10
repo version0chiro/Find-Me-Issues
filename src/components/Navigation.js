@@ -1,116 +1,90 @@
-import React, { useContext } from 'react';
-import Pagination from 'react-bootstrap/Pagination';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useContext } from "react";
+import { Container, Pagination } from "react-bootstrap";
+
+import Filter from "./Buttons/Filter";
+import Sort from "./Buttons/Sort";
 //Context
-import {ThemeContext} from '../Context/themeContext'
+import { ThemeContext } from "../Context/themeContext";
+import "./Navigation.css";
 
-const useStyles = makeStyles({
-  navBar: {
-    margin: '0px',
-    paddingTop: '25px',
-    paddingBottom: '10px',
-    justifyContent: 'center',
-    '& a': {
-      color: 'black',
-    }
-  },
-});
-
-const Navigation = (props) => {
-  const classes = useStyles()
-  const {theme} = useContext(ThemeContext)
-
+const Navigation = ({
+  setPageNumber,
+  pageNumber,
+  maxPageNumber,
+  setSortByForks,
+  setSortByStars,
+  reducedState,
+  setReducedState,
+  hidePagination,
+  hasFilters,
+}) => {
+  const { theme } = useContext(ThemeContext);
   let paginationItems = [];
 
-  // edge case for beginning pages active states
-  if (props.pageNumber <= 3) {
-    for (let pageNumber = 1; pageNumber <= 5; pageNumber++) {
+  if (pageNumber <= 3) pushItems(1, 5); // First 3 pages
+  else if (maxPageNumber - 2 <= pageNumber)
+    pushItems(maxPageNumber - 4, maxPageNumber); // Last 3 pages
+  else pushItems(pageNumber - 2, pageNumber + 2); // Other Pages
+
+  // Pushes items i to j (inclusive) to paginationItems
+  function pushItems(i, j) {
+    for (let idx = i; idx <= j; idx++) {
       paginationItems.push(
         <Pagination.Item
-          key={pageNumber}
-          active={pageNumber === props.pageNumber}
+          key={idx}
+          active={idx === pageNumber}
           onClick={() => {
-            props.setPageNumber(pageNumber);
+            setPageNumber(idx);
           }}
         >
-          {pageNumber}
-        </Pagination.Item>,
-      );
-    }
-  }
-  // edge case for end pages active states
-  else if (props.pageNumber > props.maxPageNumber - 2) {
-    for (
-      let pageNumber = props.maxPageNumber - 4;
-      pageNumber <= props.maxPageNumber;
-      pageNumber++
-    ) {
-      paginationItems.push(
-        <Pagination.Item
-          key={pageNumber}
-          active={pageNumber === props.pageNumber}
-          onClick={() => {
-            props.setPageNumber(pageNumber);
-          }}
-        >
-          {pageNumber}
-        </Pagination.Item>,
-      );
-    }
-  }
-  // covers rest of page active states
-  else if (props.pageNumber <= props.maxPageNumber - 2) {
-    for (
-      let pageNumber = props.pageNumber - 2;
-      pageNumber <= props.pageNumber + 2;
-      pageNumber++
-    ) {
-      paginationItems.push(
-        <Pagination.Item
-          key={pageNumber}
-          active={pageNumber === props.pageNumber}
-          onClick={() => {
-            props.setPageNumber(pageNumber);
-          }}
-        >
-          {pageNumber}
-        </Pagination.Item>,
+          {idx}
+        </Pagination.Item>
       );
     }
   }
 
   return (
-    <div style={{ backgroundColor: theme.bg, color: theme.color, display: props.hidePagination ? 'none' : 'block'}}>
-      <Pagination className={classes.navBar}>
-        <Pagination.First
-          onClick={() => {
-            props.setPageNumber(1);
-          }}
-        />
-        <Pagination.Prev
-          onClick={() => {
-            if (props.pageNumber > 1) {
-              props.setPageNumber(props.pageNumber - 1);
-            }
-          }}
-        />
+    !hidePagination && (
+      <Container variant={theme.mode} className="nav">
+        <Pagination className="noBuff">
+          <Pagination.First
+            onClick={() => {
+              setPageNumber(1);
+            }}
+          />
+          <Pagination.Prev
+            onClick={() => {
+              setPageNumber(Math.max(pageNumber - 5, 1));
+            }}
+          />
 
-        {paginationItems}
+          {paginationItems}
 
-        <Pagination.Next
-          onClick={() => {
-            if (props.pageNumber < props.maxPageNumber) {
-              props.setPageNumber(props.pageNumber + 1);
-            }
-          }}
-        />
-        <Pagination.Last
-          onClick={() => {
-            props.setPageNumber(props.maxPageNumber);
-          }}
-        />
-      </Pagination>
-    </div>
+          <Pagination.Next
+            onClick={() => {
+              setPageNumber(Math.min(pageNumber + 5, maxPageNumber));
+            }}
+          />
+          <Pagination.Last
+            onClick={() => {
+              setPageNumber(maxPageNumber);
+            }}
+          />
+        </Pagination>
+        {hasFilters && (
+          <Container className="nav__buttons noBuff">
+            <Filter
+              reducedState={reducedState}
+              setReducedState={setReducedState}
+            />
+            <Sort
+              setSortByStars={setSortByStars}
+              setSortByForks={setSortByForks}
+            />
+          </Container>
+        )}
+      </Container>
+    )
   );
 };
 
