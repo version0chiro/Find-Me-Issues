@@ -12,7 +12,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CardSet = (props) => {
+const CardSet = ({
+  language,
+  inputSearch,
+  pageNumber,
+  reducedState,
+  sortByStars,
+  sortByForks,
+  setMaxPageNumber,
+  setHidePagination,
+}) => {
   const [repositores, setRepositories] = useState([]);
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(false);
@@ -29,31 +38,31 @@ const CardSet = (props) => {
   }, []);
 
   let url = `https://api.github.com/search/repositories?q=good-first-issues:>0+language:${
-    props.language
+    language
   }${
-    !isEmpty(props.inputSearch) ? `:${props.inputSearch}+in%3Atitle` : ""
-  }&page=${props.pageNumber}&per_page=10`;
+    !isEmpty(inputSearch) ? `:${inputSearch}+in%3Atitle` : ""
+  }&page=${pageNumber}&per_page=10`;
 
   let urlSuffix = "";
 
   useEffect(() => {
     const onAppliedFilters = () => {
       if (
-        props.reducedState.minForks !== "" &&
-        props.reducedState.maxForks === ""
+        reducedState.minForks !== "" &&
+        reducedState.maxForks === ""
       ) {
-        setForksQuery(`forks:>=${props.reducedState.minForks}`);
+        setForksQuery(`forks:>=${reducedState.minForks}`);
       } else if (
-        props.reducedState.maxForks !== "" &&
-        props.reducedState.minForks === ""
+        reducedState.maxForks !== "" &&
+        reducedState.minForks === ""
       ) {
-        setForksQuery(`forks:<=${props.reducedState.maxForks}`);
+        setForksQuery(`forks:<=${reducedState.maxForks}`);
       } else if (
-        props.reducedState.maxForks !== "" &&
-        props.reducedState.minForks !== ""
+        reducedState.maxForks !== "" &&
+        reducedState.minForks !== ""
       ) {
         setForksQuery(
-          `forks:${props.reducedState.minForks}..${props.reducedState.maxForks}`
+          `forks:${reducedState.minForks}..${reducedState.maxForks}`
         );
       } else {
         setForksQuery("");
@@ -65,21 +74,21 @@ const CardSet = (props) => {
       }
 
       if (
-        props.reducedState.minStars !== "" &&
-        props.reducedState.maxStars === ""
+        reducedState.minStars !== "" &&
+        reducedState.maxStars === ""
       ) {
-        setStarsQuery(`stars:>=${props.reducedState.minForks}`);
+        setStarsQuery(`stars:>=${reducedState.minForks}`);
       } else if (
-        props.reducedState.maxStars !== "" &&
-        props.reducedState.minStars === ""
+        reducedState.maxStars !== "" &&
+        reducedState.minStars === ""
       ) {
-        setStarsQuery(`stars:<=${props.reducedState.maxStars}`);
+        setStarsQuery(`stars:<=${reducedState.maxStars}`);
       } else if (
-        props.reducedState.maxStars !== "" &&
-        props.reducedState.minStars !== ""
+        reducedState.maxStars !== "" &&
+        reducedState.minStars !== ""
       ) {
         setStarsQuery(
-          `stars:${props.reducedState.minStars}..${props.reducedState.maxStars}`
+          `stars:${reducedState.minStars}..${reducedState.maxStars}`
         );
       } else {
         setStarsQuery("");
@@ -92,15 +101,15 @@ const CardSet = (props) => {
     };
 
     onAppliedFilters();
-  }, [props, url, forksQuery, starsQuery]);
+  }, [language, inputSearch, pageNumber, reducedState, sortByForks, sortByStars, forksQuery, starsQuery]);
 
-  if (props.sortByStars === "desc") urlSuffix = "&sort=stars&order=desc";
-  else if (props.sortByStars === "asc") urlSuffix = "&sort=stars&order=asc";
-  else if (props.sortByForks === "desc") urlSuffix = "&sort=forks&order=desc";
-  else if (props.sortByForks === "asc") urlSuffix = "&sort=forks&order=asc";
+  if (sortByStars === "desc") urlSuffix = "&sort=stars&order=desc";
+  else if (sortByStars === "asc") urlSuffix = "&sort=stars&order=asc";
+  else if (sortByForks === "desc") urlSuffix = "&sort=forks&order=desc";
+  else if (sortByForks === "asc") urlSuffix = "&sort=forks&order=asc";
 
   useEffect(() => {
-    // console.log("stars", props.sortByStars, "forks", props.sortByForks);
+    // console.log("stars", sortByStars, "forks", sortByForks);
     url += urlSuffix;
     console.log(url);
     setIsLoading(true);
@@ -111,18 +120,18 @@ const CardSet = (props) => {
         async (response) => {
           // console.log(response.data.items);
           let maxPageNumber = Math.floor(response.data.total_count / 10);
-          props.setMaxPageNumber(maxPageNumber);
+          setMaxPageNumber(maxPageNumber);
           setRepositories(response.data.items);
           setWasRejected(false);
           setIsLoading(false);
           response.data.items.length
-            ? props.setHidePagination(false)
-            : props.setHidePagination(true);
+            ? setHidePagination(false)
+            : setHidePagination(true);
         },
         (rejection) => {
           if (rejection.response.status === 403) {
             setWasRejected(true);
-            props.setHidePagination(true);
+            setHidePagination(true);
           }
           // console.log(rejection.response.data)
         }
@@ -133,7 +142,7 @@ const CardSet = (props) => {
         //console.log(errors)
       });
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, [props, url]);
+  }, [language, inputSearch, pageNumber, reducedState, sortByForks, sortByStars, url, urlSuffix, setMaxPageNumber, setHidePagination]);
 
   return (
     <div
