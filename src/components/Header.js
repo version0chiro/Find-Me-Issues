@@ -99,7 +99,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
           >
             {language}
           </Dropdown.Toggle>
-          <Dropdown.Menu>
+          <Dropdown.Menu className="lang">
             {langugagesData.languages.map((lang, index) => {
               return (
                 <Dropdown.Item key={index} eventKey={lang}>
