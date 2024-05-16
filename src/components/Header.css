@@ -65,6 +65,36 @@
   border-radius: 0rem 0.25rem 0.25rem 0rem;
 }
 
+/*----------Language scroll bar------*/
+.lang {
+  max-height: 300px;
+  max-width: 200px; /* Decrease the maximum width */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 5px 0;
+}
+
+.lang::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lang::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.lang::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.lang::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+
 /* Mobile Breakpoints */
 @media (max-width: 576px) {
   .header {
