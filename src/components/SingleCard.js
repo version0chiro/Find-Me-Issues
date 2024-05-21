@@ -98,6 +98,9 @@ const SingleCard = (props) => {
 									<Button
 										variant="outline-info"
 										onClick={() => setOpen(!openIssues)}
+										style={{
+											'-webkit-text-stroke': '0.4px black'
+										}}
 									>
 										Go To Issues
 									</Button>
