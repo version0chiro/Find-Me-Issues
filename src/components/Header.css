@@ -64,6 +64,10 @@
   border-width: 0;
   border-radius: 0rem 0.25rem 0.25rem 0rem;
 }
+.header_dropdown{
+  height: 300px;
+  overflow-y: auto;
+}
 
 /* Mobile Breakpoints */
 @media (max-width: 576px) {
