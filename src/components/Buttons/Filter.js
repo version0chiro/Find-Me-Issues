@@ -89,12 +89,14 @@ const Filter = ({ reducedState, setReducedState }) => {
                 value={filters?.minStars || ""}
                 placeholder="Min"
                 onChange={(e) => updateFilters("minStars", e.target.value)}
+                className="popover_start"
               />
               <Form.Control
                 type="number"
                 value={filters?.maxStars || ""}
                 placeholder="Max"
                 onChange={(e) => updateFilters("maxStars", e.target.value)}
+                className="popover_start"
               />
             </Container>
           </Container>

@@ -32,12 +32,12 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
       id="header"
     >
       {/* Desktop Title */}
-      <Navbar.Brand href="#home" className="d-none d-sm-block">
+      <Navbar.Brand href="#home" className="d-none d-sm-block fw-bold">
         Find Me Issues
       </Navbar.Brand>
 
       {/* Mobile Title & Mode Button */}
-      <Container className="header__container--mobile noBuff d-sm-none">
+      <Container className="header__container--mobile noBuff d-sm-none fw-bold">
         <Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
         <i
           onClick={changeTheme}
@@ -99,9 +99,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
           >
             {language}
           </Dropdown.Toggle>
-          <Dropdown.Menu
-          className="header_dropdown"
-          >
+          <Dropdown.Menu className="header_dropdown">
             {langugagesData.languages.map((lang, index) => {
               return (
                 <Dropdown.Item key={index} eventKey={lang}>
