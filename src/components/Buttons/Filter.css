@@ -27,16 +27,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
 }
 .popover__input {
   width: 50%;
 }
+.popover__input:hover{
+  background: #C0C0C0;
+cursor: pointer;
+}
+.popover_start:hover{
+  background: #C0C0C0;
+  cursor: pointer;
+
+}
+
 .popover__buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
 }
+
 .popover__buttons > :not(:first-child) {
   margin-left: 0.5rem;
 }
