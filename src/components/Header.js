@@ -99,16 +99,16 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
           >
             {language}
           </Dropdown.Toggle>
-          <Dropdown.Menu
-          className="header_dropdown"
-          >
-            {langugagesData.languages.map((lang, index) => {
-              return (
-                <Dropdown.Item key={index} eventKey={lang}>
-                  {lang}
-                </Dropdown.Item>
-              );
-            })}
+          <Dropdown.Menu className="header_dropdown">
+            {langugagesData.languages
+              .filter((lang) => lang !== language)
+              .map((lang, index) => {
+                return (
+                  <Dropdown.Item key={index} eventKey={lang}>
+                    {lang}
+                  </Dropdown.Item>
+                );
+              })}
           </Dropdown.Menu>
         </Dropdown>
       </Container>
