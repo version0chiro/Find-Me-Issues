@@ -41,7 +41,7 @@ const SingleCard = (props) => {
 				width: "100%",
 				margin: "10px",
 				padding: "10px",
-				WebkitTextStroke: "0.4px white",
+				WebkitTextStroke: "0.4px black",
 				height: "100%",
 			}}
 		>
