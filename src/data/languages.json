@@ -45,6 +45,17 @@
     "Swift",
     "TypeScript",
     "Vue.js",
-    "FORTRAN"
+    "FORTRAN",
+    "Apex",
+    "Ada",
+    "RPG",
+    "Smalltalk",
+    "XSLT",
+    "VHDL",
+    "Verilog",
+    "Tcl",
+    "Nim",
+    "F#",
+    "HCL"
   ]
 }
