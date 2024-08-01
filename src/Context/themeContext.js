@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const ThemeContext = createContext()
 
@@ -11,11 +11,22 @@ let systemTheme = {}
 window.matchMedia('(prefers-color-scheme: dark)').matches ? systemTheme = dark : systemTheme = light
 
 export function ThemeProvider(props) {
-    const [theme, setTheme] = useState(systemTheme)
+    const [theme, setTheme] = useState(systemTheme);
+
+    useEffect(() => {
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+            setTheme(storedTheme === 'light' ? light : dark);
+        }else {
+            localStorage.setItem('theme', systemTheme.mode);
+        }
+    }, []);
 
     //Handle theme change
     function changeTheme() {
-        theme.mode === 'light' ? setTheme(dark) : setTheme(light)
+        const newTheme = theme.mode === 'light' ? dark : light;
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme.mode);
     }
 
     return <ThemeContext.Provider value={{theme: theme, changeTheme: changeTheme}}>
