@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const ThemeContext = createContext()
 
@@ -11,7 +11,15 @@ let systemTheme = {}
 window.matchMedia('(prefers-color-scheme: dark)').matches ? systemTheme = dark : systemTheme = light
 
 export function ThemeProvider(props) {
-    const [theme, setTheme] = useState(systemTheme)
+    const [theme, setTheme] = useState(() => {
+        const savedTheme = localStorage.getItem('theme')
+        return savedTheme ? JSON.parse(savedTheme) : systemTheme
+    })
+
+    // Save the theme to local storage whenever it changes
+    useEffect(() => {
+        localStorage.setItem('theme', JSON.stringify(theme))
+    }, [theme])
 
     //Handle theme change
     function changeTheme() {
