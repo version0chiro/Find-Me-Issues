@@ -1,5 +1,5 @@
 import { Card, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Emoji from "react-emoji-render";
 import backg from "../git9.jpg";
@@ -7,11 +7,15 @@ import axios from "axios";
 import { isEmpty } from "lodash";
 import iconButton from "./../button_icon.png";
 import Loading from "./Loading";
+import { ThemeContext } from "../Context/themeContext";
+
+
 const SingleCard = (props) => {
   // console.log(props.repo)
   const [repo, setRepo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [wasRejected, setWasRejected] = useState(false);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     //Modifiquei voltar pra true
@@ -48,10 +52,12 @@ const SingleCard = (props) => {
       }}
     >
       {wasRejected && (
-        <small style={{ color: "red" }}>
-          You are seeing this message because github imposes rate limit on
-          requests. Please refresh the page or wait a couple of minutes.
-        </small>
+        <div className={`min-h-36 flex items-center justify-center p-9 shadow-xl ${theme.mode === "light" ? "bg-slate-200" : "bg-gray-800"} rounded-md`}>
+          <p className="balance text-red-600 font-medium">
+            You are seeing this message because github imposes rate limit on
+            requests. Please refresh the page or wait a couple of minutes.
+          </p>
+        </div>
       )}
       {isLoading ? (
         <Loading></Loading>

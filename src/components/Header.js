@@ -1,11 +1,14 @@
 import { Navbar, Container } from "react-bootstrap";
 import "./Header.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import langugagesData from "../data/languages.json";
 import logo from "./../logo.png";
 import logo_white from "./../logo-white.png";
 import { useDebouncedCallback } from "use-debounce";
-//Context
+import sol from '../Sun.png';
+import lua from '../Moon.png';
+
+// Context
 import { ThemeContext } from "../Context/themeContext";
 
 const Header = ({ language, setLanguage, setInputSearch }) => {
@@ -25,11 +28,15 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
     debouncedInput(inputValue);
   };
 
+  useEffect(() => {
+    setInputSearch(input);
+  }, [input, setInputSearch]);
+
   return (
     <Navbar id="header">
       <Container className=" flex lg:flex-row flex-col  justify-center items-center  w-full px-4">
-        <Navbar.Brand href="#home" className="d-none d-sm-block ">
-          {theme.color === "light" ? (
+        <Navbar.Brand href="/" className="d-none d-sm-block ">
+          {theme.mode === "light" ? (
             <img src={logo_white} alt="Logo" className="w-24 h-24"></img>
           ) : (
             <img src={logo} alt="Logo" className="w-24 h-24"></img>
@@ -43,48 +50,47 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
             }  flex rounded-3xl p-2 h-11 md:w-[40rem] `}
           >
             <select
+              value={language} // Ensure the dropdown reflects the current language
               onChange={(e) => setLanguage(e.target.value)}
               className="text-sm text-black outline-none bg-transparent rounded-md "
             >
               <option disabled>Escolha uma opção</option>
-              {langugagesData.languages
-                .filter((lang) => lang !== language)
-                .map((lang, index) => {
-                  return (
-                    <option
-                      className=" p-1 rounded-md"
-                      key={index}
-                      value={lang}
-                    >
-                      {lang}
-                    </option>
-                  );
-                })}
+              {langugagesData.languages.map((lang, index) => (
+                <option
+                  className=" p-1 rounded-md"
+                  key={index}
+                  value={lang}
+                >
+                  {lang}
+                </option>
+              ))}
             </select>
             <input
               className="outline-transparent bg-transparent text-black border-l-2 border-black ml-2 pl-2"
               type="text"
               placeholder="Search"
-              onChange={(e) => {
-                handleInputSearch(e.target.value);
-              }}
+              value={input} // Mirror the input state to the input field
+              onChange={(e) => handleInputSearch(e.target.value)}
             ></input>
           </label>
 
-          <i
+          <div
             onClick={changeTheme}
             className={
               "cursor-pointer hover:scale-105 transition-all ease-linear duration-200" +
-              "d-none d-sm-block fa " +
-              (theme.mode === "light" ? "fa-moon-o" : "fa-sun-o")
+              "d-none d-sm-block fa "
             }
             style={{ fontSize: "1.5rem" }}
             aria-hidden="true"
-          />
+          >
+            {theme.mode === "light" ? (
+              <img src={lua} alt="lua icone" className="w-10"></img>
+            ) : (
+              <img src={sol} alt="sol icone" className="w-10"></img>
+            )}
+          </div>
         </div>
       </Container>
-
-      {/* Desktop Mode Button */}
     </Navbar>
   );
 };
