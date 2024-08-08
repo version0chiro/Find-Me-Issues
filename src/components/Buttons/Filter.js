@@ -37,9 +37,9 @@ const Filter = ({ reducedState, setReducedState }) => {
           onClick={() => {
             setShow(!show);
           }}
-          className={`gap-2   cursor-pointer hover:scale-105 transition-all duration-200 w-32 h-11 rounded-l-2xl ${
+          className={`gap-2   cursor-pointer hover:scale-105 transition-all duration-200 w-40 h-11 rounded-l-2xl ${
             theme.mode === "light"
-              ? "bg-[#d9d9d9] text-black"
+              ? "bg-slate-200 text-black"
               : "bg-white text-black"
           }   flex justify-center items-center`}
         >
@@ -48,7 +48,7 @@ const Filter = ({ reducedState, setReducedState }) => {
         </div>
         {show ? (
           <>
-            <div className="z-20 py-2 gap-2 absolute text-black top-12 right-0 bg-[#d9d9d9] w-40 rounded-2xl flex flex-col justify-center items-center">
+            <div className="z-20 py-2 gap-2 absolute text-black top-12 right-0 bg-slate-200 w-40 rounded-2xl flex flex-col justify-center items-center">
               <span className="text-md font-bold">Forks</span>
               <div className="flex gap-2">
                 <input
@@ -87,7 +87,7 @@ const Filter = ({ reducedState, setReducedState }) => {
                     handleReset();
                     setShow(!show);
                   }}
-                  className="hover:scale-105 transition-all ease-linear duration-200 rounded-md px-2 text-white bg-black"
+                  className="hover:scale-105 transition-all ease-linear duration-200 rounded-md px-2 py-1 text-white bg-black"
                 >
                   Reset
                 </button>
@@ -96,7 +96,7 @@ const Filter = ({ reducedState, setReducedState }) => {
                     handleApply();
                     setShow(!show);
                   }}
-                  className="hover:scale-105 transition-all ease-linear duration-200 rounded-md px-2 text-white bg-[#0373A1]"
+                  className="hover:scale-105 transition-all ease-linear duration-200 rounded-md px-2 py-1 text-white bg-[#0373A1]"
                 >
                   Apply
                 </button>

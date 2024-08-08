@@ -40,9 +40,9 @@ const Sort = ({ setSortByForks, setSortByStars }) => {
           onClick={() => {
             setShow(!show);
           }}
-          className={`gap-2   cursor-pointer hover:scale-105 transition-all duration-200 w-32 h-11 rounded-r-2xl ${
+          className={`gap-2   cursor-pointer hover:scale-105 transition-all duration-200 w-40 h-11 rounded-r-2xl ${
             theme.mode === "light"
-              ? "bg-[#d9d9d9] text-black"
+              ? "bg-slate-200 text-black"
               : "bg-white text-black"
           }   flex justify-center items-center`}
         >
@@ -50,7 +50,7 @@ const Sort = ({ setSortByForks, setSortByStars }) => {
           <div className="w-2 h-2 border-b-[3px] border-r-[3px] border-black rotate-[45deg]"></div>
         </div>
         {show ? (
-          <div className="z-20 py-2 gap-2 absolute text-black top-12 bg-[#d9d9d9] w-40 rounded-2xl flex flex-col justify-center items-center">
+          <div className="z-20 py-2 gap-2 absolute text-black top-12 bg-slate-200 w-40 rounded-2xl flex flex-col justify-center items-center">
             <span className="text-md font-bold">Forks</span>
             <div className="flex flex-col">
               <span
