@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Pagination } from "react-bootstrap";
 
 import Filter from "./Buttons/Filter";
@@ -17,10 +17,11 @@ const Navigation = ({
   setReducedState,
   hidePagination,
   hasFilters,
+  removePagination,
 }) => {
   const { theme } = useContext(ThemeContext);
   let paginationItems = [];
-
+  const [selectedPage, setSelectedPage] = useState();
   if (pageNumber <= 3) pushItems(1, 5); // First 3 pages
   else if (maxPageNumber - 2 <= pageNumber)
     pushItems(maxPageNumber - 4, maxPageNumber); // Last 3 pages
@@ -30,58 +31,79 @@ const Navigation = ({
   function pushItems(i, j) {
     for (let idx = i; idx <= j; idx++) {
       paginationItems.push(
-        <Pagination.Item
+        <div
+          className={`hover:scale-105 transition-all ease-linear duration-200 cursor-pointer rounded-full w-5 h-5 flex justify-center items-center p-1 ${
+            selectedPage === idx
+              ? "text-black bg-[#d9d9d9] font-bold scale-125"
+              : "text-black bg-white "
+          } `}
           key={idx}
           active={idx === pageNumber}
           onClick={() => {
             setPageNumber(idx);
+            setSelectedPage(idx);
           }}
         >
           {idx}
-        </Pagination.Item>
+        </div>
       );
     }
   }
 
   return (
     !hidePagination && (
-      <Container variant={theme.mode} className="nav">
-        <Pagination className="noBuff">
-          <Pagination.First
-            onClick={() => {
-              setPageNumber(1);
-            }}
-          />
-          <Pagination.Prev
-            onClick={() => {
-              setPageNumber(Math.max(pageNumber - 5, 1));
-            }}
-          />
+      <Container variant={theme.mode} className="nav ">
+        {removePagination ? null : (
+          <>
+            {/* <ControlPages></ControlPages> */}
+            <div className="flex justify-center items-center gap-2 mb-20">
+              <div
+                onClick={() => {
+                  setPageNumber(1);
+                }}
+                className={`cursor-pointer hover:scale-105 transition-all ease-linear duration-200 w-9 h-9 ${
+                  theme.mode === "light" ? "bg-black" : "bg-white"
+                } rounded-full flex justify-center items-center`}
+              >
+                <div
+                  className={`w-5 h-5 border-r-4 border-b-4  rotate-[130deg] ${
+                    theme.mode === "light" ? "border-white" : "border-black"
+                  } `}
+                ></div>
+              </div>
 
-          {paginationItems}
+              {paginationItems}
 
-          <Pagination.Next
-            onClick={() => {
-              setPageNumber(Math.min(pageNumber + 5, maxPageNumber));
-            }}
-          />
-          <Pagination.Last
-            onClick={() => {
-              setPageNumber(maxPageNumber);
-            }}
-          />
-        </Pagination>
+              <div
+                onClick={() => {
+                  setPageNumber(maxPageNumber);
+                }}
+                className={`cursor-pointer hover:scale-105 transition-all ease-linear duration-200 w-9 h-9 ${
+                  theme.mode === "light" ? "bg-black" : "bg-white"
+                } rounded-full flex justify-center items-center`}
+              >
+                <div
+                  className={`w-5 h-5 border-l-4 border-t-4 rotate-[130deg] ${
+                    theme.mode === "light" ? "border-white" : "border-black"
+                  }`}
+                ></div>
+              </div>
+            </div>
+          </>
+        )}
+
         {hasFilters && (
-          <Container className="nav__buttons noBuff">
+          <div className="flex">
             <Filter
               reducedState={reducedState}
               setReducedState={setReducedState}
             />
+            <div className="h-full w-[1px] bg-black"></div>
             <Sort
               setSortByStars={setSortByStars}
               setSortByForks={setSortByForks}
             />
-          </Container>
+          </div>
         )}
       </Container>
     )
