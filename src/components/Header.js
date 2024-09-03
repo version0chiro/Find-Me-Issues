@@ -81,7 +81,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
 
         <InputGroup.Prepend>
           <InputGroup.Text className="inputgroup_icon--mid">
-            <Container className="noBuff">
+            <Container className="noBuff px-2">
               <i className="fa fa-code" aria-hidden="true" />
             </Container>
           </InputGroup.Text>

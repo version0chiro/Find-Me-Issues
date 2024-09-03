@@ -28,6 +28,9 @@
   border-width: 0;
   border-radius: 0;
 }
+.header__search--desktop:focus{
+  box-shadow: none;
+}
 
 /* --------------- INPUTGROUP ICONS --------------- */
 .header__divider {
@@ -63,6 +66,9 @@
   border-color: white;
   border-width: 0;
   border-radius: 0rem 0.25rem 0.25rem 0rem;
+}
+.header__dropdown--desktop:focus{
+ box-shadow: none;
 }
 .header_dropdown{
   height: 300px;
