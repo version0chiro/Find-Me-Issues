@@ -47,6 +47,7 @@ function App() {
         reducedState={reducedState}
         setReducedState={setReducedState}
         hidePagination={hidePagination}
+        removePagination={true}
         hasFilters
       />
 

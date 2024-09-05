@@ -3,8 +3,11 @@ import SingleCard from "./SingleCard";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { isEmpty } from "lodash";
+// import { dotenv } from "dotenv";
+// dotenv.config();
 //Context
 import { ThemeContext } from "../Context/themeContext";
+import Loading from "./Loading/index";
 
 const useStyles = makeStyles((theme) => ({
   cardSet: {
@@ -37,9 +40,7 @@ const CardSet = ({
     );
   }, []);
 
-  let url = `https://api.github.com/search/repositories?q=good-first-issues:>0+language:${
-    language
-  }${
+  let url = `https://api.github.com/search/repositories?q=good-first-issues:>0+language:${language}${
     !isEmpty(inputSearch) ? `:${inputSearch}+in%3Atitle` : ""
   }&page=${pageNumber}&per_page=10`;
 
@@ -47,20 +48,11 @@ const CardSet = ({
 
   useEffect(() => {
     const onAppliedFilters = () => {
-      if (
-        reducedState.minForks !== "" &&
-        reducedState.maxForks === ""
-      ) {
+      if (reducedState.minForks !== "" && reducedState.maxForks === "") {
         setForksQuery(`forks:>=${reducedState.minForks}`);
-      } else if (
-        reducedState.maxForks !== "" &&
-        reducedState.minForks === ""
-      ) {
+      } else if (reducedState.maxForks !== "" && reducedState.minForks === "") {
         setForksQuery(`forks:<=${reducedState.maxForks}`);
-      } else if (
-        reducedState.maxForks !== "" &&
-        reducedState.minForks !== ""
-      ) {
+      } else if (reducedState.maxForks !== "" && reducedState.minForks !== "") {
         setForksQuery(
           `forks:${reducedState.minForks}..${reducedState.maxForks}`
         );
@@ -73,20 +65,11 @@ const CardSet = ({
         url = urlSplits[0] + "?q=" + forksQuery + "+" + urlSplits[1];
       }
 
-      if (
-        reducedState.minStars !== "" &&
-        reducedState.maxStars === ""
-      ) {
+      if (reducedState.minStars !== "" && reducedState.maxStars === "") {
         setStarsQuery(`stars:>=${reducedState.minForks}`);
-      } else if (
-        reducedState.maxStars !== "" &&
-        reducedState.minStars === ""
-      ) {
+      } else if (reducedState.maxStars !== "" && reducedState.minStars === "") {
         setStarsQuery(`stars:<=${reducedState.maxStars}`);
-      } else if (
-        reducedState.maxStars !== "" &&
-        reducedState.minStars !== ""
-      ) {
+      } else if (reducedState.maxStars !== "" && reducedState.minStars !== "") {
         setStarsQuery(
           `stars:${reducedState.minStars}..${reducedState.maxStars}`
         );
@@ -101,7 +84,16 @@ const CardSet = ({
     };
 
     onAppliedFilters();
-  }, [language, inputSearch, pageNumber, reducedState, sortByForks, sortByStars, forksQuery, starsQuery]);
+  }, [
+    language,
+    inputSearch,
+    pageNumber,
+    reducedState,
+    sortByForks,
+    sortByStars,
+    forksQuery,
+    starsQuery,
+  ]);
 
   if (sortByStars === "desc") urlSuffix = "&sort=stars&order=desc";
   else if (sortByStars === "asc") urlSuffix = "&sort=stars&order=asc";
@@ -142,10 +134,22 @@ const CardSet = ({
         //console.log(errors)
       });
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  }, [language, inputSearch, pageNumber, reducedState, sortByForks, sortByStars, url, urlSuffix, setMaxPageNumber, setHidePagination]);
+  }, [
+    language,
+    inputSearch,
+    pageNumber,
+    reducedState,
+    sortByForks,
+    sortByStars,
+    url,
+    urlSuffix,
+    setMaxPageNumber,
+    setHidePagination,
+  ]);
 
   return (
     <div
+      className="flex justify-center items-center"
       style={{
         backgroundColor: theme.bg,
         color: theme.color,
@@ -153,18 +157,9 @@ const CardSet = ({
       }}
     >
       {isLoading ? (
-        <div className="loader-container">
-          <div className="loader"></div>
-          <h5>Fetching some good first issues for you...</h5>
-          {wasRejected && (
-            <h5 style={{ color: "red" }}>
-              You are seeing this message because github imposes rate limit on
-              requests. Please refresh the page or wait a couple of minutes.
-            </h5>
-          )}
-        </div>
+        <Loading></Loading>
       ) : (
-        <div className={classes.cardSet}>
+        <div className={` grid grid-cols-1  lg:grid-cols-3 `}>
           {isEmpty(repositores) ? (
             <div>
               <h5>

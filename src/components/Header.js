@@ -1,9 +1,14 @@
-import { Navbar, Dropdown, Container, Form, InputGroup } from "react-bootstrap";
+import { Navbar, Container } from "react-bootstrap";
 import "./Header.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import langugagesData from "../data/languages.json";
+import logo from "./../logo.png";
+import logo_white from "./../logo-white.png";
 import { useDebouncedCallback } from "use-debounce";
-//Context
+import sol from '../Sun.png';
+import lua from '../Moon.png';
+
+// Context
 import { ThemeContext } from "../Context/themeContext";
 
 const Header = ({ language, setLanguage, setInputSearch }) => {
@@ -23,106 +28,69 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
     debouncedInput(inputValue);
   };
 
+  useEffect(() => {
+    setInputSearch(input);
+  }, [input, setInputSearch]);
+
   return (
-    <Navbar
-      variant={theme.mode}
-      className={
-        theme.mode === "light" ? "header header--dark" : "header header--light"
-      }
-      id="header"
-    >
-      {/* Desktop Title */}
-      <Navbar.Brand href="#home" className="d-none d-sm-block">
-        Find Me Issues
-      </Navbar.Brand>
+    <Navbar id="header">
+      <Container className=" flex lg:flex-row flex-col  justify-center items-center  w-full px-4">
+        <Navbar.Brand href="/" className="d-none d-sm-block ">
+          {theme.mode === "light" ? (
+            <img src={logo_white} alt="Logo" className="w-24 h-24"></img>
+          ) : (
+            <img src={logo} alt="Logo" className="w-24 h-24"></img>
+          )}
+        </Navbar.Brand>
 
-      {/* Mobile Title & Mode Button */}
-      <Container className="header__container--mobile noBuff d-sm-none">
-        <Navbar.Brand href="#home">Find Me Issues</Navbar.Brand>
-        <i
-          onClick={changeTheme}
-          className={theme.mode === "light" ? "fa fa-moon-o" : "fa fa-sun-o"}
-          style={{ fontSize: "1.5rem" }}
-          aria-hidden="true"
-        />
-      </Container>
-
-      {/* Search & Select Double Bar */}
-      <Container className=" noBuff header__searchbars--desktop ">
-        <InputGroup.Prepend>
-          <InputGroup.Text className="inputgroup_icon--left">
-            <Container className="noBuff">
-              <i className="fa fa-search" aria-hidden="true" />
-            </Container>
-          </InputGroup.Text>
-        </InputGroup.Prepend>
-
-        <Form.Control
-          type="text"
-          value={input}
-          placeholder="Search..."
-          onChange={(e) => handleInputSearch(e.target.value)}
-          className="header__search--desktop"
-        />
-
-        <InputGroup.Prepend>
-          <InputGroup.Text className="inputgroup_icon--divider">
-            <Container className="header__divider">
-              <div
-                style={{
-                  width: "2px",
-                  height: "16px",
-                  backgroundColor: "lightgray",
-                }}
-              />
-            </Container>
-          </InputGroup.Text>
-        </InputGroup.Prepend>
-
-        <InputGroup.Prepend>
-          <InputGroup.Text className="inputgroup_icon--mid">
-            <Container className="noBuff">
-              <i className="fa fa-code" aria-hidden="true" />
-            </Container>
-          </InputGroup.Text>
-        </InputGroup.Prepend>
-
-        <Dropdown
-          defaultValue={language}
-          onSelect={(option) => {
-            setLanguage(option);
-          }}
-        >
-          <Dropdown.Toggle
-            variant="light"
-            className="header__dropdown--desktop"
+        <div className="flex justify-center items-center gap-11 w-full">
+          <label
+            className={`${
+              theme.mode === "light" ? "bg-slate-200" : "bg-white"
+            }  flex rounded-3xl p-2 h-11 md:w-[40rem] `}
           >
-            {language}
-          </Dropdown.Toggle>
-          <Dropdown.Menu className="header_dropdown">
-            {langugagesData.languages
-              .filter((lang) => lang !== language)
-              .map((lang, index) => {
-                return (
-                  <Dropdown.Item key={index} eventKey={lang}>
-                    {lang}
-                  </Dropdown.Item>
-                );
-              })}
-          </Dropdown.Menu>
-        </Dropdown>
-      </Container>
+            <select
+              value={language} // Ensure the dropdown reflects the current language
+              onChange={(e) => setLanguage(e.target.value)}
+              className="text-sm text-black outline-none bg-transparent rounded-md "
+            >
+              <option disabled>Escolha uma opção</option>
+              {langugagesData.languages.map((lang, index) => (
+                <option
+                  className=" p-1 rounded-md"
+                  key={index}
+                  value={lang}
+                >
+                  {lang}
+                </option>
+              ))}
+            </select>
+            <input
+              className="outline-transparent bg-transparent text-black border-l-2 border-black ml-2 pl-2"
+              type="text"
+              placeholder="Search"
+              value={input} // Mirror the input state to the input field
+              onChange={(e) => handleInputSearch(e.target.value)}
+            ></input>
+          </label>
 
-      {/* Desktop Mode Button */}
-      <i
-        onClick={changeTheme}
-        className={
-          "d-none d-sm-block fa " +
-          (theme.mode === "light" ? "fa-moon-o" : "fa-sun-o")
-        }
-        style={{ fontSize: "1.5rem" }}
-        aria-hidden="true"
-      />
+          <div
+            onClick={changeTheme}
+            className={
+              "cursor-pointer hover:scale-105 transition-all ease-linear duration-200" +
+              "d-none d-sm-block fa "
+            }
+            style={{ fontSize: "1.5rem" }}
+            aria-hidden="true"
+          >
+            {theme.mode === "light" ? (
+              <img src={lua} alt="lua icone" className="w-10"></img>
+            ) : (
+              <img src={sol} alt="sol icone" className="w-10"></img>
+            )}
+          </div>
+        </div>
+      </Container>
     </Navbar>
   );
 };
