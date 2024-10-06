@@ -44,7 +44,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
         </Navbar.Brand>
 
         <div className="flex justify-center items-center gap-11 w-full ">
-          <div
+          <label
             className={`${
               theme.mode === "light" ? "bg-slate-200" : "bg-white"
             }  flex rounded-3xl p-2 h-11 md:w-[40rem] `}
@@ -72,7 +72,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
               value={input} // Mirror the input state to the input field
               onChange={(e) => handleInputSearch(e.target.value)}
             ></input>
-          </div>
+          </label>
 
           <div
             onClick={changeTheme}
