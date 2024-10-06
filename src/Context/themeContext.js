@@ -6,7 +6,7 @@ export const ThemeContext = createContext();
 const light = { mode: 'light', color: 'black', bg: 'white' };
 const dark = { mode: 'dark', color: 'white', bg: '#020300' };
 
-// Get the system theme
+// Getting the system theme
 const getSystemTheme = () => {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? dark : light;
 };
@@ -39,7 +39,7 @@ export function ThemeProvider(props) {
     // Handle theme change
     function changeTheme() {
         const newTheme = theme.mode === 'light' ? dark : light;
-        localStorage.setItem("custom_theme", JSON.stringify(newTheme)); // Save the new theme to localStorage
+        localStorage.setItem("custom_theme", JSON.stringify(newTheme)); 
         setTheme(newTheme);
     }
 
