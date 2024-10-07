@@ -43,7 +43,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
           )}
         </Navbar.Brand>
 
-        <div className="flex justify-center items-center gap-11 w-full">
+        <div className="flex justify-center items-center gap-11 w-full ">
           <label
             className={`${
               theme.mode === "light" ? "bg-slate-200" : "bg-white"
@@ -66,7 +66,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
               ))}
             </select>
             <input
-              className="outline-transparent bg-transparent text-black border-l-2 border-black ml-2 pl-2"
+              className="outline-transparent w-full bg-transparent text-black border-l-2 border-black ml-2 pl-2"
               type="text"
               placeholder="Search"
               value={input} // Mirror the input state to the input field
