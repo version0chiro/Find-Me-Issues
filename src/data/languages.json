@@ -47,6 +47,13 @@
     "Vue.js",
     "FORTRAN",
     "Erlang",
-    "Zig"
+    "Zig",
+    "PureScript",
+    "Forth",
+    "Ada",
+    "Xojo",
+    "Idris",
+    "Hack",
+    "ReasonML"
   ]
 }
