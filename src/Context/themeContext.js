@@ -1,24 +1,40 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect, useMemo } from "react";
 
-export const ThemeContext = createContext()
+export const ThemeContext = createContext();
 
-//Theme modes 
-const light = {mode: 'light', color: 'black', bg: 'white'}
-const dark = {mode: 'dark', color: 'white', bg: '#020300'}
+// Theme modes
+const light = { mode: "light", color: "black", bg: "white" };
+const dark = { mode: "dark", color: "white", bg: "#020300" };
 
-//Get the system theme
-let systemTheme = {}
-window.matchMedia('(prefers-color-scheme: dark)').matches ? systemTheme = dark : systemTheme = light
+// Get the system theme
+const getInitialTheme = () => {
+  const savedTheme = JSON.parse(localStorage.getItem("theme"));
+  if (savedTheme) {
+    return savedTheme;
+  }
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? dark
+    : light;
+};
 
-export function ThemeProvider(props) {
-    const [theme, setTheme] = useState(systemTheme)
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState(getInitialTheme());
 
-    //Handle theme change
-    function changeTheme() {
-        theme.mode === 'light' ? setTheme(dark) : setTheme(light)
-    }
+  // Handle theme change
+  const changeTheme = () => {
+    const newTheme = theme.mode === "light" ? dark : light;
+    setTheme(newTheme);
+  };
 
-    return <ThemeContext.Provider value={{theme: theme, changeTheme: changeTheme}}>
-        {props.children}
+  useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(theme));
+  }, [theme]);
+
+  const contextValue = useMemo(() => ({ theme, changeTheme }), [theme]);
+
+  return (
+    <ThemeContext.Provider value={contextValue}>
+      {children}
     </ThemeContext.Provider>
+  );
 }
