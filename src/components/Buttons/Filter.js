@@ -43,7 +43,7 @@ const Filter = ({ reducedState, setReducedState }) => {
               : "bg-white text-black"
           }   flex justify-center items-center`}
         >
-          <span>Filter</span>
+          <span className="hover:text-black">Filter</span>
           <div className="w-2 h-2 border-b-[3px] border-r-[3px] border-black rotate-[45deg]"></div>
         </div>
         {show ? (
