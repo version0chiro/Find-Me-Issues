@@ -20,18 +20,16 @@ const getInitialTheme = () => {
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(getInitialTheme());
 
-  // Handling theme change
+  // Handle theme change
   const changeTheme = () => {
     const newTheme = theme.mode === "light" ? dark : light;
     setTheme(newTheme);
   };
 
-  // Updating localStorage whenever the theme changes
   useEffect(() => {
     localStorage.setItem("theme", JSON.stringify(theme));
   }, [theme]);
 
-  // Memoizing the context value to avoid unnecessary re-renders
   const contextValue = useMemo(() => ({ theme, changeTheme }), [theme]);
 
   return (
