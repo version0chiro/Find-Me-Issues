@@ -1,15 +1,13 @@
 import { Navbar, Container } from "react-bootstrap";
 import "./Header.css";
-import { useContext, useState, useEffect } from "react";
-import langugagesData from "../data/languages.json";
+import { useContext, useState, useEffect, useRef } from "react";
 import logo from "./../logo.png";
 import logo_white from "./../logo-white.png";
 import { useDebouncedCallback } from "use-debounce";
-import sol from '../Sun.png';
-import lua from '../Moon.png';
-
 // Context
 import { ThemeContext } from "../Context/themeContext";
+import Darkmode from "./Buttons/Darkmode";
+import CustomSelect from "./Buttons/Language";
 
 const Header = ({ language, setLanguage, setInputSearch }) => {
   const { theme, changeTheme } = useContext(ThemeContext);
@@ -24,6 +22,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
   );
 
   const handleInputSearch = (inputValue) => {
+    setInputExpanded(true); // Keep input expanded while typing
     setInput(inputValue);
     debouncedInput(inputValue);
   };
@@ -31,6 +30,12 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
   useEffect(() => {
     setInputSearch(input);
   }, [input, setInputSearch]);
+
+  const [inputExpanded, setInputExpanded] = useState(false); // Control input expansion state
+
+  const handleSearchClick = () => {
+    setInputExpanded((prev) => !prev); // Expand input when clicked
+  };
 
   return (
     <Navbar id="header">
@@ -43,51 +48,45 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
           )}
         </Navbar.Brand>
 
-        <div className="flex justify-center items-center gap-11 w-full">
+        <div className="flex justify-around items-center gap-11 w-full">
           <label
             className={`${
-              theme.mode === "light" ? "bg-slate-200" : "bg-white"
-            }  flex rounded-3xl p-2 h-11 md:w-[40rem] `}
+              theme.mode === "light" ? "bg-slate-200" : "bg-slate-500"
+            }  flex rounded-3xl p-2 h-11 w-full md:w-[40rem]`}
           >
-            <select
-              value={language} // Ensure the dropdown reflects the current language
-              onChange={(e) => setLanguage(e.target.value)}
-              className="text-sm text-black outline-none bg-transparent rounded-md "
-            >
-              <option disabled>Escolha uma opção</option>
-              {langugagesData.languages.map((lang, index) => (
-                <option
-                  className=" p-1 rounded-md"
-                  key={index}
-                  value={lang}
-                >
-                  {lang}
-                </option>
-              ))}
-            </select>
+            <CustomSelect
+              theme={theme} // Correctly pass theme directly
+              language={language} // Correctly pass language
+              setLanguage={setLanguage} // Correctly pass setLanguage
+            />
+            {/* Project Search Bar */}
             <input
-              className="outline-transparent bg-transparent text-black border-l-2 border-black ml-2 pl-2"
               type="text"
+              className={`transition-all h-7 ml-2 border-solid border-l-2 border-l-violet-950 pl-2 duration-1000 ease-in-out focus:outline-none outline-none ${
+                inputExpanded
+                  ? "w-1/2 pl-5 border-b-slate-300 border-b-2 border-solid"
+                  : "w-1/2"
+              } bg-transparent  ${
+                theme.mode === "dark"
+                  ? "opacity-100 text-slate-200"
+                  : "opacity-70 text-slate-800"
+              }`}
               placeholder="Search"
-              value={input} // Mirror the input state to the input field
-              onChange={(e) => handleInputSearch(e.target.value)}
-            ></input>
+              autoComplete="off"
+              onMouseEnter={handleSearchClick}
+              onMouseLeave={handleSearchClick}
+              onKeyUp={(e) => handleInputSearch(e.target.value)}
+            />
           </label>
-
           <div
             onClick={changeTheme}
             className={
-              "cursor-pointer hover:scale-105 transition-all ease-linear duration-200" +
-              "d-none d-sm-block fa "
+              "cursor-pointer max-lg:!hidden hover:scale-105 transition-all ease-linear duration-200"
             }
             style={{ fontSize: "1.5rem" }}
             aria-hidden="true"
           >
-            {theme.mode === "light" ? (
-              <img src={lua} alt="lua icone" className="w-10"></img>
-            ) : (
-              <img src={sol} alt="sol icone" className="w-10"></img>
-            )}
+            <Darkmode />
           </div>
         </div>
       </Container>
