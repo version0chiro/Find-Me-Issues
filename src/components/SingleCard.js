@@ -96,7 +96,7 @@ const SingleCard = (props) => {
                   target="__blank"
                 >
                   <button
-                    className="hover:scale-105 transition-all ease-linear duration-200 px-2 py-1 flex gap-1 bg-white text-black rounded-2xl justify-center items-center font-bold"
+                    className="hover:scale-105 hover:text-black transition-all ease-linear duration-200 px-2 py-1 flex gap-1 bg-white text-black rounded-2xl justify-center items-center font-bold"
                     onClick={() => setOpen(!openIssues)}
                   >
                     Issues

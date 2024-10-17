@@ -46,7 +46,7 @@ const Sort = ({ setSortByForks, setSortByStars }) => {
               : "bg-white text-black"
           }   flex justify-center items-center`}
         >
-          <span>Sort</span>
+          <span className="hover:text-black">Sort</span>
           <div className="w-2 h-2 border-b-[3px] border-r-[3px] border-black rotate-[45deg]"></div>
         </div>
         {show ? (
