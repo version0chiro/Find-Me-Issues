@@ -6,6 +6,7 @@ import Sort from "./Buttons/Sort";
 //Context
 import { ThemeContext } from "../Context/themeContext";
 import "./Navigation.css";
+import Darkmode from "./Buttons/Darkmode";
 
 const Navigation = ({
   setPageNumber,
@@ -19,7 +20,7 @@ const Navigation = ({
   hasFilters,
   removePagination,
 }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, changeTheme } = useContext(ThemeContext);
   let paginationItems = [];
   const [selectedPage, setSelectedPage] = useState();
   if (pageNumber <= 3) pushItems(1, 5); // First 3 pages
@@ -93,16 +94,27 @@ const Navigation = ({
         )}
 
         {hasFilters && (
-          <div className="flex">
-            <Filter
-              reducedState={reducedState}
-              setReducedState={setReducedState}
-            />
-            <div className="h-full w-[1px] bg-black"></div>
-            <Sort
-              setSortByStars={setSortByStars}
-              setSortByForks={setSortByForks}
-            />
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row ">
+            <div className="flex gap-[1px]">
+              <Filter
+                reducedState={reducedState}
+                setReducedState={setReducedState}
+              />
+              <Sort
+                setSortByStars={setSortByStars}
+                setSortByForks={setSortByForks}
+              />
+            </div>
+            <div
+              onClick={changeTheme}
+              className={
+                "cursor-pointer sm:ml-10 max-lg:!block hidden hover:scale-105 transition-all ease-linear duration-200"
+              }
+              style={{ fontSize: "1.5rem" }}
+              aria-hidden="true"
+            >
+              <Darkmode />
+            </div>
           </div>
         )}
       </Container>
