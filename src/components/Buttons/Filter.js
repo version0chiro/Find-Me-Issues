@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 
 import "./Filter.css";
 import { ThemeContext } from "../../Context/themeContext";
@@ -7,7 +7,7 @@ const Filter = ({ reducedState, setReducedState }) => {
   const [show, setShow] = React.useState(false); // Controls Popover
   const [filters, setFilters] = React.useState(reducedState);
   const { theme } = useContext(ThemeContext);
-
+  const dropdownRef = useRef(null);
   function updateFilters(prop, val) {
     setFilters((prev) => ({
       ...prev,
@@ -29,10 +29,22 @@ const Filter = ({ reducedState, setReducedState }) => {
     setShow(false);
     setReducedState({ ...filters });
   }
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShow(false);
+      }
+    };
 
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <>
-      <div className="relative">
+      <div className="relative" ref={dropdownRef}>
         <div
           onClick={() => {
             setShow(!show);

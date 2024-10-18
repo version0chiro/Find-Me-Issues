@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "../../Context/themeContext";
 
 const Sort = ({ setSortByForks, setSortByStars }) => {
@@ -7,6 +7,7 @@ const Sort = ({ setSortByForks, setSortByStars }) => {
   // forksdesc, forksasc, starsdesc, starsasc, default
   let [sort, setSort] = useState("default");
   const [show, setShow] = useState(false);
+  const dropdownRef = useRef(null);
   useEffect(() => {
     if (!setSortByForks || !setSortByStars) return;
     switch (sort) {
@@ -33,9 +34,23 @@ const Sort = ({ setSortByForks, setSortByStars }) => {
     }
   }, [sort, setSortByForks, setSortByStars]);
 
+  // Close Sort Filter when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShow(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <>
-      <div className="relative">
+      <div className="relative" ref={dropdownRef}>
         <div
           onClick={() => {
             setShow(!show);
