@@ -11,7 +11,7 @@ import CardSet from "./components/CardSet";
 import Navigation from "./components/Navigation";
 
 function App() {
-  const [language, setLanguage] = useState("Javascript");
+  const [language, setLanguage] = useState("JavaScript");
   const [pageNumber, setPageNumber] = useState(1);
   const [maxPageNumber, setMaxPageNumber] = useState(100);
   const [inputSearch, setInputSearch] = useState("");
