@@ -1,33 +1,54 @@
-# Steps for Contribution 
+# Contributing to Find-Me-Issues
 
-**1.** Fork this repository. This will make you to create a copy of this repository under our github account.<br>
-**2.** Clone the forked repository by using the following command.<br>
+Thank you for your interest in contributing to Find-Me-Issues! Follow these steps to contribute effectively.
+
+## Fork the Repository
+Fork this repository to create a copy under your GitHub account.
+
+## Clone the Forked Repository
+Clone your forked repository using the following command:
         
         git clone "https://github.com/<your-github-username>/Find-Me-Issues"
 
-**3.** Create a new branch or just use the main branch
- - To create a new branch
-
+## Create a New Branch
+Create a new branch for your changes:
         
         git checkout -b <your-branch-name>
         
-**4.** Install all the npm libraries in the project
+
+Alternatively, you can work directly on the main branch if preferred.
+
+## Install Dependencies
+Install all required npm libraries:
 
          npm install 
          
-**5.** - For Contributing to the react front-end. Move into the client directory and run npm start to start the server on local host.
+
+## Set Up the React Front-End
+To contribute to the React front-end, navigate to the client directory and start the development server:
          
          cd client
-         npm i
+         npm install
          npm start
          
-**6.** - Find any pending issue from the issues section of the repository to work on and request to be assigned to that perticular issue. 
-        - If you have any improvements of your own that you wanna implement, make a issue and describe the addition.
-        - Make sure your commit messages are informative for others to understand each stage of your contribution.
 
-**7.** - Once you have made the changes, commit them then push the branch to your forked remote repository. From there, send in a PR explaining the changes you have made with proper detail.
+This will start the server on your local host.
 
-**8.** - After you have sent a PR, I will check the changes and if the issue is resolved will merge the branch making your contribution successful!! YAY!
+## Find or Create an Issue
+- Browse the repository’s issues section to find a pending issue to work on. Request to be assigned to it.
+- If you have an improvement idea, create a new issue to describe your proposed changes.
+- Ensure your commit messages are clear and informative, explaining each stage of your contribution.
 
-## Note : Contributions in any form (Code, Documentation, etc) submitted should be the own work of the contributor and plagiarism is highly discouraged.
+## Submit Your Changes
+Once you’ve made your changes:
+1. Commit them to your branch.
+2. Push the branch to your forked repository.
+3. Create a pull request (PR) with a detailed explanation of your changes.
+
+## Review and Merge
+After submitting your PR, the maintainers will review your changes. If the issue is resolved, your branch will be merged, and your contribution will be successful!
+
+## Contribution Guidelines
+- All contributions (code, documentation, etc.) must be your original work. Plagiarism is strictly prohibited.
+- Follow the project’s coding standards and guidelines.
 
