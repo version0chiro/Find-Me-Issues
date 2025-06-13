@@ -57,31 +57,40 @@ const Navigation = ({
         {removePagination ? null : (
           <>
             {/* <ControlPages></ControlPages> */}
+            
             <div className="flex justify-center items-center gap-2 mb-20">
+              {/* Previous Button */}
               <div
                 onClick={() => {
-                  setPageNumber(1);
+                  if (pageNumber > 1) {
+                    setPageNumber(pageNumber - 1);
+                    setSelectedPage(pageNumber - 1);
+                  }
                 }}
                 className={`cursor-pointer hover:scale-105 transition-all ease-linear duration-200 w-9 h-9 ${
                   theme.mode === "light" ? "bg-black" : "bg-white"
-                } rounded-full flex justify-center items-center`}
+                } ${pageNumber <= 1 ? 'opacity-50 cursor-not-allowed' : ''} rounded-full flex justify-center items-center`}
               >
                 <div
-                  className={`w-5 h-5 border-r-4 border-b-4  rotate-[130deg] ${
+                  className={`w-5 h-5 border-r-4 border-b-4 rotate-[130deg] ${
                     theme.mode === "light" ? "border-white" : "border-black"
-                  } `}
+                  }`}
                 ></div>
               </div>
 
               {paginationItems}
 
+              {/* Next Button */}
               <div
                 onClick={() => {
-                  setPageNumber(maxPageNumber);
+                  if (pageNumber < maxPageNumber) {
+                    setPageNumber(pageNumber + 1);
+                    setSelectedPage(pageNumber + 1);
+                  }
                 }}
                 className={`cursor-pointer hover:scale-105 transition-all ease-linear duration-200 w-9 h-9 ${
                   theme.mode === "light" ? "bg-black" : "bg-white"
-                } rounded-full flex justify-center items-center`}
+                } ${pageNumber >= maxPageNumber ? 'opacity-50 cursor-not-allowed' : ''} rounded-full flex justify-center items-center`}
               >
                 <div
                   className={`w-5 h-5 border-l-4 border-t-4 rotate-[130deg] ${
@@ -90,6 +99,7 @@ const Navigation = ({
                 ></div>
               </div>
             </div>
+
           </>
         )}
 
