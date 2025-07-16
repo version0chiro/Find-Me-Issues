@@ -1,14 +1,10 @@
-import { Card, Button } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
-import Emoji from "react-emoji-render";
-import backg from "../git9.jpg";
 import axios from "axios";
 import { isEmpty } from "lodash";
 import iconButton from "./../button_icon.png";
 import Loading from "./Loading";
 import { ThemeContext } from "../Context/themeContext";
-
 
 const SingleCard = (props) => {
   // console.log(props.repo)
