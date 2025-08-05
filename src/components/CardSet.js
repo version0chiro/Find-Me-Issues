@@ -66,7 +66,7 @@ const CardSet = ({
       }
 
       if (reducedState.minStars !== "" && reducedState.maxStars === "") {
-        setStarsQuery(`stars:>=${reducedState.minForks}`);
+        setStarsQuery(`stars:>=${reducedState.minStars}`);
       } else if (reducedState.maxStars !== "" && reducedState.minStars === "") {
         setStarsQuery(`stars:<=${reducedState.maxStars}`);
       } else if (reducedState.maxStars !== "" && reducedState.minStars !== "") {
