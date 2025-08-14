@@ -49,7 +49,7 @@ const CardSet = ({
   useEffect(() => {
     const onAppliedFilters = () => {
       if (reducedState.minForks !== "" && reducedState.maxForks === "") {
-        setForksQuery(`forks:>=${reducedState.minForks}`);
+        setStarsQuery(`stars:>=${reducedState.minStars}`);
       } else if (reducedState.maxForks !== "" && reducedState.minForks === "") {
         setForksQuery(`forks:<=${reducedState.maxForks}`);
       } else if (reducedState.maxForks !== "" && reducedState.minForks !== "") {
