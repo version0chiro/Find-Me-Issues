@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component structure remains consistent 1`] = `
+<DocumentFragment>
+  <nav
+    class="navbar navbar-expand-lg navbar-light"
+    id="header"
+  >
+    <div
+      class=" flex lg:flex-row flex-col  justify-center items-center  w-full px-4 container"
+    >
+      <a
+        class="d-none d-sm-block  navbar-brand"
+        href="/"
+      >
+        <img
+          alt="Logo"
+          class="w-24 h-24"
+          src="logo-white.png"
+        />
+      </a>
+      <div
+        class="flex justify-around items-center gap-11 w-full"
+      >
+        <label
+          class="bg-slate-200  flex rounded-3xl p-2 h-11 w-full md:w-[40rem]"
+        >
+          <div
+            class="inline-block w-full md:w-40 focus:outline-none"
+          >
+            <button
+              class="w-full flex justify-between items-center px-4 rounded-md border outline-nonebg-slate-200 opacity-55 hover:opacity-100 text-black  transition duration-200 ease-in-out"
+            >
+              JavaScript
+              <span
+                class="ml-2 transform transition-transform duration-200 ease-in-out"
+              >
+                ▼
+              </span>
+            </button>
+          </div>
+          <input
+            autocomplete="off"
+            class="transition-all h-7 ml-2 border-solid border-l-2 border-l-violet-950 pl-2 duration-1000 ease-in-out focus:outline-none outline-none w-1/2 bg-transparent  opacity-70 text-slate-800"
+            placeholder="Search"
+            type="text"
+          />
+        </label>
+        <div
+          aria-hidden="true"
+          class="cursor-pointer max-lg:!hidden hover:scale-105 transition-all ease-linear duration-200"
+          style="font-size: 1.5rem;"
+        >
+          <img
+            alt="lua icone"
+            class="w-10"
+            src="Moon.png"
+          />
+        </div>
+      </div>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
