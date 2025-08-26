@@ -38,7 +38,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
   };
 
   return (
-    <Navbar id="header">
+    <Navbar id="header" expand="lg" variant="light">
       <Container className=" flex lg:flex-row flex-col  justify-center items-center  w-full px-4">
         <Navbar.Brand href="/" className="d-none d-sm-block ">
           {theme.mode === "light" ? (
@@ -63,14 +63,8 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
             <input
               type="text"
               className={`transition-all h-7 ml-2 border-solid border-l-2 border-l-violet-950 pl-2 duration-1000 ease-in-out focus:outline-none outline-none ${
-                inputExpanded
-                  ? "w-1/2 pl-5 border-b-slate-300 border-b-2 border-solid"
-                  : "w-1/2"
-              } bg-transparent  ${
-                theme.mode === "dark"
-                  ? "opacity-100 text-slate-200"
-                  : "opacity-70 text-slate-800"
-              }`}
+                inputExpanded ? "w-1/2 pl-5 border-b-slate-300 border-b-2 border-solid" : "w-1/2"
+              } bg-transparent  ${theme.mode === "dark" ? "opacity-100 text-slate-200" : "opacity-70 text-slate-800"}`}
               placeholder="Search"
               autoComplete="off"
               onMouseEnter={handleSearchClick}
@@ -80,9 +74,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
           </label>
           <div
             onClick={changeTheme}
-            className={
-              "cursor-pointer max-lg:!hidden hover:scale-105 transition-all ease-linear duration-200"
-            }
+            className={"cursor-pointer max-lg:!hidden hover:scale-105 transition-all ease-linear duration-200"}
             style={{ fontSize: "1.5rem" }}
             aria-hidden="true"
           >

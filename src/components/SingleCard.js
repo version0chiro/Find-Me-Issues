@@ -1,14 +1,10 @@
-import { Card, Button } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Emoji from "react-emoji-render";
-import backg from "../git9.jpg";
+import Avatar from "@mui/material/Avatar";
 import axios from "axios";
 import { isEmpty } from "lodash";
 import iconButton from "./../button_icon.png";
 import Loading from "./Loading";
 import { ThemeContext } from "../Context/themeContext";
-
 
 const SingleCard = (props) => {
   // console.log(props.repo)
@@ -52,10 +48,14 @@ const SingleCard = (props) => {
       }}
     >
       {wasRejected && (
-        <div className={`min-h-36 flex items-center justify-center p-9 shadow-xl ${theme.mode === "light" ? "bg-slate-200" : "bg-gray-800"} rounded-md`}>
+        <div
+          className={`min-h-36 flex items-center justify-center p-9 shadow-xl ${
+            theme.mode === "light" ? "bg-slate-200" : "bg-gray-800"
+          } rounded-md`}
+        >
           <p className="balance text-red-600 font-medium">
-            You are seeing this message because github imposes rate limit on
-            requests. Please refresh the page or wait a couple of minutes.
+            You are seeing this message because github imposes rate limit on requests. Please refresh the page or wait a
+            couple of minutes.
           </p>
         </div>
       )}
@@ -91,20 +91,13 @@ const SingleCard = (props) => {
                   <span className="font-bold text-sm">Language:</span>
                   <span className=" text-sm">{repo.language}</span>
                 </div>
-                <a
-                  href={`${props.repo.html_url}/labels/good%20first%20issue`}
-                  target="__blank"
-                >
+                <a href={`${props.repo.html_url}/labels/good%20first%20issue`} target="__blank">
                   <button
                     className="hover:scale-105 transition-all ease-linear duration-200 px-2 py-1 flex gap-1 bg-white text-black rounded-2xl justify-center items-center font-bold"
                     onClick={() => setOpen(!openIssues)}
                   >
                     Issues
-                    <img
-                      className="w-5 h-5"
-                      src={iconButton}
-                      alt="Ícone botão"
-                    ></img>
+                    <img className="w-5 h-5" src={iconButton} alt="Ícone botão"></img>
                   </button>
                 </a>
               </div>
