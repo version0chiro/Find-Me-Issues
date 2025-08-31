@@ -3,8 +3,6 @@ import SingleCard from "./SingleCard";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { isEmpty } from "lodash";
-// import { dotenv } from "dotenv";
-// dotenv.config();
 //Context
 import { ThemeContext } from "../Context/themeContext";
 import Loading from "./Loading/index";
@@ -66,7 +64,7 @@ const CardSet = ({
       }
 
       if (reducedState.minStars !== "" && reducedState.maxStars === "") {
-        setStarsQuery(`stars:>=${reducedState.minForks}`);
+        setStarsQuery(`stars:>=${reducedState.minStars}`);   // ✅ fixed here
       } else if (reducedState.maxStars !== "" && reducedState.minStars === "") {
         setStarsQuery(`stars:<=${reducedState.maxStars}`);
       } else if (reducedState.maxStars !== "" && reducedState.minStars !== "") {
@@ -101,16 +99,13 @@ const CardSet = ({
   else if (sortByForks === "asc") urlSuffix = "&sort=forks&order=asc";
 
   useEffect(() => {
-    // console.log("stars", sortByStars, "forks", sortByForks);
     url += urlSuffix;
     console.log(url);
     setIsLoading(true);
-    // GET request using axios inside useEffect React hook
     axios
       .get(url)
       .then(
         async (response) => {
-          // console.log(response.data.items);
           let maxPageNumber = Math.floor(response.data.total_count / 10);
           setMaxPageNumber(maxPageNumber);
           setRepositories(response.data.items);
@@ -125,15 +120,11 @@ const CardSet = ({
             setWasRejected(true);
             setHidePagination(true);
           }
-          // console.log(rejection.response.data)
         }
       )
       .catch((errors) => {
         setIsLoading(false);
-        //catch all (show some message)
-        //console.log(errors)
       });
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, [
     language,
     inputSearch,
@@ -174,6 +165,6 @@ const CardSet = ({
       )}
     </div>
   );
-};
+} ;
 
 export default CardSet;
