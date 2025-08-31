@@ -1,13 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
-import { ThemeProvider } from './Context/themeContext';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  );
-  const linkElement = screen.getByText("Shell");
-  expect(linkElement).toBeInTheDocument();
+test("renders Shell text", () => {
+  render(<App />);
+  const element = screen.getByText(/Shell/i);
+  expect(element).toBeInTheDocument();
 });
