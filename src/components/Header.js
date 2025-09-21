@@ -39,7 +39,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
 
   return (
     <Navbar id="header">
-      <Container className=" flex lg:flex-row flex-col  justify-center items-center  w-full px-4">
+      <Container className=" flex lg:flex-row flex-col justify-start items-center  w-full px-8">
         <Navbar.Brand href="/" className="d-none d-sm-block ">
           {theme.mode === "light" ? (
             <img src={logo_white} alt="Logo" className="w-24 h-24"></img>
@@ -81,9 +81,9 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
           <div
             onClick={changeTheme}
             className={
-              "cursor-pointer max-lg:!hidden hover:scale-105 transition-all ease-linear duration-200"
+              "cursor-pointer max-lg:hidden hover:scale-100 transition-all ease duration-300"
             }
-            style={{ fontSize: "1.5rem" }}
+            style={{ fontSize: "1.6rem" }}
             aria-hidden="true"
           >
             <Darkmode />
