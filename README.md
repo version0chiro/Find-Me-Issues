@@ -79,7 +79,7 @@ $ npm run build // this script is for frontend
 
 3) Explore Project Details: Read the a brief description about the project and its issues.
 
-4) Get Started: Follow the provided links to the project's repository's issues and start contributing.
+4) Get Started: Follow the provided links to the project's repository's issues and then start contributing.
 
 
 
