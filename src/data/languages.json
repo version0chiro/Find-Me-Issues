@@ -26,9 +26,6 @@
     "R",
     "Ruby",
     "Rust",
-    "Groovy",
-    "Lisp",
-    "COBOL",
     "Dart",
     "Lua",
     "Julia",
@@ -56,6 +53,27 @@
     "Xojo",
     "Idris",
     "Hack",
-    "ReasonML"
+    "ReasonML",
+    "Nim",
+    "Elvish",
+    "Racket",
+    "VHDL",
+    "Verilog",
+    "Awk",
+    "D",
+    "AngelScript",
+    "OCaml",
+    "Bash",
+    "PowerShell Core",
+    "J",
+    "Rebol",
+    "Io",
+    "Pony",
+    "Shen",
+    "Nix",
+    "Chapel",
+    "HackLang",
+    "APL"
   ]
 }
+
