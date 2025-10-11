@@ -1,5 +1,5 @@
 <h1 align="center">Find-Me-Issues</h1>
-<p>
+<p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/open-devs/fastify-typescript-generator/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained-yes-blue.svg" />
@@ -9,47 +9,52 @@
   </a>
 </p>  
 
-> A React.js based web-app to find repositories containing 'good first issues' for open source contribution.
+> A React.js web-app to find repositories with 'good first issues' for open source contribution.
+
+---
 
 ## Table of Contents
 
 - [Description](#description)
+- [Inspiration](#inspiration)
 - [Features](#features)
+- [Tech Stack](#tech-stack)
 - [Set Up](#set-up)
 - [How to Use](#how-to-use)
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 
+---
+
 ## Description
 
-OpenSource Finder is a user-friendly web application designed to simplify the process of discovering open-source projects suitable for programmers looking to make their first contributions. 
-It streamlines the search for beginner-friendly projects across various programming languages, making it easier for developers to kickstart their open-source journey. 
-Users can search by the number of starts the repository has, the number of forks, as well as search for keywords to find a project suitable for their interests.
+**Find-Me-Issues** is a user-friendly web application designed to help programmers discover open-source projects suitable for first-time contributions.  
+It allows users to search beginner-friendly projects across different programming languages and filter them based on stars, forks, and keywords to match their interests.
+
+---
 
 ## Inspiration
 
-The most painful thing for programmers who are new to open-source is *finding* beginner friendly projects to contribute.
-This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use interface, people will be able to filter the repositories with the type of language they want to work with, number of stars the repository has, number of issues the repository currently has open and much more!
+Finding beginner-friendly open-source projects can be challenging for new programmers.  
+**Find-Me-Issues** simplifies this by providing an intuitive interface where users can filter repositories by language, number of stars, open issues, and more.
+
+---
 
 ## Features
 
-1) Search Functionality: Quickly find projects based on keywords or project categories.
-
-2) Filter by Programming Language: Easily filter projects by programming language to ensure they are suitable for beginners' skills.
-
-3) Browse Project Details: Access detailed information about each project, including a brief description and recent issues, as well as a link to the project itself.
-
-4) Sorting: Sort by number of stars and number of forks to find the optimal open-source project.
-
-5) Theming: Switch between light and dark themses for a better user experience.
+1. **Search Functionality:** Quickly find projects based on keywords or categories.  
+2. **Filter by Programming Language:** Find projects suitable for specific languages and skill levels.  
+3. **Browse Project Details:** Access project descriptions, recent issues, and direct repository links.  
+4. **Sorting:** Sort projects by stars and forks to find popular repositories.  
+5. **Theming:** Switch between light and dark themes for better UX.
 
 ![demo](./assets/demo1.png)
 
+---
 
-## Usage
+## Tech Stack
 
-### Tech Stack
 <p>
 <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
 <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
@@ -57,17 +62,24 @@ This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use
 <img alt="GitHub" src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"/>
 </p>
 
-### Set up
-```console
-$ git clone https://github.com/version0chiro/Find-Me-Issues.git
+---
 
-$ npm i
+## Set Up
 
-$ npm run start // this script is for backend
+```bash
+# Clone the repository
+git clone https://github.com/version0chiro/Find-Me-Issues.git
 
-$ npm run build // this script is for frontend
+# Install dependencies
+npm install
 
-// Access the application in your browser at 'http://localhost:3000'
+# Start backend
+npm run start
+
+# Build frontend
+npm run build
+
+# Access the application in your browser at http://localhost:3000
 
 ```
 
