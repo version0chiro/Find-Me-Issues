@@ -7,9 +7,9 @@
   <a href="https://github.com/version0chiro/Find-Me-Issues/blob/main/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/version0chiro/Find-Me-Issues" />
   </a>
-</p>  
+</p>
 
-> A React.js based web-app to find repositories containing 'good first issues' for open source contribution.
+> A React.js-based web app to find repositories containing "good first issues" for open-source contributions.
 
 ## Table of Contents
 
@@ -23,33 +23,33 @@
 
 ## Description
 
-OpenSource Finder is a user-friendly web application designed to simplify the process of discovering open-source projects suitable for programmers looking to make their first contributions. 
-It streamlines the search for beginner-friendly projects across various programming languages, making it easier for developers to kickstart their open-source journey. 
+OpenSource Finder is a user-friendly web application designed to simplify the process of discovering open-source projects suitable for programmers looking to make their first contributions.
+It streamlines the search for beginner-friendly projects across various programming languages, making it easier for developers to kickstart their open-source journey.
 Users can search by the number of starts the repository has, the number of forks, as well as search for keywords to find a project suitable for their interests.
 
 ## Inspiration
 
-The most painful thing for programmers who are new to open-source is *finding* beginner friendly projects to contribute.
+The most painful thing for programmers who are new to open-source is _finding_ beginner friendly projects to contribute.
 This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use interface, people will be able to filter the repositories with the type of language they want to work with, number of stars the repository has, number of issues the repository currently has open and much more!
 
 ## Features
 
-1) Search Functionality: Quickly find projects based on keywords or project categories.
+1. Search Functionality: Quickly find projects based on keywords or project categories.
 
-2) Filter by Programming Language: Easily filter projects by programming language to ensure they are suitable for beginners' skills.
+2. Filter by Programming Language: Easily filter projects by programming language to ensure they are suitable for beginners' skills.
 
-3) Browse Project Details: Access detailed information about each project, including a brief description and recent issues, as well as a link to the project itself.
+3. Browse Project Details: Access detailed information about each project, including a brief description and recent issues, as well as a link to the project itself.
 
-4) Sorting: Sort by number of stars and number of forks to find the optimal open-source project.
+4. Sorting: Sort by number of stars and number of forks to find the optimal open-source project.
 
-5) Theming: Switch between light and dark themses for a better user experience.
+5. Theming: Switch between light and dark themses for a better user experience.
 
 ![demo](./assets/demo1.png)
-
 
 ## Usage
 
 ### Tech Stack
+
 <p>
 <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
 <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
@@ -58,6 +58,7 @@ This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use
 </p>
 
 ### Set up
+
 ```console
 $ git clone https://github.com/version0chiro/Find-Me-Issues.git
 
@@ -73,15 +74,13 @@ $ npm run build // this script is for frontend
 
 ### How to Use
 
-1) Search for Projects: Enter keywords or select programming languages and project categories to search for projects.
+1. Search for Projects: Enter keywords or select programming languages and project categories to search for projects.
 
-2) Filter by Starts and Forks Level: Use the starts filter and the forks filter to narrow down projects that match your experience.
+2. Filter by Starts and Forks Level: Use the starts filter and the forks filter to narrow down projects that match your experience.
 
-3) Explore Project Details: Read the a brief description about the project and its issues.
+3. Explore Project Details: Read the a brief description about the project and its issues.
 
-4) Get Started: Follow the provided links to the project's repository's issues and start contributing.
-
-
+4. Get Started: Follow the provided links to the project's repository's issues and start contributing.
 
 ## Contributing
 
@@ -106,6 +105,7 @@ Contributors are encouraged to actively participate in issue tracking by:
 This project is open-source and available under the [MIT License](https://github.com/version0chiro/Find-Me-Issues/blob/main/LICENSE).
 
 ## Acknowledgements
+
 <a href="https://github.com/version0chiro/Find-Me-Issues/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=version0chiro/Find-Me-Issues" />
 </a>
