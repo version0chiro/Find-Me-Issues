@@ -62,6 +62,8 @@ yarn-error.log*
 node_modules/
 jspm_packages/
 client/node_modules
+build/
+
 
 # Optional npm cache directory
 .npm

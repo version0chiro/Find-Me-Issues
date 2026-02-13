@@ -21,15 +21,14 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
     1000
   );
 
-  const handleInputSearch = (inputValue) => {
+  const handleInputSearch = (e) => {
+    const value = e.target.value;
     setInputExpanded(true); // Keep input expanded while typing
-    setInput(inputValue);
-    debouncedInput(inputValue);
+    setInput(value);
+    debouncedInput(value);
   };
 
-  useEffect(() => {
-    setInputSearch(input);
-  }, [input, setInputSearch]);
+
 
   const [inputExpanded, setInputExpanded] = useState(false); // Control input expansion state
 
@@ -75,7 +74,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
               autoComplete="off"
               onMouseEnter={handleSearchClick}
               onMouseLeave={handleSearchClick}
-              onKeyUp={(e) => handleInputSearch(e.target.value)}
+              onChange={handleInputSearch}
             />
           </label>
           <div
