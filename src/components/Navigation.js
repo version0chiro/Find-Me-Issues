@@ -22,8 +22,10 @@ const Navigation = ({
 }) => {
   const { theme, changeTheme } = useContext(ThemeContext);
   let paginationItems = [];
-  const [selectedPage, setSelectedPage] = useState();
-  if (pageNumber <= 3) pushItems(1, 5); // First 3 pages
+ 
+ if (maxPageNumber <= 5) {
+  pushItems(1, maxPageNumber);// First 3 pages
+ }else if (pageNumber <=3) pushItems(1, 5); // First 5 pages
   else if (maxPageNumber - 2 <= pageNumber)
     pushItems(maxPageNumber - 4, maxPageNumber); // Last 3 pages
   else pushItems(pageNumber - 2, pageNumber + 2); // Other Pages
@@ -34,7 +36,7 @@ const Navigation = ({
       paginationItems.push(
         <div
           className={`hover:scale-105 transition-all ease-linear duration-200 cursor-pointer rounded-full w-5 h-5 flex justify-center items-center p-1 ${
-            selectedPage === idx
+            pageNumber === idx
               ? "text-black bg-[#d9d9d9] font-bold scale-125"
               : "text-black bg-white "
           } `}
@@ -42,7 +44,7 @@ const Navigation = ({
           active={idx === pageNumber}
           onClick={() => {
             setPageNumber(idx);
-            setSelectedPage(idx);
+            
           }}
         >
           {idx}
@@ -60,7 +62,7 @@ const Navigation = ({
             <div className="flex justify-center items-center gap-2 mb-20">
               <div
                 onClick={() => {
-                  setPageNumber(1);
+                  if (pageNumber > 1) setPageNumber(pageNumber - 1);
                 }}
                 className={`cursor-pointer hover:scale-105 transition-all ease-linear duration-200 w-9 h-9 ${
                   theme.mode === "light" ? "bg-black" : "bg-white"
@@ -77,7 +79,7 @@ const Navigation = ({
 
               <div
                 onClick={() => {
-                  setPageNumber(maxPageNumber);
+                  if(pageNumber < maxPageNumber) setPageNumber(pageNumber + 1);
                 }}
                 className={`cursor-pointer hover:scale-105 transition-all ease-linear duration-200 w-9 h-9 ${
                   theme.mode === "light" ? "bg-black" : "bg-white"
