@@ -38,18 +38,7 @@ function App() {
         setInputSearch={setInputSearch}
       />
 
-      <Navigation
-        pageNumber={pageNumber}
-        maxPageNumber={maxPageNumber}
-        setPageNumber={setPageNumber}
-        setSortByForks={setSortByForks}
-        setSortByStars={setSortByStars}
-        reducedState={reducedState}
-        setReducedState={setReducedState}
-        hidePagination={hidePagination}
-        removePagination={true}
-        hasFilters
-      />
+      
 
       <CardSet
         pageNumber={pageNumber}
