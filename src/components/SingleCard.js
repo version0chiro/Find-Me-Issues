@@ -9,35 +9,36 @@ import iconButton from "./../button_icon.png";
 import Loading from "./Loading";
 import { ThemeContext } from "../Context/themeContext";
 
-
 const SingleCard = (props) => {
   // console.log(props.repo)
   const [repo, setRepo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [wasRejected, setWasRejected] = useState(false);
+  const [error, setError] = useState(false);
   const { theme } = useContext(ThemeContext);
-
   useEffect(() => {
     //Modifiquei voltar pra true
-    setIsLoading(false);
+    setIsLoading(true);
     // GET request using axios inside useEffect React hook
     axios
       .get(props.repo.url)
-      .then(
-        (response) => {
-          setWasRejected(false);
-          setIsLoading(false);
-          setRepo(response.data);
-        },
-        (rejection) => {
-          if (rejection.response.status === 403) setWasRejected(true);
+      .then((response) => {
+        setRepo(response.data);
+        setWasRejected(false);
+        setError(false);
+      })
+      .catch((err) => {
+        console.log(err);
+
+        if (err?.response?.status === 403) {
+          setWasRejected(true);
+        } else {
+          setError(true);
         }
-      )
-      .catch((errors) => {
+      })
+      .finally(() => {
         setIsLoading(false);
-        console.log(errors);
       });
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, [props.repo.url]);
 
   const [openIssues, setOpen] = useState(false);
@@ -52,10 +53,11 @@ const SingleCard = (props) => {
       }}
     >
       {wasRejected && (
-        <div className={`min-h-36 flex items-center justify-center p-9 shadow-xl ${theme.mode === "light" ? "bg-slate-200" : "bg-gray-800"} rounded-md`}>
-          <p className="balance text-red-600 font-medium">
-            You are seeing this message because github imposes rate limit on
-            requests. Please refresh the page or wait a couple of minutes.
+        <div
+          className={`min-h-36 flex items-center justify-center p-9 shadow-xl ${theme.mode === "light" ? "bg-slate-200" : "bg-gray-800"} rounded-md`}
+        >
+          <p className="text-red-600 font-medium text-center">
+            ⚠️ GitHub API rate limit reached. Please try again after some time.
           </p>
         </div>
       )}
@@ -96,6 +98,7 @@ const SingleCard = (props) => {
                   target="__blank"
                 >
                   <button
+                    disabled={isLoading}
                     className="hover:scale-105 transition-all ease-linear duration-200 px-2 py-1 flex gap-1 bg-white text-black rounded-2xl justify-center items-center font-bold"
                     onClick={() => setOpen(!openIssues)}
                   >
