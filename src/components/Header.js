@@ -1,6 +1,6 @@
 import { Navbar, Container } from "react-bootstrap";
 import "./Header.css";
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useState, useEffect, useCallback } from "react";
 import logo from "./../logo.png";
 import logo_white from "./../logo-white.png";
 import { useDebouncedCallback } from "use-debounce";
@@ -11,14 +11,18 @@ import CustomSelect from "./Buttons/Language";
 
 const Header = ({ language, setLanguage, setInputSearch }) => {
   const { theme, changeTheme } = useContext(ThemeContext);
-  const [input, setInput] = useState(""); // Mirrors inputSearch and setInputSearch
+  const [_, setInput] = useState(""); // Mirrors inputSearch and setInputSearch
+
+  // optimization of rerenders
+  const handleInputFocus = useCallback(() => setInputExpanded(true), []);
+  const handleInputBlur = useCallback(() => setInputExpanded(false), []);
 
   const debouncedInput = useDebouncedCallback(
     (value) => {
       setInputSearch(value);
     },
     // delay in ms
-    1000
+    1000,
   );
 
   const handleInputSearch = (inputValue) => {
@@ -27,15 +31,18 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
     debouncedInput(inputValue);
   };
 
-  useEffect(() => {
-    setInputSearch(input);
-  }, [input, setInputSearch]);
-
   const [inputExpanded, setInputExpanded] = useState(false); // Control input expansion state
 
-  const handleSearchClick = () => {
-    setInputExpanded((prev) => !prev); // Expand input when clicked
-  };
+  // const handleSearchClick = () => {
+  //   setInputExpanded((prev) => !prev); // Expand input when clicked
+  // };
+
+  //the old useEffect was not particularly useful
+  useEffect(() => {
+    return () => {
+       debouncedInput.cancel(); // stop debounce when unmount
+    }
+  }, [debouncedInput])
 
   return (
     <Navbar id="header">
@@ -73,9 +80,11 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
               }`}
               placeholder="Search"
               autoComplete="off"
-              onMouseEnter={handleSearchClick}
-              onMouseLeave={handleSearchClick}
-              onKeyUp={(e) => handleInputSearch(e.target.value)}
+              onMouseEnter={() => setInputExpanded(true)} // Extra renders are minimal, unlike handleSearchClick
+              onMouseLeave={() => setInputExpanded(false)}
+              onChange={(e) => handleInputSearch(e.target.value)}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
             />
           </label>
           <div
