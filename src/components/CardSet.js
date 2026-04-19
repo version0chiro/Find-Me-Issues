@@ -3,9 +3,6 @@ import SingleCard from "./SingleCard";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { isEmpty } from "lodash";
-// import { dotenv } from "dotenv";
-// dotenv.config();
-//Context
 import { ThemeContext } from "../Context/themeContext";
 import Loading from "./Loading/index";
 
@@ -40,19 +37,27 @@ const CardSet = ({
     );
   }, []);
 
-  let url = `https://api.github.com/search/repositories?q=good-first-issues:>0+language:${language}${
+  let baseUrl = `https://api.github.com/search/repositories?q=good-first-issues:>0+language:${language}${
     !isEmpty(inputSearch) ? `:${inputSearch}+in%3Atitle` : ""
   }&page=${pageNumber}&per_page=10`;
 
   let urlSuffix = "";
 
+  // Apply Filters (FIXED)
   useEffect(() => {
     const onAppliedFilters = () => {
+      // 🔹 Forks logic
       if (reducedState.minForks !== "" && reducedState.maxForks === "") {
         setForksQuery(`forks:>=${reducedState.minForks}`);
-      } else if (reducedState.maxForks !== "" && reducedState.minForks === "") {
+      } else if (
+        reducedState.maxForks !== "" &&
+        reducedState.minForks === ""
+      ) {
         setForksQuery(`forks:<=${reducedState.maxForks}`);
-      } else if (reducedState.maxForks !== "" && reducedState.minForks !== "") {
+      } else if (
+        reducedState.maxForks !== "" &&
+        reducedState.minForks !== ""
+      ) {
         setForksQuery(
           `forks:${reducedState.minForks}..${reducedState.maxForks}`
         );
@@ -60,88 +65,84 @@ const CardSet = ({
         setForksQuery("");
       }
 
-      if (forksQuery !== "") {
-        const urlSplits = url.split("?q=");
-        url = urlSplits[0] + "?q=" + forksQuery + "+" + urlSplits[1];
-      }
-
+      // 🔹 Stars logic (FIXED HERE)
       if (reducedState.minStars !== "" && reducedState.maxStars === "") {
-        setStarsQuery(`stars:>=${reducedState.minForks}`);
-      } else if (reducedState.maxStars !== "" && reducedState.minStars === "") {
+        setStarsQuery(`stars:>=${reducedState.minStars}`);
+      } else if (
+        reducedState.maxStars !== "" &&
+        reducedState.minStars === ""
+      ) {
         setStarsQuery(`stars:<=${reducedState.maxStars}`);
-      } else if (reducedState.maxStars !== "" && reducedState.minStars !== "") {
+      } else if (
+        reducedState.maxStars !== "" &&
+        reducedState.minStars !== ""
+      ) {
         setStarsQuery(
           `stars:${reducedState.minStars}..${reducedState.maxStars}`
         );
       } else {
         setStarsQuery("");
       }
-
-      if (starsQuery !== "") {
-        const urlSplits = url.split("?q=");
-        url = urlSplits[0] + "?q=" + starsQuery + "+" + urlSplits[1];
-      }
     };
 
     onAppliedFilters();
   }, [
+    reducedState,
     language,
     inputSearch,
     pageNumber,
-    reducedState,
     sortByForks,
     sortByStars,
-    forksQuery,
-    starsQuery,
   ]);
 
+  // Sorting
   if (sortByStars === "desc") urlSuffix = "&sort=stars&order=desc";
   else if (sortByStars === "asc") urlSuffix = "&sort=stars&order=asc";
   else if (sortByForks === "desc") urlSuffix = "&sort=forks&order=desc";
   else if (sortByForks === "asc") urlSuffix = "&sort=forks&order=asc";
 
+  // API Call
   useEffect(() => {
-    // console.log("stars", sortByStars, "forks", sortByForks);
-    url += urlSuffix;
-    console.log(url);
+    let finalUrl = baseUrl;
+
+    if (forksQuery !== "") {
+      const urlSplits = finalUrl.split("?q=");
+      finalUrl = urlSplits[0] + "?q=" + forksQuery + "+" + urlSplits[1];
+    }
+
+    if (starsQuery !== "") {
+      const urlSplits = finalUrl.split("?q=");
+      finalUrl = urlSplits[0] + "?q=" + starsQuery + "+" + urlSplits[1];
+    }
+
+    finalUrl += urlSuffix;
+
+    console.log(finalUrl);
     setIsLoading(true);
-    // GET request using axios inside useEffect React hook
+
     axios
-      .get(url)
-      .then(
-        async (response) => {
-          // console.log(response.data.items);
-          let maxPageNumber = Math.floor(response.data.total_count / 10);
-          setMaxPageNumber(maxPageNumber);
-          setRepositories(response.data.items);
-          setWasRejected(false);
-          setIsLoading(false);
-          response.data.items.length
-            ? setHidePagination(false)
-            : setHidePagination(true);
-        },
-        (rejection) => {
-          if (rejection.response.status === 403) {
-            setWasRejected(true);
-            setHidePagination(true);
-          }
-          // console.log(rejection.response.data)
-        }
-      )
-      .catch((errors) => {
+      .get(finalUrl)
+      .then((response) => {
+        let maxPageNumber = Math.floor(response.data.total_count / 10);
+        setMaxPageNumber(maxPageNumber);
+        setRepositories(response.data.items);
+        setWasRejected(false);
         setIsLoading(false);
-        //catch all (show some message)
-        //console.log(errors)
+        response.data.items.length
+          ? setHidePagination(false)
+          : setHidePagination(true);
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 403) {
+          setWasRejected(true);
+          setHidePagination(true);
+        }
+        setIsLoading(false);
       });
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, [
-    language,
-    inputSearch,
-    pageNumber,
-    reducedState,
-    sortByForks,
-    sortByStars,
-    url,
+    baseUrl,
+    forksQuery,
+    starsQuery,
     urlSuffix,
     setMaxPageNumber,
     setHidePagination,
@@ -157,9 +158,9 @@ const CardSet = ({
       }}
     >
       {isLoading ? (
-        <Loading></Loading>
+        <Loading />
       ) : (
-        <div className={` grid grid-cols-1  lg:grid-cols-3 `}>
+        <div className="grid grid-cols-1 lg:grid-cols-3">
           {isEmpty(repositores) ? (
             <div>
               <h5>
@@ -167,8 +168,9 @@ const CardSet = ({
               </h5>
             </div>
           ) : (
-            !isEmpty(repositores) &&
-            repositores.map((repo) => <SingleCard key={repo.id} repo={repo} />)
+            repositores.map((repo) => (
+              <SingleCard key={repo.id} repo={repo} />
+            ))
           )}
         </div>
       )}
