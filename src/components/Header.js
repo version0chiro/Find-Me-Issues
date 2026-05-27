@@ -62,6 +62,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
             {/* Project Search Bar */}
             <input
               type="text"
+              autoFocus
               className={`transition-all h-7 ml-2 border-solid border-l-2 border-l-violet-950 pl-2 duration-1000 ease-in-out focus:outline-none outline-none ${
                 inputExpanded
                   ? "w-1/2 pl-5 border-b-slate-300 border-b-2 border-solid"
