@@ -42,7 +42,7 @@ This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use
 
 4) Sorting: Sort by number of stars and number of forks to find the optimal open-source project.
 
-5) Theming: Switch between light and dark themses for a better user experience.
+5) Theming: Switch between light and dark themes for a better user experience.
 
 ![demo](./assets/demo1.png)
 
