@@ -25,7 +25,7 @@
 
 OpenSource Finder is a user-friendly web application designed to simplify the process of discovering open-source projects suitable for programmers looking to make their first contributions. 
 It streamlines the search for beginner-friendly projects across various programming languages, making it easier for developers to kickstart their open-source journey. 
-Users can search by the number of starts the repository has, the number of forks, as well as search for keywords to find a project suitable for their interests.
+Users can search by the number of stars the repository has, the number of forks, as well as search for keywords to find a project suitable for their interests.
 
 ## Inspiration
 
@@ -42,7 +42,7 @@ This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use
 
 4) Sorting: Sort by number of stars and number of forks to find the optimal open-source project.
 
-5) Theming: Switch between light and dark themses for a better user experience.
+5) Theming: Switch between light and dark themes for a better user experience.
 
 ![demo](./assets/demo1.png)
 
@@ -75,7 +75,7 @@ $ npm run build // this script is for frontend
 
 1) Search for Projects: Enter keywords or select programming languages and project categories to search for projects.
 
-2) Filter by Starts and Forks Level: Use the starts filter and the forks filter to narrow down projects that match your experience.
+2) Filter by Stars and Forks Level: Use the starts filter and the forks filter to narrow down projects that match your experience.
 
 3) Explore Project Details: Read the a brief description about the project and its issues.
 
