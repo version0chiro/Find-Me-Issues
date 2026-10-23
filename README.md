@@ -40,7 +40,7 @@ This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use
 
 3) Browse Project Details: Access detailed information about each project, including a brief description and recent issues, as well as a link to the project itself.
 
-4) Sorting: Sort by number of stars and number of forks to find the optimal open-source project.
+4) Sorting: Sort by number of stars, number of forks, and last updated commits to find the optimal open-source project.
 
 5) Theming: Switch between light and dark themes for a better user experience.
 
