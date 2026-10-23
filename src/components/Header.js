@@ -1,6 +1,6 @@
 import { Navbar, Container } from "react-bootstrap";
 import "./Header.css";
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useState, useEffect } from "react";
 import logo from "./../logo.png";
 import logo_white from "./../logo-white.png";
 import { useDebouncedCallback } from "use-debounce";

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Container, Pagination } from "react-bootstrap";
+import { Container} from "react-bootstrap";
 
 import Filter from "./Buttons/Filter";
 import Sort from "./Buttons/Sort";

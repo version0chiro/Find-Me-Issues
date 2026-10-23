@@ -26,9 +26,8 @@ const CardSet = ({
   setHidePagination,
 }) => {
   const [repositores, setRepositories] = useState([]);
-  const classes = useStyles();
   const [isLoading, setIsLoading] = useState(false);
-  const [wasRejected, setWasRejected] = useState(false);
+  const [, setWasRejected] = useState(false);
   const { theme } = useContext(ThemeContext);
   const [forksQuery, setForksQuery] = useState("");
   const [starsQuery, setStarsQuery] = useState("");
