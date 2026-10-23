@@ -57,6 +57,10 @@
     "Xojo",
     "Idris",
     "Hack",
-    "ReasonML"
+    "ReasonML",
+    "Vyper",
+    "GraphQL",
+    "SPARQL",
+    "Jsonnet"
   ]
 }
