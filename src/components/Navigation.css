@@ -1,37 +1,35 @@
+/* ========================
+   Navigation Bar Styles
+   ======================== */
 .nav {
   width: 100%;
+  display: flex; /* ensure flex layout */
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem 0rem 0.5rem 0rem;
+  padding: 0.5rem 0; /* simplified shorthand */
 }
 
+/* Button container inside nav */
 .nav__buttons {
   display: flex;
   width: auto;
-}
-
-.nav__buttons > * {
-  margin-left: 0.5rem;
+  gap: 0.5rem; /* use gap instead of margin for better spacing */
 }
 
 /* Mobile Breakpoints */
-/* Use 768 instead of 576 since Pagination can get wide */
 @media (max-width: 768px) {
   .nav {
+    flex-direction: column; /* stack vertically on small screens */
+  }
+
+  .nav__buttons {
     flex-direction: column;
-  }
-
-  .nav__buttons > * {
-    margin-top: 0.5rem;
-  }
-
-  .nav__buttons > :first-child {
-    margin-left: 0rem;
+    gap: 0.5rem; /* consistent spacing */
   }
 }
 
-/* Helpers */
+/* Utility Class: Remove default padding/margin */
 .noBuff {
   padding: 0;
   margin: 0;
