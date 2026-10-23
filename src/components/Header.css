@@ -85,3 +85,24 @@
   padding: 0;
   margin: 0;
 }
+
+/* Transition Animation */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-transition.transitioning {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.transition-bg {
+  transition: background-color 0.3s ease;
+}
+
+.transition-text {
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.transition-logo {
+  transition: opacity 0.3s ease;
+}
