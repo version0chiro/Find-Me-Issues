@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Container, Pagination } from "react-bootstrap";
+import { useAppStates } from "../Context/AppProvider";
 
 import Filter from "./Buttons/Filter";
 import Sort from "./Buttons/Sort";
@@ -9,7 +10,11 @@ import "./Navigation.css";
 import Darkmode from "./Buttons/Darkmode";
 
 const Navigation = ({
-  setPageNumber,
+ 
+}) => {
+
+  const {
+   setPageNumber,
   pageNumber,
   maxPageNumber,
   setSortByForks,
@@ -19,7 +24,7 @@ const Navigation = ({
   hidePagination,
   hasFilters,
   removePagination,
-}) => {
+  }= useAppStates()
   const { theme, changeTheme } = useContext(ThemeContext);
   let paginationItems = [];
   const [selectedPage, setSelectedPage] = useState();

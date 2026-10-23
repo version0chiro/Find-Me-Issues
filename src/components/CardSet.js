@@ -3,9 +3,11 @@ import SingleCard from "./SingleCard";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { isEmpty } from "lodash";
+
 // import { dotenv } from "dotenv";
 // dotenv.config();
 //Context
+import { useAppStates } from "../Context/AppProvider";
 import { ThemeContext } from "../Context/themeContext";
 import Loading from "./Loading/index";
 
@@ -16,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CardSet = ({
+}) => {
+  const {
   language,
   inputSearch,
   pageNumber,
@@ -24,7 +28,7 @@ const CardSet = ({
   sortByForks,
   setMaxPageNumber,
   setHidePagination,
-}) => {
+  } = useAppStates()
   const [repositores, setRepositories] = useState([]);
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(false);

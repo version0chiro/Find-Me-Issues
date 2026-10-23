@@ -8,8 +8,14 @@ import { useDebouncedCallback } from "use-debounce";
 import { ThemeContext } from "../Context/themeContext";
 import Darkmode from "./Buttons/Darkmode";
 import CustomSelect from "./Buttons/Language";
+import { useAppStates } from "../Context/AppProvider";
 
-const Header = ({ language, setLanguage, setInputSearch }) => {
+const Header = () => {
+  const {
+     language, 
+     setLanguage,
+    setInputSearch 
+  } = useAppStates()
   const { theme, changeTheme } = useContext(ThemeContext);
   const [input, setInput] = useState(""); // Mirrors inputSearch and setInputSearch
 
