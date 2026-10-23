@@ -1,15 +1,24 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../Context/themeContext";
-import sol from "../../Sun.png";
-import lua from "../../Moon.png";
+import SunIcon from "../../Sun.png";
+import MoonIcon from "../../Moon.png";
 
-function Darkmode() {
+const Darkmode = () => {
   const { theme } = useContext(ThemeContext);
-  return theme.mode === "light" ? (
-    <img src={lua} alt="lua icone" className="w-10"></img>
-  ) : (
-    <img src={sol} alt="sol icone" className="w-10"></img>
+  const isLightMode = theme.mode === "light";
+
+  return (
+    <button
+      aria-label={`Switch to ${isLightMode ? "dark" : "light"} mode`}
+      className="w-10 h-10 focus:outline-none"
+    >
+      <img
+        src={isLightMode ? MoonIcon : SunIcon}
+        alt={isLightMode ? "Moon icon" : "Sun icon"}
+        className="w-full h-full object-contain transition-transform duration-300 hover:scale-110"
+      />
+    </button>
   );
-}
+};
 
 export default Darkmode;
