@@ -113,3 +113,14 @@ This project is open-source and available under the [MIT License](https://github
 ### Show your support
 
 Give a star if this project helped you!
+
+## 📘 项目简介（简体中文）
+
+Find Me Issues 是一个帮助开发者快速发现适合自己参与的 GitHub Issue 的工具。它通过标签、语言和仓库筛选功能，让用户快速定位适合的开源任务。
+
+### 🚀 快速开始
+
+1. 克隆项目：`git clone https://github.com/your-username/Find-Me-Issues.git`
+2. 安装依赖：`npm install`
+3. 启动开发环境：`npm start`
+
