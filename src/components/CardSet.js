@@ -162,7 +162,7 @@ const CardSet = ({
         <div className={` grid grid-cols-1  lg:grid-cols-3 `}>
           {isEmpty(repositores) ? (
             <div>
-              <h5>
+              <h5 className="text-center text-slate-600">
                 No issues to be shown at the moment, please try again later.
               </h5>
             </div>

@@ -11,14 +11,12 @@ import { ThemeContext } from "../Context/themeContext";
 
 
 const SingleCard = (props) => {
-  // console.log(props.repo)
   const [repo, setRepo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [wasRejected, setWasRejected] = useState(false);
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
-    //Modifiquei voltar pra true
     setIsLoading(false);
     // GET request using axios inside useEffect React hook
     axios
