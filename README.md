@@ -32,9 +32,9 @@ Users can search by the number of stars the repository has, the number of forks,
 The most painful thing for programmers who are new to open-source is *finding* beginner friendly projects to contribute.
 This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use interface, people will be able to filter the repositories with the type of language they want to work with, number of stars the repository has, number of issues the repository currently has open and much more!
 
-## Features
+### Features
 
-1) Search Functionality: Quickly find projects based on keywords or project categories.
+1) Search Functionality: Quickly find and view projects based on keywords or project categories.
 
 2) Filter by Programming Language: Easily filter projects by programming language to ensure they are suitable for beginners' skills.
 
@@ -79,7 +79,7 @@ $ npm run build // this script is for frontend
 
 3) Explore Project Details: Read the a brief description about the project and its issues.
 
-4) Get Started: Follow the provided links to the project's repository's issues and start contributing.
+4) Get Started: Follow the provided links to the project's repository's issues and then start contributing.
 
 
 
