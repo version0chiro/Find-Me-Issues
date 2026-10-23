@@ -12,7 +12,6 @@
 > A React.js based web-app to find repositories containing 'good first issues' for open source contribution.
 
 ## Table of Contents
-
 - [Description](#description)
 - [Features](#features)
 - [Set Up](#set-up)
