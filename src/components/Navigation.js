@@ -37,7 +37,7 @@ const Navigation = ({
             selectedPage === idx
               ? "text-black bg-[#d9d9d9] font-bold scale-125"
               : "text-black bg-white "
-          } `}
+          } ${pageNumber === idx ? "text-black bg-[#d9d9d9] font-bold scale-125" : ""}`}
           key={idx}
           active={idx === pageNumber}
           onClick={() => {
@@ -60,7 +60,7 @@ const Navigation = ({
             <div className="flex justify-center items-center gap-2 mb-20">
               <div
                 onClick={() => {
-                  setPageNumber(1);
+                  setPageNumber(pageNumber > 1 ? pageNumber - 1 : pageNumber);
                 }}
                 className={`cursor-pointer hover:scale-105 transition-all ease-linear duration-200 w-9 h-9 ${
                   theme.mode === "light" ? "bg-black" : "bg-white"
@@ -77,7 +77,7 @@ const Navigation = ({
 
               <div
                 onClick={() => {
-                  setPageNumber(maxPageNumber);
+                  setPageNumber(pageNumber < maxPageNumber ? pageNumber + 1 : pageNumber);
                 }}
                 className={`cursor-pointer hover:scale-105 transition-all ease-linear duration-200 w-9 h-9 ${
                   theme.mode === "light" ? "bg-black" : "bg-white"
