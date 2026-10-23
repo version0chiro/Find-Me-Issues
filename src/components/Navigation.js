@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Container, Pagination } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 import Filter from "./Buttons/Filter";
 import Sort from "./Buttons/Sort";
@@ -7,6 +7,7 @@ import Sort from "./Buttons/Sort";
 import { ThemeContext } from "../Context/themeContext";
 import "./Navigation.css";
 import Darkmode from "./Buttons/Darkmode";
+import {ChevronRight, ChevronLeft} from "lucide-react";
 
 const Navigation = ({
   setPageNumber,
@@ -66,11 +67,8 @@ const Navigation = ({
                   theme.mode === "light" ? "bg-black" : "bg-white"
                 } rounded-full flex justify-center items-center`}
               >
-                <div
-                  className={`w-5 h-5 border-r-4 border-b-4  rotate-[130deg] ${
-                    theme.mode === "light" ? "border-white" : "border-black"
-                  } `}
-                ></div>
+                <ChevronLeft style={{color: "white"}} />
+                
               </div>
 
               {paginationItems}
@@ -83,11 +81,7 @@ const Navigation = ({
                   theme.mode === "light" ? "bg-black" : "bg-white"
                 } rounded-full flex justify-center items-center`}
               >
-                <div
-                  className={`w-5 h-5 border-l-4 border-t-4 rotate-[130deg] ${
-                    theme.mode === "light" ? "border-white" : "border-black"
-                  }`}
-                ></div>
+               <ChevronRight style={{color: "white"}} />
               </div>
             </div>
           </>
