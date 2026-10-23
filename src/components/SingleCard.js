@@ -99,7 +99,7 @@ const SingleCard = (props) => {
                     className="hover:scale-105 transition-all ease-linear duration-200 px-2 py-1 flex gap-1 bg-white text-black rounded-2xl justify-center items-center font-bold"
                     onClick={() => setOpen(!openIssues)}
                   >
-                    Issues
+                    View Issues
                     <img
                       className="w-5 h-5"
                       src={iconButton}
