@@ -46,6 +46,34 @@ This issue will be resolved by **Find-Me-Issues**, with a simple and easy to use
 
 ![demo](./assets/demo1.png)
 
+## prerequisites
+git installed
+requires runtime or SDK for the project 
+code editor such as vs code
+
+## installation and setup
+
+created an issue
+fork the repo
+clone the repo
+git clone < repo-url>
+cd <project-folder>
+
+## install the dependencies
+node.js projects:
+bash
+npm install
+
+## configure the env variables:
+cp. env.example.env
+
+update the .env file as required
+
+## run locally 
+for node.js projects
+bash
+npm run dev
+
 
 ## Usage
 
